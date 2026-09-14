@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECE Department — Routine Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/ruet_logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- World-Class Corporate Admin Login Portal -->
+  <div id="adminLoginPortal" class="admin-login-portal portal-hidden">
+    <div class="corp-login-backdrop">
+      <div class="corp-glow-orb corp-glow-1"></div>
+      <div class="corp-glow-orb corp-glow-2"></div>
+    </div>
+
+    <div class="corp-login-card">
+      <div class="corp-card-header">
+        <div class="corp-crest-wrapper" title="Rajshahi University of Engineering & Technology">
+          <img src="assets/ruet_logo.png" alt="RUET Official Crest" class="corp-ruet-logo">
+        </div>
+        <div class="corp-institution-meta">
+          <span class="corp-univ-name">Rajshahi University of Engineering &amp; Technology</span>
+          <span class="corp-dept-name">Department of Electrical &amp; Computer Engineering</span>
+        </div>
+        <h1 class="corp-portal-title">Academic Routine System</h1>
+        <div class="corp-portal-badge">
+          <span class="corp-badge-dot"></span>
+          <span>Executive Administrative Portal</span>
+        </div>
+      </div>
+
+      <form class="corp-login-form" id="adminLoginForm" onsubmit="return false;">
+        <div class="corp-field">
+          <label for="corpAdminUser" class="corp-label">Corporate Account ID</label>
+          <div class="corp-input-wrap">
+            <span class="corp-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </span>
+            <input id="corpAdminUser" type="text" class="corp-input" value="admin" autocomplete="username"
+              placeholder="Administrator ID" readonly>
+            <span class="corp-input-tag">Head / Admin</span>
+          </div>
+        </div>
+
+        <div class="corp-field">
+          <div class="corp-label-row">
+            <label for="corpAdminPass" class="corp-label">Security Access Key</label>
+            <button type="button" class="corp-preset-btn" id="corpFillDefaultBtn" title="Click to fill default key">Use
+              Default (admin123)</button>
+          </div>
+          <div class="corp-input-wrap">
+            <span class="corp-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </span>
+            <input id="corpAdminPass" type="password" class="corp-input" placeholder="Enter administrative password"
+              autocomplete="current-password" autofocus>
+            <button type="button" class="corp-pw-toggle" id="corpTogglePassBtn" title="Toggle password visibility">
+              <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                <line x1="2" y1="2" x2="22" y2="22" />
+              </svg>
+            </button>
+          </div>
+          <div class="corp-error-msg" id="corpLoginError" style="display:none;"></div>
+        </div>
+
+        <button type="submit" class="corp-submit-btn" id="corpLoginSubmitBtn">
+          <span class="corp-btn-text">Authorize &amp; Enter Workspace</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
+      </form>
+
+      <div class="corp-card-footer">
+        <div class="corp-security-guarantee">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          <span>Single login grants full control until this tab is closed</span>
+        </div>
+        <div class="corp-footer-copy">&copy; 2026 Department of Electrical &amp; Computer Engineering, RUET</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="sidebar-show-btn" id="sidebarShowBtn" title="Show sidebar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+
+  <div class="app" id="appRoot">
+    <aside class="sidebar" id="sidebarEl">
+      <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse sidebar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="brand">
+        <div class="brand-crest" title="Rajshahi University of Engineering & Technology">
+          <img src="assets/ruet_logo.png" alt="RUET Logo" class="brand-logo-img">
+        </div>
+        <div class="brand-info">
+          <div class="brand-title">ECE Department</div>
+          <div class="brand-sub">Routine Management System</div>
+        </div>
+      </div>
+
+      <nav id="navList" class="nav-list"></nav>
+
+      <div class="sidebar-footer">
+        <div class="system-status-card">
+          <div class="status-indicator-row">
+            <span class="status-dot"></span>
+            <span class="status-text">Session 2025–2026</span>
+          </div>
+          <div class="dept-sign-text">Department of ECE • RUET</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main" id="mainArea"></main>
+  </div>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true">
+    <div class="modal" id="modalBody"></div>
+  </div>
+
+  <!-- Scripts load in dependency order (plain scripts, shared global scope) -->
+  <script src="js/logo.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/routine.js"></script>
+  <script src="js/crud.js"></script>
+  <script src="js/courses.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

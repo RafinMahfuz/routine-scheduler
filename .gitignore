@@ -1,0 +1,11 @@
+# Dependencies & OS files
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Scratch temp files & test profiles
+scratch/chrome_temp/
+scratch/temp_edge_profile/
+scratch/*.pdf
+scratch/*.png
+scratch/crop_*.png
