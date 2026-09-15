@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1789495249845,
+  "updatedAt": 1789501248225,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "routine",
+      "activeNav": "teachers",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -45,7 +45,7 @@
           "label": "4th Year (Odd)|2021 Series"
         }
       ],
-      "activeSeriesId": 1004,
+      "activeSeriesId": 1000,
       "rooms": [
         {
           "id": 1005,
@@ -538,6 +538,19 @@
             "bg": "#ddd6fe",
             "fg": "#5b21b6",
             "border": "#7c3aed"
+          }
+        },
+        {
+          "id": 1475,
+          "name": "Rafin Mahfuz",
+          "shortName": "RM",
+          "dept": "ECE",
+          "email": "rafinmahfuz102@gmail.com",
+          "color": {
+            "name": "Bright Berry",
+            "bg": "#fbcfe8",
+            "fg": "#9d174d",
+            "border": "#db2777"
           }
         }
       ],
@@ -4318,6 +4331,6 @@
       "head": "Head, ECE, RUET",
       "effectiveDate": "10/01/2026"
     },
-    "uid": 1475
+    "uid": 1476
   }
 }
