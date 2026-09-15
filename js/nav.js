@@ -18,7 +18,6 @@ const NAV_ITEMS = [
   { key: "labs", label: "Labs" },
   { key: "teachers", label: "Teachers" },
   { key: "courses", label: "Courses" },
-  { key: "students", label: "Students" },
   { key: "reports", label: "Reports" },
   { key: "settings", label: "Settings" },
 ];
@@ -215,7 +214,6 @@ function renderAll() {
     case 'labs': renderLabs(); break;
     case 'teachers': renderTeachers(); break;
     case 'courses': renderCourses(); break;
-    case 'students': renderStudents(); break;
     case 'reports': renderReports(); break;
     case 'settings': renderSettings(); break;
     default: renderRoutine();

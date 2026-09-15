@@ -552,6 +552,7 @@ function loadState() {
       state.isAdmin = false;
     }
     if (state.filters && state.filters.section) delete state.filters.section;
+    if (state.activeNav === 'students') state.activeNav = 'routine';
     if (!state.sheetZoom) state.sheetZoom = 'fit';
     if (!state.routineTeacherFilter) state.routineTeacherFilter = 'All';
     if (state.focusMode === undefined) state.focusMode = false;
