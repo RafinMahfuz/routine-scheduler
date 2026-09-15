@@ -1,0 +1,4216 @@
+{
+  "version": 1,
+  "updatedAt": 1789492746394,
+  "updatedBy": "Initial Setup",
+  "state": {
+    "activeNav": "routine",
+    "activeDay": "Saturday",
+    "viewMode": "sheet",
+    "darkMode": false,
+    "filters": {},
+    "routineAllSeries": false,
+    "routineDayFilter": "All",
+    "routineTeacherFilter": "All",
+    "sheetZoom": "fit",
+    "sheetMonochrome": false,
+    "focusMode": false,
+    "sidebarHidden": false,
+    "isAdmin": false,
+    "adminPassword": "admin123",
+    "series": [
+      {
+        "id": 1000,
+        "name": "25 Series",
+        "label": "1st Year (Odd)|2025 Series"
+      },
+      {
+        "id": 1001,
+        "name": "24 Series",
+        "label": "2nd Year (Odd)|2024 Series"
+      },
+      {
+        "id": 1002,
+        "name": "23 Series",
+        "label": "2nd Year (Even)|2023 Series"
+      },
+      {
+        "id": 1003,
+        "name": "22 Series",
+        "label": "3rd Year (Even)|2022 Series"
+      },
+      {
+        "id": 1004,
+        "name": "21 Series",
+        "label": "4th Year (Odd)|2021 Series"
+      }
+    ],
+    "activeSeriesId": 1000,
+    "rooms": [
+      {
+        "id": 1005,
+        "code": "R-401",
+        "loc": "Research Building"
+      },
+      {
+        "id": 1006,
+        "code": "R-402",
+        "loc": "Research Building"
+      },
+      {
+        "id": 1007,
+        "code": "R-403",
+        "loc": "Research Building"
+      },
+      {
+        "id": 1008,
+        "code": "R-404",
+        "loc": "Research Building"
+      },
+      {
+        "id": 1009,
+        "code": "S-401",
+        "loc": "Shahjalal Hall (ECS)"
+      },
+      {
+        "id": 1010,
+        "code": "1107",
+        "loc": "Basic Science Building"
+      }
+    ],
+    "labs": [
+      {
+        "id": 1011,
+        "name": "ECE Computer LAB - 1"
+      },
+      {
+        "id": 1012,
+        "name": "ECE Computer LAB - 2"
+      },
+      {
+        "id": 1013,
+        "name": "ECE Machine LAB"
+      },
+      {
+        "id": 1014,
+        "name": "ECE Circuit LAB"
+      },
+      {
+        "id": 1015,
+        "name": "PHY LAB"
+      },
+      {
+        "id": 1016,
+        "name": "CHEM LAB"
+      },
+      {
+        "id": 1017,
+        "name": "ENG LAB"
+      },
+      {
+        "id": 1018,
+        "name": "EEE Machine LAB"
+      },
+      {
+        "id": 1019,
+        "name": "EEE Measurement LAB"
+      },
+      {
+        "id": 1020,
+        "name": "EEE Communication LAB"
+      },
+      {
+        "id": 1021,
+        "name": "Heat Engine Lab"
+      },
+      {
+        "id": 1022,
+        "name": "MTE Robotics"
+      },
+      {
+        "id": 1023,
+        "name": "EEE Biomedical Lab"
+      },
+      {
+        "id": 1024,
+        "name": "EEE Electronics Lab"
+      }
+    ],
+    "teachers": [
+      {
+        "id": 1025,
+        "name": "Prof. Dr. S. M. Abdur Razzak",
+        "shortName": "SMAR",
+        "dept": "ECE",
+        "email": "smar@ruet.ac.bd",
+        "color": {
+          "name": "Sapphire Blue",
+          "bg": "#eff6ff",
+          "fg": "#1d4ed8",
+          "border": "#3b82f6"
+        }
+      },
+      {
+        "id": 1026,
+        "name": "Prof. Dr. Md. Anwar Hossain",
+        "shortName": "MAH",
+        "dept": "ECE",
+        "email": "mah@ruet.ac.bd",
+        "color": {
+          "name": "Emerald Green",
+          "bg": "#ecfdf5",
+          "fg": "#047857",
+          "border": "#10b981"
+        }
+      },
+      {
+        "id": 1027,
+        "name": "Dr. G. K. M. Hasanuzzaman",
+        "shortName": "GKH",
+        "dept": "ECE",
+        "email": "gkh@ruet.ac.bd",
+        "color": {
+          "name": "Amber Gold",
+          "bg": "#fffbeb",
+          "fg": "#b45309",
+          "border": "#f59e0b"
+        }
+      },
+      {
+        "id": 1028,
+        "name": "Foria Tabassum",
+        "shortName": "FT",
+        "dept": "ECE",
+        "email": "ft@ruet.ac.bd",
+        "color": {
+          "name": "Royal Purple",
+          "bg": "#f5f3ff",
+          "fg": "#6d28d9",
+          "border": "#8b5cf6"
+        }
+      },
+      {
+        "id": 1029,
+        "name": "Heba Binte Kibria",
+        "shortName": "HBK",
+        "dept": "ECE",
+        "email": "hbk@ruet.ac.bd",
+        "color": {
+          "name": "Rose Crimson",
+          "bg": "#fff1f2",
+          "fg": "#be123c",
+          "border": "#f43f5e"
+        }
+      },
+      {
+        "id": 1030,
+        "name": "Md. Faisal Ahmed",
+        "shortName": "MFA",
+        "dept": "ECE",
+        "email": "mfa@ruet.ac.bd",
+        "color": {
+          "name": "Dark Teal",
+          "bg": "#f0fdfa",
+          "fg": "#0f766e",
+          "border": "#14b8a6"
+        }
+      },
+      {
+        "id": 1031,
+        "name": "Money Sumer Gazon",
+        "shortName": "MRK",
+        "dept": "ECE",
+        "email": "mrk@ruet.ac.bd",
+        "color": {
+          "name": "Sunset Orange",
+          "bg": "#fff7ed",
+          "fg": "#c2410c",
+          "border": "#f97316"
+        }
+      },
+      {
+        "id": 1032,
+        "name": "Md. Sohel Rana",
+        "shortName": "MSH",
+        "dept": "ECE",
+        "email": "msh@ruet.ac.bd",
+        "color": {
+          "name": "Indigo Blue",
+          "bg": "#eef2ff",
+          "fg": "#4338ca",
+          "border": "#6366f1"
+        }
+      },
+      {
+        "id": 1033,
+        "name": "Md. Hafiz Uddin",
+        "shortName": "SR",
+        "dept": "ECE",
+        "email": "sr@ruet.ac.bd",
+        "color": {
+          "name": "Cyan Sky",
+          "bg": "#ecfeff",
+          "fg": "#0e7490",
+          "border": "#06b6d4"
+        }
+      },
+      {
+        "id": 1034,
+        "name": "Md. Adnan Noor Tasnim",
+        "shortName": "MNT",
+        "dept": "ECE",
+        "email": "mnt@ruet.ac.bd",
+        "color": {
+          "name": "Ruby Red",
+          "bg": "#fef2f2",
+          "fg": "#b91c1c",
+          "border": "#ef4444"
+        }
+      },
+      {
+        "id": 1035,
+        "name": "Ms. Rupali Khatun",
+        "shortName": "RK",
+        "dept": "ECE",
+        "email": "rk@ruet.ac.bd",
+        "color": {
+          "name": "Lime Green",
+          "bg": "#f7fee7",
+          "fg": "#4d7c0f",
+          "border": "#84cc16"
+        }
+      },
+      {
+        "id": 1036,
+        "name": "Prof. Dr. Md. Kamruzzaman",
+        "shortName": "NRP",
+        "dept": "ECE",
+        "email": "nrp@ruet.ac.bd",
+        "color": {
+          "name": "Violet Magenta",
+          "bg": "#faf5ff",
+          "fg": "#7e22ce",
+          "border": "#a855f7"
+        }
+      },
+      {
+        "id": 1037,
+        "name": "Prof. Dr. Md. Faruk Hossain",
+        "shortName": "MFH",
+        "dept": "ECE",
+        "email": "mfh@ruet.ac.bd",
+        "color": {
+          "name": "Hot Pink",
+          "bg": "#fdf2f8",
+          "fg": "#be185d",
+          "border": "#ec4899"
+        }
+      },
+      {
+        "id": 1038,
+        "name": "Md. Kabir Islam",
+        "shortName": "KF",
+        "dept": "ECE",
+        "email": "kf@ruet.ac.bd",
+        "color": {
+          "name": "Deep Cyan",
+          "bg": "#f0f9ff",
+          "fg": "#0369a1",
+          "border": "#0284c7"
+        }
+      },
+      {
+        "id": 1039,
+        "name": "Md. Abdul Kadir Sheikh",
+        "shortName": "MMR",
+        "dept": "ECE",
+        "email": "mmr@ruet.ac.bd",
+        "color": {
+          "name": "Warm Amber",
+          "bg": "#fefce8",
+          "fg": "#a16207",
+          "border": "#eab308"
+        }
+      },
+      {
+        "id": 1040,
+        "name": "Prof. Dr. Tara Ahmed",
+        "shortName": "SA",
+        "dept": "HUM",
+        "email": "sa@ruet.ac.bd",
+        "color": {
+          "name": "Forest Green",
+          "bg": "#f0fdf4",
+          "fg": "#15803d",
+          "border": "#22c55e"
+        }
+      },
+      {
+        "id": 1041,
+        "name": "Shovan Lodi",
+        "shortName": "SI",
+        "dept": "ECE",
+        "email": "si@ruet.ac.bd",
+        "color": {
+          "name": "Rich Maroon",
+          "bg": "#fdf4ff",
+          "fg": "#86198f",
+          "border": "#c026d3"
+        }
+      },
+      {
+        "id": 1042,
+        "name": "Md. Zahangir Alam",
+        "shortName": "MZA",
+        "dept": "MATH",
+        "email": "mza@ruet.ac.bd",
+        "color": {
+          "name": "Dark Bronze",
+          "bg": "#fafaf9",
+          "fg": "#44403c",
+          "border": "#78716c"
+        }
+      },
+      {
+        "id": 1043,
+        "name": "Dilshion Ferdous",
+        "shortName": "DF",
+        "dept": "ECE",
+        "email": "df@ruet.ac.bd",
+        "color": {
+          "name": "Cobalt Blue",
+          "bg": "#e0e7ff",
+          "fg": "#3730a3",
+          "border": "#4f46e5"
+        }
+      },
+      {
+        "id": 1044,
+        "name": "Md. Mahfuz Hasan Shuvo",
+        "shortName": "MHS",
+        "dept": "ECE",
+        "email": "mhs@ruet.ac.bd",
+        "color": {
+          "name": "Coral Rust",
+          "bg": "#ffedd5",
+          "fg": "#9a3412",
+          "border": "#ea580c"
+        }
+      },
+      {
+        "id": 1045,
+        "name": "Sultana Begum",
+        "shortName": "SB",
+        "dept": "ECE",
+        "email": "sb@ruet.ac.bd",
+        "color": {
+          "name": "Mint Teal",
+          "bg": "#ccfbf1",
+          "fg": "#115e59",
+          "border": "#0d9488"
+        }
+      },
+      {
+        "id": 1046,
+        "name": "Dr. Md. Ashraf Ali",
+        "shortName": "AAI",
+        "dept": "ECE",
+        "email": "aai@ruet.ac.bd",
+        "color": {
+          "name": "Plum Purple",
+          "bg": "#f3e8ff",
+          "fg": "#6b21a8",
+          "border": "#9333ea"
+        }
+      },
+      {
+        "id": 1047,
+        "name": "Monirul Islam",
+        "shortName": "MI",
+        "dept": "ECE",
+        "email": "mi@ruet.ac.bd",
+        "color": {
+          "name": "Scarlet",
+          "bg": "#fee2e2",
+          "fg": "#991b1b",
+          "border": "#dc2626"
+        }
+      },
+      {
+        "id": 1048,
+        "name": "Md. Rakibul Islam",
+        "shortName": "MRI",
+        "dept": "ECE",
+        "email": "mri@ruet.ac.bd",
+        "color": {
+          "name": "Turquoise",
+          "bg": "#cffafe",
+          "fg": "#155e75",
+          "border": "#0891b2"
+        }
+      },
+      {
+        "id": 1049,
+        "name": "Md. Riaz Ahmed",
+        "shortName": "MRP",
+        "dept": "ECE",
+        "email": "mrp@ruet.ac.bd",
+        "color": {
+          "name": "Olive Green",
+          "bg": "#ecfccb",
+          "fg": "#3f6212",
+          "border": "#65a30d"
+        }
+      },
+      {
+        "id": 1050,
+        "name": "Md. Kamrul Gani",
+        "shortName": "MKG",
+        "dept": "ECE",
+        "email": "mkg@ruet.ac.bd",
+        "color": {
+          "name": "Blue Slate",
+          "bg": "#f1f5f9",
+          "fg": "#334155",
+          "border": "#64748b"
+        }
+      },
+      {
+        "id": 1051,
+        "name": "Md. Saiful Islam",
+        "shortName": "MSI",
+        "dept": "PHY",
+        "email": "msi@ruet.ac.bd",
+        "color": {
+          "name": "Orchid Pink",
+          "bg": "#fae8ff",
+          "fg": "#701a75",
+          "border": "#a21caf"
+        }
+      },
+      {
+        "id": 1052,
+        "name": "Omar Faruk",
+        "shortName": "OF",
+        "dept": "ECE",
+        "email": "of@ruet.ac.bd",
+        "color": {
+          "name": "Dark Goldenrod",
+          "bg": "#fef08a",
+          "fg": "#854d0e",
+          "border": "#ca8a04"
+        }
+      },
+      {
+        "id": 1053,
+        "name": "Tanjila Khanam",
+        "shortName": "TK",
+        "dept": "HUM",
+        "email": "tk@ruet.ac.bd",
+        "color": {
+          "name": "Aqua Ocean",
+          "bg": "#bae6fd",
+          "fg": "#075985",
+          "border": "#0284c7"
+        }
+      },
+      {
+        "id": 1054,
+        "name": "Md. Zahirul Haque",
+        "shortName": "MZH",
+        "dept": "MATH",
+        "email": "mzh@ruet.ac.bd",
+        "color": {
+          "name": "Grass Green",
+          "bg": "#bbf7d0",
+          "fg": "#166534",
+          "border": "#16a34a"
+        }
+      },
+      {
+        "id": 1055,
+        "name": "Md. Nazrul Islam Sarker",
+        "shortName": "NIS",
+        "dept": "ECE",
+        "email": "nis@ruet.ac.bd",
+        "color": {
+          "name": "Deep Violet",
+          "bg": "#ddd6fe",
+          "fg": "#5b21b6",
+          "border": "#7c3aed"
+        }
+      }
+    ],
+    "courses": [
+      {
+        "id": 1128,
+        "seriesId": 1000,
+        "code": "HUM 1117",
+        "title": "HUM 1117",
+        "credit": 3,
+        "dept": "HUM",
+        "type": "theory",
+        "sessionsPerWeek": 2,
+        "studentCount": 60,
+        "teacherId": 1044,
+        "groups": []
+      },
+      {
+        "id": 1129,
+        "seriesId": 1000,
+        "code": "PHY 1117",
+        "title": "PHY 1117",
+        "credit": 3,
+        "dept": "PHY",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1037,
+        "groups": []
+      },
+      {
+        "id": 1130,
+        "seriesId": 1000,
+        "code": "ECE 1103",
+        "title": "ECE 1103",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1029,
+        "groups": []
+      },
+      {
+        "id": 1131,
+        "seriesId": 1000,
+        "code": "MATH 1117",
+        "title": "MATH 1117",
+        "credit": 3,
+        "dept": "MATH",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1031,
+        "groups": []
+      },
+      {
+        "id": 1132,
+        "seriesId": 1000,
+        "code": "ECE 1101",
+        "title": "ECE 1101",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1026,
+        "groups": []
+      },
+      {
+        "id": 1133,
+        "seriesId": 1000,
+        "code": "HUM 1118",
+        "title": "HUM 1118",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1017,
+            "teacherId": 1040,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1134,
+        "seriesId": 1000,
+        "code": "ECE 1102 / 1104",
+        "title": "ECE 1102 / 1104",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1014,
+            "teacherId": 1050,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1135,
+        "seriesId": 1000,
+        "code": "PHY 1118 / ECE 1100",
+        "title": "PHY 1118 / ECE 1100",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1015,
+            "teacherId": 1032,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1136,
+        "seriesId": 1000,
+        "code": "ECE 1102",
+        "title": "ECE 1102",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1014,
+            "teacherId": 1050,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1137,
+        "seriesId": 1001,
+        "code": "ECE 2104",
+        "title": "ECE 2104",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 2,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1011,
+            "teacherId": 1030,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1138,
+        "seriesId": 1001,
+        "code": "ECE 2105",
+        "title": "ECE 2105",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1050,
+        "groups": []
+      },
+      {
+        "id": 1139,
+        "seriesId": 1001,
+        "code": "MATH 2117",
+        "title": "MATH 2117",
+        "credit": 3,
+        "dept": "MATH",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1054,
+        "groups": []
+      },
+      {
+        "id": 1140,
+        "seriesId": 1001,
+        "code": "ECE 2111",
+        "title": "ECE 2111",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1036,
+        "groups": []
+      },
+      {
+        "id": 1141,
+        "seriesId": 1001,
+        "code": "ECE 2103",
+        "title": "ECE 2103",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1030,
+        "groups": []
+      },
+      {
+        "id": 1142,
+        "seriesId": 1001,
+        "code": "CHEM 2117",
+        "title": "CHEM 2117",
+        "credit": 3,
+        "dept": "CHEM",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1033,
+        "groups": []
+      },
+      {
+        "id": 1143,
+        "seriesId": 1001,
+        "code": "ECE 2106 / 2112",
+        "title": "ECE 2106 / 2112",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1024,
+            "teacherId": 1050,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1144,
+        "seriesId": 1001,
+        "code": "ECE 2100",
+        "title": "ECE 2100",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1011,
+            "teacherId": 1025,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1145,
+        "seriesId": 1001,
+        "code": "CHEM 2118",
+        "title": "CHEM 2118",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1016,
+            "teacherId": 1033,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1146,
+        "seriesId": 1002,
+        "code": "ECE 2200",
+        "title": "ECE 2200",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 2,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1014,
+            "teacherId": 1036,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1147,
+        "seriesId": 1002,
+        "code": "MATH 2217",
+        "title": "MATH 2217",
+        "credit": 3,
+        "dept": "MATH",
+        "type": "theory",
+        "sessionsPerWeek": 2,
+        "studentCount": 60,
+        "teacherId": 1047,
+        "groups": []
+      },
+      {
+        "id": 1148,
+        "seriesId": 1002,
+        "code": "ECE 2215",
+        "title": "ECE 2215",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 2,
+        "studentCount": 60,
+        "teacherId": 1055,
+        "groups": []
+      },
+      {
+        "id": 1149,
+        "seriesId": 1002,
+        "code": "ECE 2207",
+        "title": "ECE 2207",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1028,
+        "groups": []
+      },
+      {
+        "id": 1150,
+        "seriesId": 1002,
+        "code": "ECE 2208",
+        "title": "ECE 2208",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1018,
+            "teacherId": 1028,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1151,
+        "seriesId": 1002,
+        "code": "ECE 2213",
+        "title": "ECE 2213",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": 1030,
+        "groups": []
+      },
+      {
+        "id": 1152,
+        "seriesId": 1002,
+        "code": "HUM 2217",
+        "title": "HUM 2217",
+        "credit": 3,
+        "dept": "HUM",
+        "type": "theory",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": 1041,
+        "groups": []
+      },
+      {
+        "id": 1153,
+        "seriesId": 1002,
+        "code": "ECE 2214 / 2216",
+        "title": "ECE 2214 / 2216",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1012,
+            "teacherId": 1048,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1154,
+        "seriesId": 1003,
+        "code": "ECE 3207",
+        "title": "ECE 3207",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1026,
+        "groups": []
+      },
+      {
+        "id": 1155,
+        "seriesId": 1003,
+        "code": "ECE 3205",
+        "title": "ECE 3205",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1050,
+        "groups": []
+      },
+      {
+        "id": 1156,
+        "seriesId": 1003,
+        "code": "ME 3219",
+        "title": "ME 3219",
+        "credit": 3,
+        "dept": "ME",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1039,
+        "groups": []
+      },
+      {
+        "id": 1157,
+        "seriesId": 1003,
+        "code": "ECE 3221",
+        "title": "ECE 3221",
+        "credit": 3,
+        "dept": "ECE",
+        "type": "theory",
+        "sessionsPerWeek": 4,
+        "studentCount": 60,
+        "teacherId": 1055,
+        "groups": []
+      },
+      {
+        "id": 1158,
+        "seriesId": 1003,
+        "code": "HUM 3217",
+        "title": "HUM 3217",
+        "credit": 3,
+        "dept": "HUM",
+        "type": "theory",
+        "sessionsPerWeek": 3,
+        "studentCount": 60,
+        "teacherId": 1053,
+        "groups": []
+      },
+      {
+        "id": 1159,
+        "seriesId": 1003,
+        "code": "ECE 3200",
+        "title": "ECE 3200",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 2,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1013,
+            "teacherId": 1027,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1160,
+        "seriesId": 1003,
+        "code": "ECE 3208 / 3206",
+        "title": "ECE 3208 / 3206",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1020,
+            "teacherId": 1026,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1161,
+        "seriesId": 1003,
+        "code": "ME 3220",
+        "title": "ME 3220",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1021,
+            "teacherId": 1049,
+            "size": 60
+          }
+        ]
+      },
+      {
+        "id": 1162,
+        "seriesId": 1004,
+        "code": "ECE 4000",
+        "title": "ECE 4000",
+        "credit": 1.5,
+        "dept": "ECE",
+        "type": "lab",
+        "sessionsPerWeek": 1,
+        "studentCount": 60,
+        "teacherId": null,
+        "groups": [
+          {
+            "labId": 1011,
+            "teacherId": 1025,
+            "size": 60
+          }
+        ]
+      }
+    ],
+    "students": [
+      {
+        "id": 1163,
+        "seriesId": 1000,
+        "name": "Student (2501001)",
+        "roll": "2501001",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1164,
+        "seriesId": 1000,
+        "name": "Student (2501002)",
+        "roll": "2501002",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1165,
+        "seriesId": 1000,
+        "name": "Student (2501003)",
+        "roll": "2501003",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1166,
+        "seriesId": 1000,
+        "name": "Student (2501004)",
+        "roll": "2501004",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1167,
+        "seriesId": 1000,
+        "name": "Student (2501005)",
+        "roll": "2501005",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1168,
+        "seriesId": 1000,
+        "name": "Student (2501006)",
+        "roll": "2501006",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1169,
+        "seriesId": 1000,
+        "name": "Student (2501007)",
+        "roll": "2501007",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1170,
+        "seriesId": 1000,
+        "name": "Student (2501008)",
+        "roll": "2501008",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1171,
+        "seriesId": 1000,
+        "name": "Student (2501009)",
+        "roll": "2501009",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1172,
+        "seriesId": 1000,
+        "name": "Student (2501010)",
+        "roll": "2501010",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1173,
+        "seriesId": 1000,
+        "name": "Student (2501011)",
+        "roll": "2501011",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1174,
+        "seriesId": 1000,
+        "name": "Student (2501012)",
+        "roll": "2501012",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1175,
+        "seriesId": 1000,
+        "name": "Student (2501013)",
+        "roll": "2501013",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1176,
+        "seriesId": 1000,
+        "name": "Student (2501014)",
+        "roll": "2501014",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1177,
+        "seriesId": 1000,
+        "name": "Student (2501015)",
+        "roll": "2501015",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1178,
+        "seriesId": 1000,
+        "name": "Student (2501016)",
+        "roll": "2501016",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1179,
+        "seriesId": 1000,
+        "name": "Student (2501017)",
+        "roll": "2501017",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1180,
+        "seriesId": 1000,
+        "name": "Student (2501018)",
+        "roll": "2501018",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1181,
+        "seriesId": 1000,
+        "name": "Student (2501019)",
+        "roll": "2501019",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1182,
+        "seriesId": 1000,
+        "name": "Student (2501020)",
+        "roll": "2501020",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1183,
+        "seriesId": 1000,
+        "name": "Student (2501021)",
+        "roll": "2501021",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1184,
+        "seriesId": 1000,
+        "name": "Student (2501022)",
+        "roll": "2501022",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1185,
+        "seriesId": 1000,
+        "name": "Student (2501023)",
+        "roll": "2501023",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1186,
+        "seriesId": 1000,
+        "name": "Student (2501024)",
+        "roll": "2501024",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1187,
+        "seriesId": 1000,
+        "name": "Student (2501025)",
+        "roll": "2501025",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1188,
+        "seriesId": 1000,
+        "name": "Student (2501026)",
+        "roll": "2501026",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1189,
+        "seriesId": 1000,
+        "name": "Student (2501027)",
+        "roll": "2501027",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1190,
+        "seriesId": 1000,
+        "name": "Student (2501028)",
+        "roll": "2501028",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1191,
+        "seriesId": 1000,
+        "name": "Student (2501029)",
+        "roll": "2501029",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1192,
+        "seriesId": 1000,
+        "name": "Student (2501030)",
+        "roll": "2501030",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1193,
+        "seriesId": 1000,
+        "name": "Student (2501031)",
+        "roll": "2501031",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1194,
+        "seriesId": 1000,
+        "name": "Student (2501032)",
+        "roll": "2501032",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1195,
+        "seriesId": 1000,
+        "name": "Student (2501033)",
+        "roll": "2501033",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1196,
+        "seriesId": 1000,
+        "name": "Student (2501034)",
+        "roll": "2501034",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1197,
+        "seriesId": 1000,
+        "name": "Student (2501035)",
+        "roll": "2501035",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1198,
+        "seriesId": 1000,
+        "name": "Student (2501036)",
+        "roll": "2501036",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1199,
+        "seriesId": 1000,
+        "name": "Student (2501037)",
+        "roll": "2501037",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1200,
+        "seriesId": 1000,
+        "name": "Student (2501038)",
+        "roll": "2501038",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1201,
+        "seriesId": 1000,
+        "name": "Student (2501039)",
+        "roll": "2501039",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1202,
+        "seriesId": 1000,
+        "name": "Student (2501040)",
+        "roll": "2501040",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1203,
+        "seriesId": 1000,
+        "name": "Student (2501041)",
+        "roll": "2501041",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1204,
+        "seriesId": 1000,
+        "name": "Student (2501042)",
+        "roll": "2501042",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1205,
+        "seriesId": 1000,
+        "name": "Student (2501043)",
+        "roll": "2501043",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1206,
+        "seriesId": 1000,
+        "name": "Student (2501044)",
+        "roll": "2501044",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1207,
+        "seriesId": 1000,
+        "name": "Student (2501045)",
+        "roll": "2501045",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1208,
+        "seriesId": 1000,
+        "name": "Student (2501046)",
+        "roll": "2501046",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1209,
+        "seriesId": 1000,
+        "name": "Student (2501047)",
+        "roll": "2501047",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1210,
+        "seriesId": 1000,
+        "name": "Student (2501048)",
+        "roll": "2501048",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1211,
+        "seriesId": 1000,
+        "name": "Student (2501049)",
+        "roll": "2501049",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1212,
+        "seriesId": 1000,
+        "name": "Student (2501050)",
+        "roll": "2501050",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1213,
+        "seriesId": 1000,
+        "name": "Student (2501051)",
+        "roll": "2501051",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1214,
+        "seriesId": 1000,
+        "name": "Student (2501052)",
+        "roll": "2501052",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1215,
+        "seriesId": 1000,
+        "name": "Student (2501053)",
+        "roll": "2501053",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1216,
+        "seriesId": 1000,
+        "name": "Student (2501054)",
+        "roll": "2501054",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1217,
+        "seriesId": 1000,
+        "name": "Student (2501055)",
+        "roll": "2501055",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1218,
+        "seriesId": 1000,
+        "name": "Student (2501056)",
+        "roll": "2501056",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1219,
+        "seriesId": 1000,
+        "name": "Student (2501057)",
+        "roll": "2501057",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1220,
+        "seriesId": 1000,
+        "name": "Student (2501058)",
+        "roll": "2501058",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1221,
+        "seriesId": 1000,
+        "name": "Student (2501059)",
+        "roll": "2501059",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1222,
+        "seriesId": 1000,
+        "name": "Student (2501060)",
+        "roll": "2501060",
+        "semester": "1st Year Odd"
+      },
+      {
+        "id": 1223,
+        "seriesId": 1001,
+        "name": "Student (2401001)",
+        "roll": "2401001",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1224,
+        "seriesId": 1001,
+        "name": "Student (2401002)",
+        "roll": "2401002",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1225,
+        "seriesId": 1001,
+        "name": "Student (2401003)",
+        "roll": "2401003",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1226,
+        "seriesId": 1001,
+        "name": "Student (2401004)",
+        "roll": "2401004",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1227,
+        "seriesId": 1001,
+        "name": "Student (2401005)",
+        "roll": "2401005",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1228,
+        "seriesId": 1001,
+        "name": "Student (2401006)",
+        "roll": "2401006",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1229,
+        "seriesId": 1001,
+        "name": "Student (2401007)",
+        "roll": "2401007",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1230,
+        "seriesId": 1001,
+        "name": "Student (2401008)",
+        "roll": "2401008",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1231,
+        "seriesId": 1001,
+        "name": "Student (2401009)",
+        "roll": "2401009",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1232,
+        "seriesId": 1001,
+        "name": "Student (2401010)",
+        "roll": "2401010",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1233,
+        "seriesId": 1001,
+        "name": "Student (2401011)",
+        "roll": "2401011",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1234,
+        "seriesId": 1001,
+        "name": "Student (2401012)",
+        "roll": "2401012",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1235,
+        "seriesId": 1001,
+        "name": "Student (2401013)",
+        "roll": "2401013",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1236,
+        "seriesId": 1001,
+        "name": "Student (2401014)",
+        "roll": "2401014",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1237,
+        "seriesId": 1001,
+        "name": "Student (2401015)",
+        "roll": "2401015",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1238,
+        "seriesId": 1001,
+        "name": "Student (2401016)",
+        "roll": "2401016",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1239,
+        "seriesId": 1001,
+        "name": "Student (2401017)",
+        "roll": "2401017",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1240,
+        "seriesId": 1001,
+        "name": "Student (2401018)",
+        "roll": "2401018",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1241,
+        "seriesId": 1001,
+        "name": "Student (2401019)",
+        "roll": "2401019",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1242,
+        "seriesId": 1001,
+        "name": "Student (2401020)",
+        "roll": "2401020",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1243,
+        "seriesId": 1001,
+        "name": "Student (2401021)",
+        "roll": "2401021",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1244,
+        "seriesId": 1001,
+        "name": "Student (2401022)",
+        "roll": "2401022",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1245,
+        "seriesId": 1001,
+        "name": "Student (2401023)",
+        "roll": "2401023",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1246,
+        "seriesId": 1001,
+        "name": "Student (2401024)",
+        "roll": "2401024",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1247,
+        "seriesId": 1001,
+        "name": "Student (2401025)",
+        "roll": "2401025",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1248,
+        "seriesId": 1001,
+        "name": "Student (2401026)",
+        "roll": "2401026",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1249,
+        "seriesId": 1001,
+        "name": "Student (2401027)",
+        "roll": "2401027",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1250,
+        "seriesId": 1001,
+        "name": "Student (2401028)",
+        "roll": "2401028",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1251,
+        "seriesId": 1001,
+        "name": "Student (2401029)",
+        "roll": "2401029",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1252,
+        "seriesId": 1001,
+        "name": "Student (2401030)",
+        "roll": "2401030",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1253,
+        "seriesId": 1001,
+        "name": "Student (2401031)",
+        "roll": "2401031",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1254,
+        "seriesId": 1001,
+        "name": "Student (2401032)",
+        "roll": "2401032",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1255,
+        "seriesId": 1001,
+        "name": "Student (2401033)",
+        "roll": "2401033",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1256,
+        "seriesId": 1001,
+        "name": "Student (2401034)",
+        "roll": "2401034",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1257,
+        "seriesId": 1001,
+        "name": "Student (2401035)",
+        "roll": "2401035",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1258,
+        "seriesId": 1001,
+        "name": "Student (2401036)",
+        "roll": "2401036",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1259,
+        "seriesId": 1001,
+        "name": "Student (2401037)",
+        "roll": "2401037",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1260,
+        "seriesId": 1001,
+        "name": "Student (2401038)",
+        "roll": "2401038",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1261,
+        "seriesId": 1001,
+        "name": "Student (2401039)",
+        "roll": "2401039",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1262,
+        "seriesId": 1001,
+        "name": "Student (2401040)",
+        "roll": "2401040",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1263,
+        "seriesId": 1001,
+        "name": "Student (2401041)",
+        "roll": "2401041",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1264,
+        "seriesId": 1001,
+        "name": "Student (2401042)",
+        "roll": "2401042",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1265,
+        "seriesId": 1001,
+        "name": "Student (2401043)",
+        "roll": "2401043",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1266,
+        "seriesId": 1001,
+        "name": "Student (2401044)",
+        "roll": "2401044",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1267,
+        "seriesId": 1001,
+        "name": "Student (2401045)",
+        "roll": "2401045",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1268,
+        "seriesId": 1001,
+        "name": "Student (2401046)",
+        "roll": "2401046",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1269,
+        "seriesId": 1001,
+        "name": "Student (2401047)",
+        "roll": "2401047",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1270,
+        "seriesId": 1001,
+        "name": "Student (2401048)",
+        "roll": "2401048",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1271,
+        "seriesId": 1001,
+        "name": "Student (2401049)",
+        "roll": "2401049",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1272,
+        "seriesId": 1001,
+        "name": "Student (2401050)",
+        "roll": "2401050",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1273,
+        "seriesId": 1001,
+        "name": "Student (2401051)",
+        "roll": "2401051",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1274,
+        "seriesId": 1001,
+        "name": "Student (2401052)",
+        "roll": "2401052",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1275,
+        "seriesId": 1001,
+        "name": "Student (2401053)",
+        "roll": "2401053",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1276,
+        "seriesId": 1001,
+        "name": "Student (2401054)",
+        "roll": "2401054",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1277,
+        "seriesId": 1001,
+        "name": "Student (2401055)",
+        "roll": "2401055",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1278,
+        "seriesId": 1001,
+        "name": "Student (2401056)",
+        "roll": "2401056",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1279,
+        "seriesId": 1001,
+        "name": "Student (2401057)",
+        "roll": "2401057",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1280,
+        "seriesId": 1001,
+        "name": "Student (2401058)",
+        "roll": "2401058",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1281,
+        "seriesId": 1001,
+        "name": "Student (2401059)",
+        "roll": "2401059",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1282,
+        "seriesId": 1001,
+        "name": "Student (2401060)",
+        "roll": "2401060",
+        "semester": "2nd Year Odd"
+      },
+      {
+        "id": 1283,
+        "seriesId": 1002,
+        "name": "Student (2301001)",
+        "roll": "2301001",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1284,
+        "seriesId": 1002,
+        "name": "Student (2301002)",
+        "roll": "2301002",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1285,
+        "seriesId": 1002,
+        "name": "Student (2301003)",
+        "roll": "2301003",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1286,
+        "seriesId": 1002,
+        "name": "Student (2301004)",
+        "roll": "2301004",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1287,
+        "seriesId": 1002,
+        "name": "Student (2301005)",
+        "roll": "2301005",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1288,
+        "seriesId": 1002,
+        "name": "Student (2301006)",
+        "roll": "2301006",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1289,
+        "seriesId": 1002,
+        "name": "Student (2301007)",
+        "roll": "2301007",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1290,
+        "seriesId": 1002,
+        "name": "Student (2301008)",
+        "roll": "2301008",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1291,
+        "seriesId": 1002,
+        "name": "Student (2301009)",
+        "roll": "2301009",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1292,
+        "seriesId": 1002,
+        "name": "Student (2301010)",
+        "roll": "2301010",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1293,
+        "seriesId": 1002,
+        "name": "Student (2301011)",
+        "roll": "2301011",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1294,
+        "seriesId": 1002,
+        "name": "Student (2301012)",
+        "roll": "2301012",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1295,
+        "seriesId": 1002,
+        "name": "Student (2301013)",
+        "roll": "2301013",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1296,
+        "seriesId": 1002,
+        "name": "Student (2301014)",
+        "roll": "2301014",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1297,
+        "seriesId": 1002,
+        "name": "Student (2301015)",
+        "roll": "2301015",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1298,
+        "seriesId": 1002,
+        "name": "Student (2301016)",
+        "roll": "2301016",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1299,
+        "seriesId": 1002,
+        "name": "Student (2301017)",
+        "roll": "2301017",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1300,
+        "seriesId": 1002,
+        "name": "Student (2301018)",
+        "roll": "2301018",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1301,
+        "seriesId": 1002,
+        "name": "Student (2301019)",
+        "roll": "2301019",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1302,
+        "seriesId": 1002,
+        "name": "Student (2301020)",
+        "roll": "2301020",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1303,
+        "seriesId": 1002,
+        "name": "Student (2301021)",
+        "roll": "2301021",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1304,
+        "seriesId": 1002,
+        "name": "Student (2301022)",
+        "roll": "2301022",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1305,
+        "seriesId": 1002,
+        "name": "Student (2301023)",
+        "roll": "2301023",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1306,
+        "seriesId": 1002,
+        "name": "Student (2301024)",
+        "roll": "2301024",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1307,
+        "seriesId": 1002,
+        "name": "Student (2301025)",
+        "roll": "2301025",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1308,
+        "seriesId": 1002,
+        "name": "Student (2301026)",
+        "roll": "2301026",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1309,
+        "seriesId": 1002,
+        "name": "Student (2301027)",
+        "roll": "2301027",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1310,
+        "seriesId": 1002,
+        "name": "Student (2301028)",
+        "roll": "2301028",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1311,
+        "seriesId": 1002,
+        "name": "Student (2301029)",
+        "roll": "2301029",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1312,
+        "seriesId": 1002,
+        "name": "Student (2301030)",
+        "roll": "2301030",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1313,
+        "seriesId": 1002,
+        "name": "Student (2301031)",
+        "roll": "2301031",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1314,
+        "seriesId": 1002,
+        "name": "Student (2301032)",
+        "roll": "2301032",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1315,
+        "seriesId": 1002,
+        "name": "Student (2301033)",
+        "roll": "2301033",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1316,
+        "seriesId": 1002,
+        "name": "Student (2301034)",
+        "roll": "2301034",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1317,
+        "seriesId": 1002,
+        "name": "Student (2301035)",
+        "roll": "2301035",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1318,
+        "seriesId": 1002,
+        "name": "Student (2301036)",
+        "roll": "2301036",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1319,
+        "seriesId": 1002,
+        "name": "Student (2301037)",
+        "roll": "2301037",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1320,
+        "seriesId": 1002,
+        "name": "Student (2301038)",
+        "roll": "2301038",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1321,
+        "seriesId": 1002,
+        "name": "Student (2301039)",
+        "roll": "2301039",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1322,
+        "seriesId": 1002,
+        "name": "Student (2301040)",
+        "roll": "2301040",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1323,
+        "seriesId": 1002,
+        "name": "Student (2301041)",
+        "roll": "2301041",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1324,
+        "seriesId": 1002,
+        "name": "Student (2301042)",
+        "roll": "2301042",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1325,
+        "seriesId": 1002,
+        "name": "Student (2301043)",
+        "roll": "2301043",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1326,
+        "seriesId": 1002,
+        "name": "Student (2301044)",
+        "roll": "2301044",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1327,
+        "seriesId": 1002,
+        "name": "Student (2301045)",
+        "roll": "2301045",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1328,
+        "seriesId": 1002,
+        "name": "Student (2301046)",
+        "roll": "2301046",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1329,
+        "seriesId": 1002,
+        "name": "Student (2301047)",
+        "roll": "2301047",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1330,
+        "seriesId": 1002,
+        "name": "Student (2301048)",
+        "roll": "2301048",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1331,
+        "seriesId": 1002,
+        "name": "Student (2301049)",
+        "roll": "2301049",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1332,
+        "seriesId": 1002,
+        "name": "Student (2301050)",
+        "roll": "2301050",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1333,
+        "seriesId": 1002,
+        "name": "Student (2301051)",
+        "roll": "2301051",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1334,
+        "seriesId": 1002,
+        "name": "Student (2301052)",
+        "roll": "2301052",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1335,
+        "seriesId": 1002,
+        "name": "Student (2301053)",
+        "roll": "2301053",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1336,
+        "seriesId": 1002,
+        "name": "Student (2301054)",
+        "roll": "2301054",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1337,
+        "seriesId": 1002,
+        "name": "Student (2301055)",
+        "roll": "2301055",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1338,
+        "seriesId": 1002,
+        "name": "Student (2301056)",
+        "roll": "2301056",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1339,
+        "seriesId": 1002,
+        "name": "Student (2301057)",
+        "roll": "2301057",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1340,
+        "seriesId": 1002,
+        "name": "Student (2301058)",
+        "roll": "2301058",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1341,
+        "seriesId": 1002,
+        "name": "Student (2301059)",
+        "roll": "2301059",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1342,
+        "seriesId": 1002,
+        "name": "Student (2301060)",
+        "roll": "2301060",
+        "semester": "2nd Year Even"
+      },
+      {
+        "id": 1343,
+        "seriesId": 1003,
+        "name": "Student (2201001)",
+        "roll": "2201001",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1344,
+        "seriesId": 1003,
+        "name": "Student (2201002)",
+        "roll": "2201002",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1345,
+        "seriesId": 1003,
+        "name": "Student (2201003)",
+        "roll": "2201003",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1346,
+        "seriesId": 1003,
+        "name": "Student (2201004)",
+        "roll": "2201004",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1347,
+        "seriesId": 1003,
+        "name": "Student (2201005)",
+        "roll": "2201005",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1348,
+        "seriesId": 1003,
+        "name": "Student (2201006)",
+        "roll": "2201006",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1349,
+        "seriesId": 1003,
+        "name": "Student (2201007)",
+        "roll": "2201007",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1350,
+        "seriesId": 1003,
+        "name": "Student (2201008)",
+        "roll": "2201008",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1351,
+        "seriesId": 1003,
+        "name": "Student (2201009)",
+        "roll": "2201009",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1352,
+        "seriesId": 1003,
+        "name": "Student (2201010)",
+        "roll": "2201010",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1353,
+        "seriesId": 1003,
+        "name": "Student (2201011)",
+        "roll": "2201011",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1354,
+        "seriesId": 1003,
+        "name": "Student (2201012)",
+        "roll": "2201012",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1355,
+        "seriesId": 1003,
+        "name": "Student (2201013)",
+        "roll": "2201013",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1356,
+        "seriesId": 1003,
+        "name": "Student (2201014)",
+        "roll": "2201014",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1357,
+        "seriesId": 1003,
+        "name": "Student (2201015)",
+        "roll": "2201015",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1358,
+        "seriesId": 1003,
+        "name": "Student (2201016)",
+        "roll": "2201016",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1359,
+        "seriesId": 1003,
+        "name": "Student (2201017)",
+        "roll": "2201017",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1360,
+        "seriesId": 1003,
+        "name": "Student (2201018)",
+        "roll": "2201018",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1361,
+        "seriesId": 1003,
+        "name": "Student (2201019)",
+        "roll": "2201019",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1362,
+        "seriesId": 1003,
+        "name": "Student (2201020)",
+        "roll": "2201020",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1363,
+        "seriesId": 1003,
+        "name": "Student (2201021)",
+        "roll": "2201021",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1364,
+        "seriesId": 1003,
+        "name": "Student (2201022)",
+        "roll": "2201022",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1365,
+        "seriesId": 1003,
+        "name": "Student (2201023)",
+        "roll": "2201023",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1366,
+        "seriesId": 1003,
+        "name": "Student (2201024)",
+        "roll": "2201024",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1367,
+        "seriesId": 1003,
+        "name": "Student (2201025)",
+        "roll": "2201025",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1368,
+        "seriesId": 1003,
+        "name": "Student (2201026)",
+        "roll": "2201026",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1369,
+        "seriesId": 1003,
+        "name": "Student (2201027)",
+        "roll": "2201027",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1370,
+        "seriesId": 1003,
+        "name": "Student (2201028)",
+        "roll": "2201028",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1371,
+        "seriesId": 1003,
+        "name": "Student (2201029)",
+        "roll": "2201029",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1372,
+        "seriesId": 1003,
+        "name": "Student (2201030)",
+        "roll": "2201030",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1373,
+        "seriesId": 1003,
+        "name": "Student (2201031)",
+        "roll": "2201031",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1374,
+        "seriesId": 1003,
+        "name": "Student (2201032)",
+        "roll": "2201032",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1375,
+        "seriesId": 1003,
+        "name": "Student (2201033)",
+        "roll": "2201033",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1376,
+        "seriesId": 1003,
+        "name": "Student (2201034)",
+        "roll": "2201034",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1377,
+        "seriesId": 1003,
+        "name": "Student (2201035)",
+        "roll": "2201035",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1378,
+        "seriesId": 1003,
+        "name": "Student (2201036)",
+        "roll": "2201036",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1379,
+        "seriesId": 1003,
+        "name": "Student (2201037)",
+        "roll": "2201037",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1380,
+        "seriesId": 1003,
+        "name": "Student (2201038)",
+        "roll": "2201038",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1381,
+        "seriesId": 1003,
+        "name": "Student (2201039)",
+        "roll": "2201039",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1382,
+        "seriesId": 1003,
+        "name": "Student (2201040)",
+        "roll": "2201040",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1383,
+        "seriesId": 1003,
+        "name": "Student (2201041)",
+        "roll": "2201041",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1384,
+        "seriesId": 1003,
+        "name": "Student (2201042)",
+        "roll": "2201042",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1385,
+        "seriesId": 1003,
+        "name": "Student (2201043)",
+        "roll": "2201043",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1386,
+        "seriesId": 1003,
+        "name": "Student (2201044)",
+        "roll": "2201044",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1387,
+        "seriesId": 1003,
+        "name": "Student (2201045)",
+        "roll": "2201045",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1388,
+        "seriesId": 1003,
+        "name": "Student (2201046)",
+        "roll": "2201046",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1389,
+        "seriesId": 1003,
+        "name": "Student (2201047)",
+        "roll": "2201047",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1390,
+        "seriesId": 1003,
+        "name": "Student (2201048)",
+        "roll": "2201048",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1391,
+        "seriesId": 1003,
+        "name": "Student (2201049)",
+        "roll": "2201049",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1392,
+        "seriesId": 1003,
+        "name": "Student (2201050)",
+        "roll": "2201050",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1393,
+        "seriesId": 1003,
+        "name": "Student (2201051)",
+        "roll": "2201051",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1394,
+        "seriesId": 1003,
+        "name": "Student (2201052)",
+        "roll": "2201052",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1395,
+        "seriesId": 1003,
+        "name": "Student (2201053)",
+        "roll": "2201053",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1396,
+        "seriesId": 1003,
+        "name": "Student (2201054)",
+        "roll": "2201054",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1397,
+        "seriesId": 1003,
+        "name": "Student (2201055)",
+        "roll": "2201055",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1398,
+        "seriesId": 1003,
+        "name": "Student (2201056)",
+        "roll": "2201056",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1399,
+        "seriesId": 1003,
+        "name": "Student (2201057)",
+        "roll": "2201057",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1400,
+        "seriesId": 1003,
+        "name": "Student (2201058)",
+        "roll": "2201058",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1401,
+        "seriesId": 1003,
+        "name": "Student (2201059)",
+        "roll": "2201059",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1402,
+        "seriesId": 1003,
+        "name": "Student (2201060)",
+        "roll": "2201060",
+        "semester": "3rd Year Even"
+      },
+      {
+        "id": 1403,
+        "seriesId": 1004,
+        "name": "Student (2101001)",
+        "roll": "2101001",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1404,
+        "seriesId": 1004,
+        "name": "Student (2101002)",
+        "roll": "2101002",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1405,
+        "seriesId": 1004,
+        "name": "Student (2101003)",
+        "roll": "2101003",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1406,
+        "seriesId": 1004,
+        "name": "Student (2101004)",
+        "roll": "2101004",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1407,
+        "seriesId": 1004,
+        "name": "Student (2101005)",
+        "roll": "2101005",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1408,
+        "seriesId": 1004,
+        "name": "Student (2101006)",
+        "roll": "2101006",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1409,
+        "seriesId": 1004,
+        "name": "Student (2101007)",
+        "roll": "2101007",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1410,
+        "seriesId": 1004,
+        "name": "Student (2101008)",
+        "roll": "2101008",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1411,
+        "seriesId": 1004,
+        "name": "Student (2101009)",
+        "roll": "2101009",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1412,
+        "seriesId": 1004,
+        "name": "Student (2101010)",
+        "roll": "2101010",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1413,
+        "seriesId": 1004,
+        "name": "Student (2101011)",
+        "roll": "2101011",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1414,
+        "seriesId": 1004,
+        "name": "Student (2101012)",
+        "roll": "2101012",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1415,
+        "seriesId": 1004,
+        "name": "Student (2101013)",
+        "roll": "2101013",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1416,
+        "seriesId": 1004,
+        "name": "Student (2101014)",
+        "roll": "2101014",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1417,
+        "seriesId": 1004,
+        "name": "Student (2101015)",
+        "roll": "2101015",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1418,
+        "seriesId": 1004,
+        "name": "Student (2101016)",
+        "roll": "2101016",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1419,
+        "seriesId": 1004,
+        "name": "Student (2101017)",
+        "roll": "2101017",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1420,
+        "seriesId": 1004,
+        "name": "Student (2101018)",
+        "roll": "2101018",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1421,
+        "seriesId": 1004,
+        "name": "Student (2101019)",
+        "roll": "2101019",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1422,
+        "seriesId": 1004,
+        "name": "Student (2101020)",
+        "roll": "2101020",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1423,
+        "seriesId": 1004,
+        "name": "Student (2101021)",
+        "roll": "2101021",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1424,
+        "seriesId": 1004,
+        "name": "Student (2101022)",
+        "roll": "2101022",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1425,
+        "seriesId": 1004,
+        "name": "Student (2101023)",
+        "roll": "2101023",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1426,
+        "seriesId": 1004,
+        "name": "Student (2101024)",
+        "roll": "2101024",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1427,
+        "seriesId": 1004,
+        "name": "Student (2101025)",
+        "roll": "2101025",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1428,
+        "seriesId": 1004,
+        "name": "Student (2101026)",
+        "roll": "2101026",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1429,
+        "seriesId": 1004,
+        "name": "Student (2101027)",
+        "roll": "2101027",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1430,
+        "seriesId": 1004,
+        "name": "Student (2101028)",
+        "roll": "2101028",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1431,
+        "seriesId": 1004,
+        "name": "Student (2101029)",
+        "roll": "2101029",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1432,
+        "seriesId": 1004,
+        "name": "Student (2101030)",
+        "roll": "2101030",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1433,
+        "seriesId": 1004,
+        "name": "Student (2101031)",
+        "roll": "2101031",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1434,
+        "seriesId": 1004,
+        "name": "Student (2101032)",
+        "roll": "2101032",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1435,
+        "seriesId": 1004,
+        "name": "Student (2101033)",
+        "roll": "2101033",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1436,
+        "seriesId": 1004,
+        "name": "Student (2101034)",
+        "roll": "2101034",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1437,
+        "seriesId": 1004,
+        "name": "Student (2101035)",
+        "roll": "2101035",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1438,
+        "seriesId": 1004,
+        "name": "Student (2101036)",
+        "roll": "2101036",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1439,
+        "seriesId": 1004,
+        "name": "Student (2101037)",
+        "roll": "2101037",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1440,
+        "seriesId": 1004,
+        "name": "Student (2101038)",
+        "roll": "2101038",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1441,
+        "seriesId": 1004,
+        "name": "Student (2101039)",
+        "roll": "2101039",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1442,
+        "seriesId": 1004,
+        "name": "Student (2101040)",
+        "roll": "2101040",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1443,
+        "seriesId": 1004,
+        "name": "Student (2101041)",
+        "roll": "2101041",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1444,
+        "seriesId": 1004,
+        "name": "Student (2101042)",
+        "roll": "2101042",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1445,
+        "seriesId": 1004,
+        "name": "Student (2101043)",
+        "roll": "2101043",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1446,
+        "seriesId": 1004,
+        "name": "Student (2101044)",
+        "roll": "2101044",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1447,
+        "seriesId": 1004,
+        "name": "Student (2101045)",
+        "roll": "2101045",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1448,
+        "seriesId": 1004,
+        "name": "Student (2101046)",
+        "roll": "2101046",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1449,
+        "seriesId": 1004,
+        "name": "Student (2101047)",
+        "roll": "2101047",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1450,
+        "seriesId": 1004,
+        "name": "Student (2101048)",
+        "roll": "2101048",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1451,
+        "seriesId": 1004,
+        "name": "Student (2101049)",
+        "roll": "2101049",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1452,
+        "seriesId": 1004,
+        "name": "Student (2101050)",
+        "roll": "2101050",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1453,
+        "seriesId": 1004,
+        "name": "Student (2101051)",
+        "roll": "2101051",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1454,
+        "seriesId": 1004,
+        "name": "Student (2101052)",
+        "roll": "2101052",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1455,
+        "seriesId": 1004,
+        "name": "Student (2101053)",
+        "roll": "2101053",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1456,
+        "seriesId": 1004,
+        "name": "Student (2101054)",
+        "roll": "2101054",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1457,
+        "seriesId": 1004,
+        "name": "Student (2101055)",
+        "roll": "2101055",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1458,
+        "seriesId": 1004,
+        "name": "Student (2101056)",
+        "roll": "2101056",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1459,
+        "seriesId": 1004,
+        "name": "Student (2101057)",
+        "roll": "2101057",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1460,
+        "seriesId": 1004,
+        "name": "Student (2101058)",
+        "roll": "2101058",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1461,
+        "seriesId": 1004,
+        "name": "Student (2101059)",
+        "roll": "2101059",
+        "semester": "4th Year Odd"
+      },
+      {
+        "id": 1462,
+        "seriesId": 1004,
+        "name": "Student (2101060)",
+        "roll": "2101060",
+        "semester": "4th Year Odd"
+      }
+    ],
+    "classes": [
+      {
+        "id": 1056,
+        "seriesId": 1000,
+        "day": "Saturday",
+        "start": 9,
+        "span": 1,
+        "cat": "HUM",
+        "code": "HUM 1117",
+        "title": "HUM 1117",
+        "room": "R-404",
+        "teacherId": 1044,
+        "initials": "MHS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1057,
+        "seriesId": 1000,
+        "day": "Saturday",
+        "start": 10,
+        "span": 1,
+        "cat": "PHY",
+        "code": "PHY 1117",
+        "title": "PHY 1117",
+        "room": "R-404",
+        "teacherId": 1037,
+        "initials": "MFH",
+        "section": "All Sections"
+      },
+      {
+        "id": 1058,
+        "seriesId": 1000,
+        "day": "Saturday",
+        "start": 11,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 1103",
+        "title": "ECE 1103",
+        "room": "R-404",
+        "teacherId": 1029,
+        "initials": "HBK",
+        "section": "All Sections"
+      },
+      {
+        "id": 1059,
+        "seriesId": 1000,
+        "day": "Saturday",
+        "start": 12,
+        "span": 1,
+        "cat": "MATH",
+        "code": "MATH 1117",
+        "title": "MATH 1117",
+        "room": "R-404",
+        "teacherId": 1031,
+        "initials": "MRK",
+        "section": "All Sections"
+      },
+      {
+        "id": 1060,
+        "seriesId": 1000,
+        "day": "Saturday",
+        "start": 13,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 1101",
+        "title": "ECE 1101",
+        "room": "R-404",
+        "teacherId": 1026,
+        "initials": "MAH",
+        "section": "All Sections"
+      },
+      {
+        "id": 1061,
+        "seriesId": 1000,
+        "day": "Sunday",
+        "start": 8,
+        "span": 3,
+        "cat": "Lab",
+        "code": "HUM 1118",
+        "title": "HUM 1118",
+        "room": "Lab-7",
+        "teacherId": 1040,
+        "initials": "SA",
+        "section": "All Sections"
+      },
+      {
+        "id": 1062,
+        "seriesId": 1000,
+        "day": "Sunday",
+        "start": 11,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 1103",
+        "title": "ECE 1103",
+        "room": "R-404",
+        "teacherId": 1029,
+        "initials": "HBK",
+        "section": "All Sections"
+      },
+      {
+        "id": 1063,
+        "seriesId": 1000,
+        "day": "Sunday",
+        "start": 12,
+        "span": 1,
+        "cat": "PHY",
+        "code": "PHY 1117",
+        "title": "PHY 1117",
+        "room": "R-404",
+        "teacherId": 1037,
+        "initials": "MFH",
+        "section": "All Sections"
+      },
+      {
+        "id": 1064,
+        "seriesId": 1000,
+        "day": "Sunday",
+        "start": 13,
+        "span": 1,
+        "cat": "MATH",
+        "code": "MATH 1117",
+        "title": "MATH 1117",
+        "room": "R-404",
+        "teacherId": 1042,
+        "initials": "MZA",
+        "section": "All Sections"
+      },
+      {
+        "id": 1065,
+        "seriesId": 1000,
+        "day": "Monday",
+        "start": 11,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 1103",
+        "title": "ECE 1103",
+        "room": "R-404",
+        "teacherId": 1029,
+        "initials": "HBK",
+        "section": "All Sections"
+      },
+      {
+        "id": 1066,
+        "seriesId": 1000,
+        "day": "Monday",
+        "start": 12,
+        "span": 1,
+        "cat": "PHY",
+        "code": "PHY 1117",
+        "title": "PHY 1117",
+        "room": "R-404",
+        "teacherId": 1037,
+        "initials": "MFH",
+        "section": "All Sections"
+      },
+      {
+        "id": 1067,
+        "seriesId": 1000,
+        "day": "Monday",
+        "start": 13,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 1101",
+        "title": "ECE 1101",
+        "room": "R-404",
+        "teacherId": 1025,
+        "initials": "SMAR",
+        "section": "All Sections"
+      },
+      {
+        "id": 1068,
+        "seriesId": 1000,
+        "day": "Tuesday",
+        "start": 8,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 1101",
+        "title": "ECE 1101",
+        "room": "R-404",
+        "teacherId": 1026,
+        "initials": "MAH",
+        "section": "All Sections"
+      },
+      {
+        "id": 1069,
+        "seriesId": 1000,
+        "day": "Tuesday",
+        "start": 9,
+        "span": 1,
+        "cat": "MATH",
+        "code": "MATH 1117",
+        "title": "MATH 1117",
+        "room": "R-404",
+        "teacherId": 1031,
+        "initials": "MRK",
+        "section": "All Sections"
+      },
+      {
+        "id": 1070,
+        "seriesId": 1000,
+        "day": "Tuesday",
+        "start": 10,
+        "span": 1,
+        "cat": "HUM",
+        "code": "HUM 1117",
+        "title": "HUM 1117",
+        "room": "R-404",
+        "teacherId": 1052,
+        "initials": "OF",
+        "section": "All Sections"
+      },
+      {
+        "id": 1071,
+        "seriesId": 1000,
+        "day": "Tuesday",
+        "start": 11,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 1102 / 1104",
+        "title": "ECE 1102 / 1104",
+        "room": "Lab-4 / Lab-2",
+        "teacherId": 1050,
+        "initials": "MKG+MNT / HBK",
+        "section": "All Sections"
+      },
+      {
+        "id": 1072,
+        "seriesId": 1000,
+        "day": "Wednesday",
+        "start": 8,
+        "span": 3,
+        "cat": "Lab",
+        "code": "PHY 1118 / ECE 1100",
+        "title": "PHY 1118 / ECE 1100",
+        "room": "Lab-5 / Lab-1",
+        "teacherId": 1032,
+        "initials": "MSH+MSI / MFA",
+        "section": "All Sections"
+      },
+      {
+        "id": 1073,
+        "seriesId": 1000,
+        "day": "Wednesday",
+        "start": 11,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 1102",
+        "title": "ECE 1102",
+        "room": "Lab-4",
+        "teacherId": 1050,
+        "initials": "MKG+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1074,
+        "seriesId": 1001,
+        "day": "Saturday",
+        "start": 8,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 2104",
+        "title": "ECE 2104",
+        "room": "Lab-1",
+        "teacherId": 1030,
+        "initials": "MFA+NIS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1075,
+        "seriesId": 1001,
+        "day": "Saturday",
+        "start": 11,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2105",
+        "title": "ECE 2105",
+        "room": "R-403",
+        "teacherId": 1050,
+        "initials": "MKG+MI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1076,
+        "seriesId": 1001,
+        "day": "Saturday",
+        "start": 12,
+        "span": 1,
+        "cat": "MATH",
+        "code": "MATH 2117",
+        "title": "MATH 2117",
+        "room": "R-403",
+        "teacherId": 1054,
+        "initials": "MZH",
+        "section": "All Sections"
+      },
+      {
+        "id": 1077,
+        "seriesId": 1001,
+        "day": "Saturday",
+        "start": 13,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2111",
+        "title": "ECE 2111",
+        "room": "R-403",
+        "teacherId": 1036,
+        "initials": "NRP+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1078,
+        "seriesId": 1001,
+        "day": "Sunday",
+        "start": 8,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2103",
+        "title": "ECE 2103",
+        "room": "R-403",
+        "teacherId": 1030,
+        "initials": "MFA+NIS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1079,
+        "seriesId": 1001,
+        "day": "Sunday",
+        "start": 9,
+        "span": 1,
+        "cat": "CHEM",
+        "code": "CHEM 2117",
+        "title": "CHEM 2117",
+        "room": "R-403",
+        "teacherId": 1033,
+        "initials": "SR",
+        "section": "All Sections"
+      },
+      {
+        "id": 1080,
+        "seriesId": 1001,
+        "day": "Sunday",
+        "start": 10,
+        "span": 1,
+        "cat": "MATH",
+        "code": "MATH 2117",
+        "title": "MATH 2117",
+        "room": "R-403",
+        "teacherId": 1054,
+        "initials": "MZH",
+        "section": "All Sections"
+      },
+      {
+        "id": 1081,
+        "seriesId": 1001,
+        "day": "Sunday",
+        "start": 11,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 2106 / 2112",
+        "title": "ECE 2106 / 2112",
+        "room": "Lab-14 / Lab-2",
+        "teacherId": 1050,
+        "initials": "MKG+MI / NRP+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1082,
+        "seriesId": 1001,
+        "day": "Monday",
+        "start": 8,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 2104",
+        "title": "ECE 2104",
+        "room": "Lab-1",
+        "teacherId": 1030,
+        "initials": "MFA+NIS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1083,
+        "seriesId": 1001,
+        "day": "Monday",
+        "start": 11,
+        "span": 1,
+        "cat": "CHEM",
+        "code": "CHEM 2117",
+        "title": "CHEM 2117",
+        "room": "R-403",
+        "teacherId": 1033,
+        "initials": "SR",
+        "section": "All Sections"
+      },
+      {
+        "id": 1084,
+        "seriesId": 1001,
+        "day": "Monday",
+        "start": 12,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2111",
+        "title": "ECE 2111",
+        "room": "R-404",
+        "teacherId": 1036,
+        "initials": "NRP+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1085,
+        "seriesId": 1001,
+        "day": "Tuesday",
+        "start": 8,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2103",
+        "title": "ECE 2103",
+        "room": "R-403",
+        "teacherId": 1055,
+        "initials": "NIS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1086,
+        "seriesId": 1001,
+        "day": "Tuesday",
+        "start": 9,
+        "span": 1,
+        "cat": "CHEM",
+        "code": "CHEM 2117",
+        "title": "CHEM 2117",
+        "room": "R-404",
+        "teacherId": 1046,
+        "initials": "AAI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1087,
+        "seriesId": 1001,
+        "day": "Tuesday",
+        "start": 10,
+        "span": 1,
+        "cat": "MATH",
+        "code": "MATH 2117",
+        "title": "MATH 2117",
+        "room": "R-404",
+        "teacherId": 1042,
+        "initials": "MZA",
+        "section": "All Sections"
+      },
+      {
+        "id": 1088,
+        "seriesId": 1001,
+        "day": "Tuesday",
+        "start": 11,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2105",
+        "title": "ECE 2105",
+        "room": "R-404",
+        "teacherId": 1047,
+        "initials": "MI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1089,
+        "seriesId": 1001,
+        "day": "Tuesday",
+        "start": 12,
+        "span": 2,
+        "cat": "Lab",
+        "code": "ECE 2100",
+        "title": "ECE 2100",
+        "room": "LAB-All",
+        "teacherId": null,
+        "initials": "ALL Faculty",
+        "section": "All Sections"
+      },
+      {
+        "id": 1090,
+        "seriesId": 1001,
+        "day": "Wednesday",
+        "start": 8,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2103",
+        "title": "ECE 2103",
+        "room": "R-403",
+        "teacherId": 1030,
+        "initials": "MFA+NIS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1091,
+        "seriesId": 1001,
+        "day": "Wednesday",
+        "start": 9,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2105",
+        "title": "ECE 2105",
+        "room": "R-404",
+        "teacherId": 1050,
+        "initials": "MKG+MI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1092,
+        "seriesId": 1001,
+        "day": "Wednesday",
+        "start": 10,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2111",
+        "title": "ECE 2111",
+        "room": "R-404",
+        "teacherId": 1036,
+        "initials": "NRP+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1093,
+        "seriesId": 1001,
+        "day": "Wednesday",
+        "start": 11,
+        "span": 3,
+        "cat": "Lab",
+        "code": "CHEM 2118",
+        "title": "CHEM 2118",
+        "room": "Lab-6",
+        "teacherId": 1033,
+        "initials": "SR+AAI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1094,
+        "seriesId": 1002,
+        "day": "Saturday",
+        "start": 8,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 2200",
+        "title": "ECE 2200",
+        "room": "Lab-4",
+        "teacherId": 1036,
+        "initials": "NRP+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1095,
+        "seriesId": 1002,
+        "day": "Sunday",
+        "start": 8,
+        "span": 1,
+        "cat": "MATH",
+        "code": "MATH 2217",
+        "title": "MATH 2217",
+        "room": "R-402",
+        "teacherId": 1047,
+        "initials": "MI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1096,
+        "seriesId": 1002,
+        "day": "Sunday",
+        "start": 9,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2215",
+        "title": "ECE 2215",
+        "room": "R-402",
+        "teacherId": 1055,
+        "initials": "NIS/MRI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1097,
+        "seriesId": 1002,
+        "day": "Sunday",
+        "start": 10,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2207",
+        "title": "ECE 2207",
+        "room": "R-402",
+        "teacherId": 1028,
+        "initials": "FT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1098,
+        "seriesId": 1002,
+        "day": "Sunday",
+        "start": 11,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 2208",
+        "title": "ECE 2208",
+        "room": "Lab-8",
+        "teacherId": 1028,
+        "initials": "FT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1099,
+        "seriesId": 1002,
+        "day": "Monday",
+        "start": 8,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 2200",
+        "title": "ECE 2200",
+        "room": "Lab-4",
+        "teacherId": 1036,
+        "initials": "NRP+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1100,
+        "seriesId": 1002,
+        "day": "Tuesday",
+        "start": 9,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2213",
+        "title": "ECE 2213",
+        "room": "R-403",
+        "teacherId": 1030,
+        "initials": "MFA+NRP",
+        "section": "All Sections"
+      },
+      {
+        "id": 1101,
+        "seriesId": 1002,
+        "day": "Tuesday",
+        "start": 10,
+        "span": 1,
+        "cat": "HUM",
+        "code": "HUM 2217",
+        "title": "HUM 2217",
+        "room": "R-403",
+        "teacherId": 1041,
+        "initials": "SI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1102,
+        "seriesId": 1002,
+        "day": "Tuesday",
+        "start": 11,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2207",
+        "title": "ECE 2207",
+        "room": "R-403",
+        "teacherId": 1028,
+        "initials": "FT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1103,
+        "seriesId": 1002,
+        "day": "Wednesday",
+        "start": 8,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 2214 / 2216",
+        "title": "ECE 2214 / 2216",
+        "room": "Lab-2 / R-401",
+        "teacherId": 1048,
+        "initials": "MRI+MI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1104,
+        "seriesId": 1002,
+        "day": "Wednesday",
+        "start": 11,
+        "span": 1,
+        "cat": "MATH",
+        "code": "MATH 2217",
+        "title": "MATH 2217",
+        "room": "R-403",
+        "teacherId": 1047,
+        "initials": "MI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1105,
+        "seriesId": 1002,
+        "day": "Wednesday",
+        "start": 12,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2215",
+        "title": "ECE 2215",
+        "room": "R-403",
+        "teacherId": 1055,
+        "initials": "NIS/MRI",
+        "section": "All Sections"
+      },
+      {
+        "id": 1106,
+        "seriesId": 1002,
+        "day": "Wednesday",
+        "start": 13,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 2207",
+        "title": "ECE 2207",
+        "room": "R-403",
+        "teacherId": 1028,
+        "initials": "FT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1107,
+        "seriesId": 1003,
+        "day": "Saturday",
+        "start": 8,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3207",
+        "title": "ECE 3207",
+        "room": "R-401",
+        "teacherId": 1026,
+        "initials": "MAH+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1108,
+        "seriesId": 1003,
+        "day": "Saturday",
+        "start": 9,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3205",
+        "title": "ECE 3205",
+        "room": "R-401",
+        "teacherId": 1050,
+        "initials": "MKG",
+        "section": "All Sections"
+      },
+      {
+        "id": 1109,
+        "seriesId": 1003,
+        "day": "Saturday",
+        "start": 10,
+        "span": 1,
+        "cat": "ME",
+        "code": "ME 3219",
+        "title": "ME 3219",
+        "room": "R-401",
+        "teacherId": 1039,
+        "initials": "MMR/MRP",
+        "section": "All Sections"
+      },
+      {
+        "id": 1110,
+        "seriesId": 1003,
+        "day": "Saturday",
+        "start": 11,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3221",
+        "title": "ECE 3221",
+        "room": "R-401",
+        "teacherId": 1055,
+        "initials": "NIS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1111,
+        "seriesId": 1003,
+        "day": "Sunday",
+        "start": 8,
+        "span": 1,
+        "cat": "ME",
+        "code": "ME 3219",
+        "title": "ME 3219",
+        "room": "R-402",
+        "teacherId": 1039,
+        "initials": "MMR/MRP",
+        "section": "All Sections"
+      },
+      {
+        "id": 1112,
+        "seriesId": 1003,
+        "day": "Sunday",
+        "start": 9,
+        "span": 1,
+        "cat": "HUM",
+        "code": "HUM 3217",
+        "title": "HUM 3217",
+        "room": "R-402",
+        "teacherId": 1053,
+        "initials": "TK",
+        "section": "All Sections"
+      },
+      {
+        "id": 1113,
+        "seriesId": 1003,
+        "day": "Sunday",
+        "start": 10,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3205",
+        "title": "ECE 3205",
+        "room": "R-402",
+        "teacherId": 1030,
+        "initials": "MFA+MKG",
+        "section": "All Sections"
+      },
+      {
+        "id": 1114,
+        "seriesId": 1003,
+        "day": "Sunday",
+        "start": 11,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 3200",
+        "title": "ECE 3200",
+        "room": "Lab-3",
+        "teacherId": 1027,
+        "initials": "GKH+NRP",
+        "section": "All Sections"
+      },
+      {
+        "id": 1115,
+        "seriesId": 1003,
+        "day": "Monday",
+        "start": 8,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3207",
+        "title": "ECE 3207",
+        "room": "R-402",
+        "teacherId": 1026,
+        "initials": "MAH+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1116,
+        "seriesId": 1003,
+        "day": "Monday",
+        "start": 9,
+        "span": 1,
+        "cat": "ME",
+        "code": "ME 3219",
+        "title": "ME 3219",
+        "room": "R-402",
+        "teacherId": 1039,
+        "initials": "MMR/MRP",
+        "section": "All Sections"
+      },
+      {
+        "id": 1117,
+        "seriesId": 1003,
+        "day": "Monday",
+        "start": 11,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 3221",
+        "title": "ECE 3221",
+        "room": "Lab-2",
+        "teacherId": 1055,
+        "initials": "NIS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1118,
+        "seriesId": 1003,
+        "day": "Tuesday",
+        "start": 8,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3205",
+        "title": "ECE 3205",
+        "room": "R-402",
+        "teacherId": 1030,
+        "initials": "MFA+MKG",
+        "section": "All Sections"
+      },
+      {
+        "id": 1119,
+        "seriesId": 1003,
+        "day": "Tuesday",
+        "start": 9,
+        "span": 1,
+        "cat": "HUM",
+        "code": "HUM 3217",
+        "title": "HUM 3217",
+        "room": "R-402",
+        "teacherId": 1038,
+        "initials": "KF",
+        "section": "All Sections"
+      },
+      {
+        "id": 1120,
+        "seriesId": 1003,
+        "day": "Tuesday",
+        "start": 10,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3221",
+        "title": "ECE 3221",
+        "room": "R-402",
+        "teacherId": 1029,
+        "initials": "HBK+NIS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1121,
+        "seriesId": 1003,
+        "day": "Tuesday",
+        "start": 11,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3200",
+        "title": "ECE 3200",
+        "room": "R-401",
+        "teacherId": 1027,
+        "initials": "GKH+NRP",
+        "section": "All Sections"
+      },
+      {
+        "id": 1122,
+        "seriesId": 1003,
+        "day": "Wednesday",
+        "start": 8,
+        "span": 1,
+        "cat": "HUM",
+        "code": "HUM 3217",
+        "title": "HUM 3217",
+        "room": "R-402",
+        "teacherId": 1038,
+        "initials": "KF",
+        "section": "All Sections"
+      },
+      {
+        "id": 1123,
+        "seriesId": 1003,
+        "day": "Wednesday",
+        "start": 9,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3207",
+        "title": "ECE 3207",
+        "room": "R-402",
+        "teacherId": 1026,
+        "initials": "MAH+MNT",
+        "section": "All Sections"
+      },
+      {
+        "id": 1124,
+        "seriesId": 1003,
+        "day": "Wednesday",
+        "start": 10,
+        "span": 1,
+        "cat": "ECE",
+        "code": "ECE 3221",
+        "title": "ECE 3221",
+        "room": "R-402",
+        "teacherId": 1029,
+        "initials": "HBK+NIS",
+        "section": "All Sections"
+      },
+      {
+        "id": 1125,
+        "seriesId": 1003,
+        "day": "Wednesday",
+        "start": 11,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 3208 / 3206",
+        "title": "ECE 3208 / 3206",
+        "room": "Lab-10 / Lab-3",
+        "teacherId": 1026,
+        "initials": "MAH+MNT / MFA+MKG",
+        "section": "All Sections"
+      },
+      {
+        "id": 1126,
+        "seriesId": 1003,
+        "day": "Wednesday",
+        "start": 14,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ME 3220",
+        "title": "ME 3220",
+        "room": "Lab-11",
+        "teacherId": 1049,
+        "initials": "MRP",
+        "section": "All Sections"
+      },
+      {
+        "id": 1127,
+        "seriesId": 1004,
+        "day": "Monday",
+        "start": 11,
+        "span": 3,
+        "cat": "Lab",
+        "code": "ECE 4000",
+        "title": "ECE 4000",
+        "room": "Project / Thesis",
+        "teacherId": null,
+        "initials": "ALL Faculty",
+        "section": "All Sections"
+      }
+    ],
+    "meeting": {
+      "day": "Monday",
+      "start": 14,
+      "span": 3,
+      "text": "Departmental Meeting / OBE Activity / Student Counselling"
+    }
+  },
+  "settings": {
+    "dept": "Department of Electrical & Computer Engineering",
+    "university": "Rajshahi University of Engineering & Technology",
+    "head": "Head, ECE, RUET",
+    "effectiveDate": "10/01/2026"
+  },
+  "uid": 1463
+}

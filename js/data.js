@@ -476,24 +476,39 @@ function syncToCloud(payload) {
 async function loadFromCloud(onLoaded) {
   if (typeof window === 'undefined' || typeof fetch === 'undefined') return;
   try {
-    const res = await fetch('/api/routine');
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.ok && data.payload && data.payload.state) {
-        const cloudTime = data.updatedAt || 0;
-        const lastLocalSaved = Number(localStorage.getItem('routine_cloud_last_synced') || 0);
+    let data = null;
+    try {
+      const res = await fetch('/api/routine');
+      if (res.ok) {
+        data = await res.json();
+      }
+    } catch (e) { }
 
-        if (cloudTime > lastLocalSaved || !localStorage.getItem(STORAGE_KEY)) {
-          Object.assign(state, data.payload.state);
-          if (data.payload.settings && typeof settings !== 'undefined') {
-            Object.assign(settings, data.payload.settings);
-          }
-          if (data.payload.uid) setUid(data.payload.uid);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(data.payload));
-          localStorage.setItem('routine_cloud_last_synced', String(cloudTime));
-          cloudSyncStatus = 'synced';
-          if (onLoaded) onLoaded();
+    // If API did not return routine payload, load directly from static data/routine.json
+    if (!data || !data.ok || !data.payload) {
+      try {
+        const staticRes = await fetch('/data/routine.json');
+        if (staticRes.ok) {
+          const staticData = await staticRes.json();
+          data = { ok: true, payload: staticData, updatedAt: staticData.updatedAt || 0 };
         }
+      } catch (e) { }
+    }
+
+    if (data && data.ok && data.payload && data.payload.state) {
+      const cloudTime = data.updatedAt || 0;
+      const lastLocalSaved = Number(localStorage.getItem('routine_cloud_last_synced') || 0);
+
+      if (cloudTime > lastLocalSaved || !localStorage.getItem(STORAGE_KEY)) {
+        Object.assign(state, data.payload.state);
+        if (data.payload.settings && typeof settings !== 'undefined') {
+          Object.assign(settings, data.payload.settings);
+        }
+        if (data.payload.uid) setUid(data.payload.uid);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data.payload));
+        localStorage.setItem('routine_cloud_last_synced', String(cloudTime));
+        cloudSyncStatus = 'synced';
+        if (onLoaded) onLoaded();
       }
     }
   } catch (e) {
@@ -509,7 +524,7 @@ function saveState() {
       uid
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-    // Cloud sync is triggered explicitly via "Publish to Worldwide Cloud" button to avoid consuming cloud write quota
+    // Cloud sync is triggered explicitly via "Publish" button to commit directly to GitHub repository
   } catch (e) {
     console.error('Could not save routine data to localStorage:', e);
   }
