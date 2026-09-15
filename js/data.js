@@ -509,7 +509,7 @@ function saveState() {
       uid
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-    syncToCloud(payload);
+    // Cloud sync is triggered explicitly via "Publish to Worldwide Cloud" button to avoid consuming cloud write quota
   } catch (e) {
     console.error('Could not save routine data to localStorage:', e);
   }

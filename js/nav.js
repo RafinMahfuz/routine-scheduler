@@ -51,8 +51,16 @@ function renderNav() {
     ? `<span class="admin-live-tag unlocked">Admin ON</span>`
     : `<span class="admin-live-tag locked">Read Only</span>`;
 
+  const publishHtml = state.isAdmin
+    ? `<div class="nav-item nav-publish-item" id="quickPublishNavBtn" title="Publish latest routine changes to worldwide cloud" style="background:rgba(37,99,235,0.1);color:var(--primary);font-weight:600;">
+        <span class="nav-ic">☁️</span>
+        <span class="nav-label">Publish</span>
+      </div>`
+    : '';
+
   el.innerHTML = navHtml + `
     <div class="nav-divider"></div>
+    ${publishHtml}
     <div class="nav-item nav-admin-item ${state.isAdmin ? 'admin-active' : ''}" id="adminNavBtn">
       <span class="nav-ic">${adminIcon}</span>
       <span class="nav-label">${state.isAdmin ? 'Admin Mode' : 'Admin Access'}</span>
@@ -62,6 +70,40 @@ function renderNav() {
   el.querySelectorAll('[data-nav]').forEach(n => {
     n.onclick = () => { state.activeNav = n.dataset.nav; renderAll(); };
   });
+
+  const pubBtn = document.getElementById('quickPublishNavBtn');
+  if (pubBtn) {
+    pubBtn.onclick = async () => {
+      const origText = pubBtn.innerHTML;
+      pubBtn.innerHTML = '<span class="nav-ic">⏳</span><span class="nav-label">Publishing...</span>';
+      try {
+        const payload = {
+          state,
+          settings: (typeof settings !== 'undefined') ? settings : undefined,
+          uid
+        };
+        const pass = (state.adminPassword || 'admin123').trim();
+        const res = await fetch('/api/routine', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${pass}`
+          },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data && data.ok) {
+          toast('Routine successfully published to worldwide cloud!', 'ok');
+        } else {
+          toast(data.message || 'Error publishing to cloud.', 'info');
+        }
+      } catch (e) {
+        toast('Could not connect to cloud API.', 'warn');
+      } finally {
+        pubBtn.innerHTML = origText;
+      }
+    };
+  }
 
   const adminBtn = document.getElementById('adminNavBtn');
   if (adminBtn) {
