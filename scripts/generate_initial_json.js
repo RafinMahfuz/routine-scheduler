@@ -5,8 +5,8 @@ const vm = require('vm');
 
 // Mock browser globals
 global.window = global;
-global.sessionStorage = { getItem: () => null, setItem: () => {} };
-global.localStorage = { getItem: () => null, setItem: () => {} };
+global.sessionStorage = { getItem: () => null, setItem: () => { } };
+global.localStorage = { getItem: () => null, setItem: () => { } };
 global.document = { getElementById: () => null, querySelectorAll: () => [] };
 
 const ctx = vm.createContext(global);
@@ -39,3 +39,4 @@ if (!fs.existsSync(path.join(__dirname, '../data'))) {
 
 fs.writeFileSync(path.join(__dirname, '../data/routine.json'), JSON.stringify(payload, null, 2));
 console.log('Successfully generated data/routine.json! Size:', fs.statSync(path.join(__dirname, '../data/routine.json')).size, 'bytes');
+

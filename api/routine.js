@@ -90,7 +90,7 @@ module.exports = async function handler(req, res) {
           if (edgeRes.ok) {
             let itemData = await edgeRes.json();
             if (typeof itemData === 'string') {
-              try { itemData = JSON.parse(itemData); } catch (e) {}
+              try { itemData = JSON.parse(itemData); } catch (e) { }
             }
             if (itemData) {
               return res.status(200).json({
@@ -118,7 +118,7 @@ module.exports = async function handler(req, res) {
         if (getData && getData.result) {
           let payload = getData.result;
           if (typeof payload === 'string') {
-            try { payload = JSON.parse(payload); } catch (e) {}
+            try { payload = JSON.parse(payload); } catch (e) { }
           }
           return res.status(200).json({
             ok: true,
@@ -150,12 +150,18 @@ module.exports = async function handler(req, res) {
     const providedPass = authHeader.replace(/^Bearer\s+/i, '').trim();
     const envAdminPass = (process.env.ADMIN_PASSWORD || 'admin123').trim();
 
-    // Verify admin credentials
-    if (!providedPass || (providedPass !== envAdminPass && providedPass !== 'admin123')) {
+    // Verify admin credentials strictly against ADMIN_PASSWORD
+    if (!providedPass || providedPass !== envAdminPass) {
       return res.status(401).json({ ok: false, error: 'Unauthorized: Invalid admin password' });
     }
 
     const body = req.body || {};
+
+    // Support instant credential verification from login portal
+    if (body.action === 'verify') {
+      return res.status(200).json({ ok: true, message: 'Admin authenticated' });
+    }
+
     const cloudPayload = {
       version: 1,
       updatedAt: Date.now(),

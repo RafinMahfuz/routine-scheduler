@@ -74,13 +74,55 @@ function hideLoginPortal() {
 /**
  * Validates administrative credentials. Grants complete system control upon success.
  */
-function attemptAdminLogin(inputPassword) {
+async function attemptAdminLogin(inputPassword) {
   const entered = (inputPassword !== undefined ? inputPassword : (document.getElementById('corpAdminPass') ? document.getElementById('corpAdminPass').value : '')).trim();
-  const currentPassword = (state.adminPassword || 'admin123').trim();
   const errEl = document.getElementById('corpLoginError');
   const card = document.querySelector('.corp-login-card');
+  const submitBtn = document.getElementById('corpLoginSubmitBtn');
 
-  if (entered === currentPassword) {
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Verifying credentials...</span>';
+  }
+
+  let isAuthorized = false;
+
+  // 1. Verify against Vercel backend /api/routine (Single Source of Truth)
+  try {
+    const res = await fetch('/api/routine', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${entered}`
+      },
+      body: JSON.stringify({ action: 'verify' })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.ok) {
+        isAuthorized = true;
+      }
+    } else if (res.status === 401) {
+      isAuthorized = false;
+    } else {
+      // Offline fallback
+      const currentPassword = (state.adminPassword || 'admin123').trim();
+      isAuthorized = (entered === currentPassword);
+    }
+  } catch (e) {
+    // Offline / local fallback
+    const currentPassword = (state.adminPassword || 'admin123').trim();
+    isAuthorized = (entered === currentPassword);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span class="corp-btn-text">Authorize &amp; Enter Workspace</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>';
+    }
+  }
+
+  if (isAuthorized) {
+    state.adminPassword = entered;
+    try { sessionStorage.setItem('ruet_ece_admin_pass', entered); } catch (e) { }
     setAdminSession(true);
     hideLoginPortal();
     if (typeof renderAll === 'function') renderAll();
