@@ -384,6 +384,7 @@ function buildCoursesFromClasses() {
     const sessions = sameCode.length;
     const labId = isLab ? resolveLabId(c.room) : null;
     const teacherId = c.teacherId || (state.teachers[0] ? state.teachers[0].id : null);
+    const roomObj = !isLab && c.room ? state.rooms.find(r => r.code.toLowerCase() === c.room.toLowerCase()) : null;
     state.courses.push({
       id: nextId(), seriesId: c.seriesId, code: c.code, title: c.title,
       credit: isLab ? 1.5 : 3,
@@ -392,6 +393,8 @@ function buildCoursesFromClasses() {
       sessionsPerWeek: Math.max(1, sessions),
       studentCount: 60,
       teacherId: isLab ? null : teacherId,
+      roomId: roomObj ? roomObj.id : null,
+      room: roomObj ? roomObj.code : (isLab ? '' : (c.room || '')),
       groups: isLab ? [{ labId: labId, teacherId: teacherId, size: 60 }] : []
     });
   });

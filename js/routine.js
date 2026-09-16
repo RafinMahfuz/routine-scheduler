@@ -378,7 +378,8 @@ function runAutoGenerationEngine(options = {}) {
       const tid = course.teacherId;
       const sid = course.seriesId;
       const sIdx = state.series.findIndex(s => s.id === sid);
-      const preferredRoom = preferredRoomCode[sIdx] || 'R-404';
+      const assignedRoomObj = course.roomId ? roomById(course.roomId) : (course.room ? state.rooms.find(r => r.code === course.room) : null);
+      const preferredRoom = (assignedRoomObj ? assignedRoomObj.code : course.room) || preferredRoomCode[sIdx] || 'R-404';
 
       if (!courseDayMap[course.id]) courseDayMap[course.id] = new Set();
       const usedDays = courseDayMap[course.id];

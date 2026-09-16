@@ -18,9 +18,11 @@ function renderCourses() {
         key: 'teacher', label: 'Assigned Instructor(s)', render: c => {
           if (c.type === 'theory') {
             const t = teacherById(c.teacherId);
+            const r = (c.roomId ? roomById(c.roomId) : null) || (c.room ? state.rooms.find(x => x.code === c.room) : null);
+            const roomHtml = r ? `<span style="font-size:12px;color:var(--text-mute);">in <strong>${r.code}</strong></span>` : '';
             return t
-              ? `<div style="display:flex;align-items:center;gap:6px;"><span class="swatch" style="background:${t.color.fg};"></span><strong>${teacherShort(t)}</strong> <span style="font-size:12px;color:var(--text-mute);">(${t.name})</span></div>`
-              : '<span class="tag" style="background:#fee2e2;color:#991b1b;font-weight:700;">⚠️ Not Assigned</span>';
+              ? `<div style="display:flex;align-items:center;gap:6px;"><span class="swatch" style="background:${t.color.fg};"></span><strong>${teacherShort(t)}</strong> <span style="font-size:12px;color:var(--text-mute);">(${t.name})</span>${roomHtml ? ' ' + roomHtml : ''}</div>`
+              : `<div style="display:flex;align-items:center;gap:6px;"><span class="tag" style="background:#fee2e2;color:#991b1b;font-weight:700;">⚠️ Not Assigned</span>${roomHtml ? ' ' + roomHtml : ''}</div>`;
           }
           const groups = computeLabGroups(c);
           return `<div style="display:flex;flex-direction:column;gap:3px;">${groups.map((g, i) => {
@@ -84,7 +86,7 @@ function courseGroupsHtml(course) {
 
 function openCourseModal(course) {
   const isEdit = !!course;
-  const c = course || { code: '', title: '', credit: 3, dept: 'ECE', type: 'theory', sessionsPerWeek: 1, studentCount: 60, teacherId: null, groups: [] };
+  const c = course || { code: '', title: '', credit: 3, dept: 'ECE', type: 'theory', sessionsPerWeek: 1, studentCount: 60, teacherId: null, roomId: null, groups: [] };
 
   const body = () => `
     <div class="modal-header">
@@ -125,13 +127,25 @@ function openCourseModal(course) {
   openModal(body());
 
   function renderTeacherSection() {
+    const tSel = document.getElementById('cf-teacher');
+    if (tSel) c.teacherId = Number(tSel.value) || null;
+    const rSel = document.getElementById('cf-room');
+    if (rSel) c.roomId = Number(rSel.value) || null;
+
     const type = document.getElementById('cf-type').value;
     const students = Number(document.getElementById('cf-students').value) || 0;
     const box = document.getElementById('teacherSection');
     if (type === 'theory') {
-      box.innerHTML = `<div class="field"><label>Assign Theory Instructor</label>
-        <select id="cf-teacher"><option value="">— Select Instructor —</option>${state.teachers.map(t => `<option value="${t.id}" ${c.teacherId === t.id ? 'selected' : ''}>${teacherOptionLabel(t)} — ${t.dept}</option>`).join('')}</select>
-      </div>`;
+      const currentRoomId = c.roomId || (c.room ? (state.rooms.find(r => r.code === c.room) || {}).id : null);
+      box.innerHTML = `
+        <div class="field-row">
+          <div class="field"><label>Assign Theory Instructor</label>
+            <select id="cf-teacher"><option value="">— Select Instructor —</option>${state.teachers.map(t => `<option value="${t.id}" ${c.teacherId === t.id ? 'selected' : ''}>${teacherOptionLabel(t)} — ${t.dept}</option>`).join('')}</select>
+          </div>
+          <div class="field"><label>Assign Classroom / Room</label>
+            <select id="cf-room"><option value="">— Select Room —</option>${state.rooms.map(r => `<option value="${r.id}" ${currentRoomId === r.id ? 'selected' : ''}>${r.code} (${r.loc || 'Main Campus'})</option>`).join('')}</select>
+          </div>
+        </div>`;
     } else {
       box.innerHTML = `<label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:8px;color:var(--violet-dark);">Parallel Lab Groups (${LAB_GROUP_SIZE} students per group)</label>` + courseGroupsHtml({ ...c, studentCount: students });
     }
@@ -154,10 +168,15 @@ function openCourseModal(course) {
     };
     if (type === 'theory') {
       data.teacherId = Number(document.getElementById('cf-teacher').value) || null;
+      data.roomId = (document.getElementById('cf-room') && Number(document.getElementById('cf-room').value)) || null;
+      const rObj = data.roomId ? roomById(data.roomId) : null;
+      data.room = rObj ? rObj.code : '';
       data.groups = [];
     } else {
       const n = Math.max(1, Math.ceil(studentCount / LAB_GROUP_SIZE));
       data.teacherId = null;
+      data.roomId = null;
+      data.room = '';
       data.groups = [];
       for (let i = 0; i < n; i++) {
         data.groups.push({
