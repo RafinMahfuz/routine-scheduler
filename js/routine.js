@@ -263,8 +263,9 @@ function runAutoGenerationEngine(options = {}) {
     }
 
     function isDeptMeeting(day, start, span) {
-      if (day === 'Monday') {
-        if (start < 17 && start + span > 14) return true;
+      const M = state.meeting;
+      if (M && M.text && M.day && M.span > 0) {
+        if (day === M.day && start < M.start + M.span && start + span > M.start) return true;
       }
       return false;
     }
@@ -755,7 +756,7 @@ function sheetClassCellHtml(c, interactive, isMono = false) {
    click-to-edit (only ever true on-screen, for a single admin-owned series;
    print output and All-Series views are always read-only). */
 function buildBandTable(days, seriesList, interactive, isMono = false) {
-  const headRow1 = `<th class="sheet-corner">Day</th>` + days.map(day => `<th colspan="${SLOT_COLUMNS.length}" class="sheet-th-day">${day}</th>`).join('');
+  const headRow1 = `<th class="sheet-corner">Day</th>` + days.map(day => `<th colspan="${SLOT_COLUMNS.length}" class="sheet-th-day" data-day-header="${day}">${day}</th>`).join('');
   const headRow2 = `<th class="sheet-corner">Time</th>` + days.map(() => SLOT_COLUMNS.map(col =>
     col.type === 'slot' ? `<th class="sheet-th-time">${col.label.split('\n')[0]}<br>${col.label.split('\n')[1]}</th>` : `<th class="sheet-th-time">${col.label.split('\n')[0]}</th>`
   ).join('')).join('');
@@ -795,7 +796,13 @@ function buildBandTable(days, seriesList, interactive, isMono = false) {
           // other covered cell is absorbed by its colspan + rowspan.
           if (rowIdx === 0 && col.start === M.start) {
             const meetingStyle = isMono ? 'background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 8px, #e2e8f0 8px, #e2e8f0 16px); color: #000000; border: 1px solid #000000; font-weight: 800;' : '';
-            row += `<td class="sheet-cell sheet-meeting" style="${meetingStyle}" rowspan="${seriesList.length}" colspan="${M.span}">${M.text}</td>`;
+            const dragMeetingAttr = interactive
+              ? `draggable="true" data-dragmeeting="1" data-day="${M.day}" data-start="${M.start}" data-span="${M.span}"`
+              : '';
+            row += `<td class="sheet-cell sheet-meeting${interactive ? ' sheet-draggable sheet-meeting-draggable' : ''}" style="${meetingStyle}position:relative;" rowspan="${seriesList.length}" colspan="${M.span}" ${dragMeetingAttr}>
+              ${interactive ? '<span class="scc-grip" title="Drag to move Departmental Meeting to any day">⠿</span>' : ''}
+              ${M.text}
+            </td>`;
           }
           return;
         }
@@ -986,6 +993,12 @@ function moveClassToSlot(id, day, start, seriesId) {
     toast('Theory classes run 8:00–1:20 only — they can\'t move into the afternoon.', 'warn'); return;
   }
   if (!fitsSegment(start, c.span)) { toast('That slot crosses the Break / Lunch gap and can\'t hold this class.', 'warn'); return; }
+  const M = state.meeting;
+  if (M && M.text && M.day === day && M.span > 0) {
+    if (start < M.start + M.span && start + c.span > M.start) {
+      toast('That slot is reserved for the Departmental Meeting.', 'warn'); return;
+    }
+  }
   const conflict = state.classes.some(o => o.id !== c.id && o.seriesId === c.seriesId && o.day === day &&
     !(start + c.span <= o.start || o.start + o.span <= start));
   if (conflict) { toast('That slot is already occupied. Drop on an empty slot, or onto another class to swap.', 'warn'); return; }
@@ -994,6 +1007,44 @@ function moveClassToSlot(id, day, start, seriesId) {
   _dndDestKey = `${day}|${start}|${c.seriesId}`;
   renderRoutine();
   toast(`Moved ${c.code}: ${from} → ${day} ${timeRangeLabel(c.start, c.span)}.`, 'ok');
+}
+
+function moveMeeting(targetDay, targetStart) {
+  if (!state.meeting) return;
+  if (!targetDay || !DAYS.includes(targetDay)) return;
+  const oldDay = state.meeting.day;
+  const oldStart = state.meeting.start || 14;
+  const span = state.meeting.span || 3;
+  let resolvedStart = 14;
+  if (targetStart && fitsSegment(targetStart, span)) {
+    resolvedStart = targetStart;
+  }
+
+  if (targetDay === oldDay && resolvedStart === oldStart) return;
+
+  // Check for conflicting classes in target time range across all series
+  const conflicts = state.classes.filter(c => c.day === targetDay &&
+    !(resolvedStart + span <= c.start || c.start + c.span <= resolvedStart)
+  );
+
+  if (conflicts.length > 0) {
+    const conflictNames = conflicts.map(c => c.code).join(', ');
+    const msg = `Moving Departmental Meeting to ${targetDay} (${timeRangeLabel(resolvedStart, span)}) conflicts with ${conflicts.length} scheduled session(s): ${conflictNames}.\n\nWould you like to move those session(s) to ${oldDay} (${timeRangeLabel(oldStart, span)})?`;
+    if (!confirm(msg)) {
+      toast('Departmental Meeting move cancelled.', 'info');
+      return;
+    }
+    conflicts.forEach(c => {
+      c.day = oldDay;
+    });
+  }
+
+  state.meeting.day = targetDay;
+  state.meeting.start = resolvedStart;
+  _dndDestKey = `${targetDay}|${resolvedStart}|meeting`;
+  saveState();
+  renderRoutine();
+  toast(`Departmental Meeting moved to ${targetDay} (${timeRangeLabel(resolvedStart, span)}).`, 'ok');
 }
 function swapClasses(id1, id2) {
   const a = state.classes.find(x => x.id === id1), b = state.classes.find(x => x.id === id2);
@@ -1483,10 +1534,22 @@ function renderRoutine() {
     const occupied = new Map();
     dayClasses.forEach(c => { for (let i = 0; i < c.span; i++) occupied.set(c.start + i, i === 0 ? c : 'spanned'); });
     let cells = '';
+    const M = state.meeting;
+    const hasMeeting = !!(M && M.text && M.day && M.span > 0);
     SLOT_COLUMNS.forEach(col => {
       if (col.type === 'break') { cells += `<td class="break-col">RECESS</td>`; return; }
       if (col.type === 'lunch') { cells += `<td class="lunch-col">LUNCH</td>`; return; }
       const slot = col;
+      if (hasMeeting && day === M.day && slot.start >= M.start && slot.start < M.start + M.span) {
+        if (slot.start === M.start) {
+          const dragMeetingAttr = state.isAdmin ? `draggable="true" data-dragmeeting="1" data-day="${M.day}" data-start="${M.start}" data-span="${M.span}"` : '';
+          cells += `<td class="slot sheet-meeting${state.isAdmin ? ' sheet-draggable sheet-meeting-draggable' : ''}" colspan="${M.span}" ${dragMeetingAttr} style="position:relative;">
+            ${state.isAdmin ? `<span class="scc-grip" title="Drag to move Departmental Meeting to any day">⠿</span>` : ''}
+            <div>${M.text}</div>
+          </td>`;
+        }
+        return;
+      }
       const occ = occupied.get(slot.start);
       if (occ === 'spanned') return;
       if (occ && typeof occ === 'object') {
@@ -1863,6 +1926,7 @@ function renderRoutine() {
    Handles HTML5 drag events (desktop) + a touch bridge (tablets/mobiles).
    ===================================================================== */
 let _activeDragId = null;
+let _activeDragMeeting = false;
 let _dragJustFinished = false;
 
 function wireRoutineDnD() {
@@ -1880,6 +1944,16 @@ function wireRoutineDnD() {
     const key = _dndDestKey;
     _dndDestKey = null;
     const [day, startStr, seriesStr] = key.split('|');
+    if (seriesStr === 'meeting') {
+      const el = document.querySelector('.sheet-meeting');
+      if (el) {
+        el.classList.remove('dnd-landed');
+        void el.offsetWidth;
+        el.classList.add('dnd-landed');
+        setTimeout(() => el.classList.remove('dnd-landed'), 700);
+      }
+      return;
+    }
     const start = Number(startStr);
     const seriesId = Number(seriesStr);
     const all = [...document.querySelectorAll('[data-class-id]')];
@@ -1903,6 +1977,10 @@ function wireRoutineDnD() {
     const isTheory = c.cat !== 'Lab' && c.span === THEORY_SPAN;
     if (isTheory && !THEORY_ALLOWED_STARTS.includes(targetStart)) return false;
     if (!fitsSegment(targetStart, c.span)) return false;
+    const M = state.meeting;
+    if (M && M.text && M.day === targetDay && M.span > 0) {
+      if (targetStart < M.start + M.span && targetStart + c.span > M.start) return false;
+    }
     return true;
   }
 
@@ -1919,11 +1997,70 @@ function wireRoutineDnD() {
     return true;
   }
 
+  /* ---- Source element: Departmental Meeting block ----------------- */
+  document.querySelectorAll('[data-dragmeeting]').forEach(el => {
+    el.setAttribute('draggable', 'true');
+
+    el.addEventListener('dragstart', e => {
+      _activeDragMeeting = true;
+      _activeDragId = null;
+      try {
+        if (e.dataTransfer) {
+          e.dataTransfer.setData('text/plain', 'dept-meeting');
+          e.dataTransfer.effectAllowed = 'move';
+        }
+      } catch (err) { }
+      el.classList.add('dragging');
+      document.body.classList.add('dnd-active');
+    });
+
+    el.addEventListener('dragend', () => {
+      _dragJustFinished = true;
+      setTimeout(() => { _dragJustFinished = false; }, 350);
+      document.body.classList.remove('dnd-active');
+      clearAll();
+      setTimeout(() => { _activeDragMeeting = false; }, 150);
+      requestAnimationFrame(flashLanded);
+    });
+  });
+
+  /* ---- Drop zones: Day headers on the sheet ----------------------- */
+  document.querySelectorAll('th.sheet-th-day').forEach(th => {
+    th.addEventListener('dragover', e => {
+      if (!_activeDragMeeting) return;
+      e.preventDefault();
+      if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
+      const targetDay = th.dataset.dayHeader || th.textContent.trim();
+      const isCurrentDay = targetDay === (state.meeting && state.meeting.day);
+      th.classList.toggle('drag-over', !isCurrentDay);
+      th.classList.toggle('drag-over-invalid', isCurrentDay);
+    });
+
+    th.addEventListener('dragleave', () => {
+      th.classList.remove('drag-over', 'drag-over-invalid');
+    });
+
+    th.addEventListener('drop', e => {
+      if (!_activeDragMeeting) return;
+      e.preventDefault();
+      e.stopPropagation();
+      th.classList.remove('drag-over', 'drag-over-invalid');
+      _dragJustFinished = true;
+      setTimeout(() => { _dragJustFinished = false; }, 350);
+      const targetDay = th.dataset.dayHeader || th.textContent.trim();
+      _activeDragMeeting = false;
+      if (targetDay && DAYS.includes(targetDay)) {
+        moveMeeting(targetDay, 14);
+      }
+    });
+  });
+
   /* ---- Source elements: all draggable class cells (both views) ----- */
   document.querySelectorAll('[data-dragclass]').forEach(el => {
     el.setAttribute('draggable', 'true');
 
     el.addEventListener('dragstart', e => {
+      _activeDragMeeting = false;
       _activeDragId = Number(el.dataset.dragclass);
       try {
         if (e.dataTransfer) {
@@ -1946,6 +2083,17 @@ function wireRoutineDnD() {
 
     /* Swap target (another class cell of equal length) */
     el.addEventListener('dragover', e => {
+      if (_activeDragMeeting) {
+        e.preventDefault();
+        if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
+        const targetDay = el.dataset.day;
+        if (targetDay) {
+          const isCurrentDay = targetDay === (state.meeting && state.meeting.day);
+          el.classList.toggle('drag-over', !isCurrentDay);
+          el.classList.toggle('drag-over-invalid', isCurrentDay);
+        }
+        return;
+      }
       if (el.classList.contains('dragging') || Number(el.dataset.dragclass) === _activeDragId) return;
       e.preventDefault();
       if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
@@ -1969,6 +2117,14 @@ function wireRoutineDnD() {
       _dragJustFinished = true;
       setTimeout(() => { _dragJustFinished = false; }, 350);
 
+      if (_activeDragMeeting) {
+        const targetDay = el.dataset.day;
+        const targetStart = Number(el.dataset.start) || 14;
+        _activeDragMeeting = false;
+        if (targetDay) moveMeeting(targetDay, targetStart);
+        return;
+      }
+
       let id = _activeDragId;
       if (!id && e.dataTransfer) {
         try { id = Number(e.dataTransfer.getData('text/plain')); } catch (err) { }
@@ -1983,6 +2139,17 @@ function wireRoutineDnD() {
   /* ---- Drop zones: empty slots in both views ----------------------- */
   document.querySelectorAll('.day-slot-empty, td.sheet-empty, td.slot[data-addclass]').forEach(zone => {
     zone.addEventListener('dragover', e => {
+      if (_activeDragMeeting) {
+        e.preventDefault();
+        if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
+        const targetDay = zone.dataset.day;
+        if (targetDay) {
+          const isCurrentDay = targetDay === (state.meeting && state.meeting.day);
+          zone.classList.toggle('drag-over', !isCurrentDay);
+          zone.classList.toggle('drag-over-invalid', isCurrentDay);
+        }
+        return;
+      }
       e.preventDefault();
       if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
       const draggedId = _activeDragId;
@@ -2009,6 +2176,14 @@ function wireRoutineDnD() {
       _dragJustFinished = true;
       setTimeout(() => { _dragJustFinished = false; }, 350);
 
+      if (_activeDragMeeting) {
+        const targetDay = zone.dataset.day;
+        const targetStart = Number(zone.dataset.start) || 14;
+        _activeDragMeeting = false;
+        if (targetDay) moveMeeting(targetDay, targetStart);
+        return;
+      }
+
       let id = _activeDragId;
       if (!id && e.dataTransfer) {
         try { id = Number(e.dataTransfer.getData('text/plain')); } catch (err) { }
@@ -2026,8 +2201,71 @@ function wireRoutineDnD() {
 
   /* ---- Touch bridge (tablets / touch screens) --------------------- */
   let _touchDragId = null;
+  let _touchDragMeeting = false;
   let _touchGhost = null;
   let _touchCurrent = null;
+
+  document.querySelectorAll('[data-dragmeeting]').forEach(el => {
+    el.addEventListener('touchstart', e => {
+      _touchDragMeeting = true;
+      _activeDragMeeting = true;
+      _touchDragId = null;
+      _activeDragId = null;
+      document.body.classList.add('dnd-active');
+      el.classList.add('dragging');
+      const rect = el.getBoundingClientRect();
+      _touchGhost = el.cloneNode(true);
+      Object.assign(_touchGhost.style, {
+        position: 'fixed', top: rect.top + 'px', left: rect.left + 'px',
+        width: rect.width + 'px', height: rect.height + 'px',
+        opacity: '0.85', pointerEvents: 'none', zIndex: '99999',
+        borderRadius: '8px', boxShadow: '0 12px 28px rgba(0,0,0,0.3)',
+        transform: 'scale(1.02)', transition: 'none',
+      });
+      document.body.appendChild(_touchGhost);
+    }, { passive: true });
+
+    el.addEventListener('touchmove', e => {
+      if (!_touchDragMeeting) return;
+      const touch = e.touches[0];
+      if (_touchGhost) {
+        _touchGhost.style.top = (touch.clientY - 20) + 'px';
+        _touchGhost.style.left = (touch.clientX - 40) + 'px';
+      }
+      clearAll();
+      el.classList.add('dragging');
+      const underEl = document.elementFromPoint(touch.clientX, touch.clientY);
+      const zone = underEl && underEl.closest('[data-day], [data-day-header], th.sheet-th-day, td.sheet-cell, td.slot');
+      if (zone) {
+        const targetDay = zone.dataset.day || zone.dataset.dayHeader || (zone.classList.contains('sheet-th-day') ? zone.textContent.trim() : (zone.closest('tr') && zone.closest('tr').querySelector('.day-cell-name') ? zone.closest('tr').querySelector('.day-cell-name').textContent.trim() : null));
+        if (targetDay && DAYS.includes(targetDay)) {
+          const isCurrentDay = targetDay === (state.meeting && state.meeting.day);
+          zone.classList.add(isCurrentDay ? 'drag-over-invalid' : 'drag-over');
+          _touchCurrent = { type: 'meeting', day: targetDay, start: Number(zone.dataset.start) || 14 };
+        }
+      } else {
+        _touchCurrent = null;
+      }
+    }, { passive: true });
+
+    el.addEventListener('touchend', () => {
+      if (_touchGhost) { _touchGhost.remove(); _touchGhost = null; }
+      document.body.classList.remove('dnd-active');
+      _dragJustFinished = true;
+      setTimeout(() => { _dragJustFinished = false; }, 350);
+
+      const hadMeeting = _touchDragMeeting;
+      _touchDragMeeting = false;
+      _activeDragMeeting = false;
+      if (hadMeeting && _touchCurrent && _touchCurrent.type === 'meeting') {
+        const { day, start } = _touchCurrent;
+        _touchCurrent = null;
+        moveMeeting(day, start);
+      }
+      clearAll();
+      requestAnimationFrame(flashLanded);
+    });
+  });
 
   document.querySelectorAll('[data-dragclass]').forEach(el => {
     el.addEventListener('touchstart', e => {

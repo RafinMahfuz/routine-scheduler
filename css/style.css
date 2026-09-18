@@ -1675,6 +1675,34 @@ td.sheet-meeting {
   border: 1.5px solid #f59e0b;
 }
 
+td.sheet-meeting.sheet-meeting-draggable {
+  position: relative;
+  cursor: grab;
+  user-select: none;
+}
+
+td.sheet-meeting.sheet-meeting-draggable:active {
+  cursor: grabbing;
+}
+
+td.sheet-meeting.dragging {
+  opacity: 0.35;
+  cursor: grabbing;
+}
+
+th.sheet-th-day.drag-over {
+  outline: 2.5px dashed var(--primary);
+  outline-offset: -2px;
+  background: var(--primary-soft) !important;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+}
+
+th.sheet-th-day.drag-over-invalid {
+  outline: 2.5px dashed #ef4444 !important;
+  outline-offset: -2px;
+  background: #fef2f2 !important;
+}
+
 /* Legend Strip */
 .sheet-legend {
   display: flex;
