@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1789750194272,
+  "updatedAt": 1789751940860,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "courses",
+      "activeNav": "routine",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -50,7 +50,7 @@
           "runningSemester": "4th Year (Even)"
         }
       ],
-      "activeSeriesId": 1000,
+      "activeSeriesId": 1004,
       "semesters": [
         "1st Year (Odd)",
         "1st Year (Even)",
@@ -61,7 +61,7 @@
         "4th Year (Odd)",
         "4th Year (Even)"
       ],
-      "activeSemester": "4th Year (Even)",
+      "activeSemester": "3rd Year (Odd)",
       "semesterCourses": [
         {
           "id": 1000,
