@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "updatedAt": 1789741102754,
+  "updatedAt": 1789750194272,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "labs",
+      "activeNav": "courses",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
       "filters": {},
-      "routineAllSeries": true,
+      "routineAllSeries": false,
       "routineDayFilter": "All",
       "routineTeacherFilter": "All",
       "sheetZoom": "fit",
@@ -22,30 +22,848 @@
         {
           "id": 1000,
           "name": "25 Series",
-          "label": "1st Year (Odd)|2025 Series"
+          "label": "1st Year (Odd)|2025 Series",
+          "runningSemester": "1st Year (Odd)"
         },
         {
           "id": 1001,
           "name": "24 Series",
-          "label": "2nd Year (Odd)|2024 Series"
+          "label": "2nd Year (Odd)|2024 Series",
+          "runningSemester": "2nd Year (Odd)"
         },
         {
           "id": 1002,
           "name": "23 Series",
-          "label": "2nd Year (Even)|2023 Series"
+          "label": "2nd Year (Even)|2023 Series",
+          "runningSemester": "2nd Year (Even)"
         },
         {
           "id": 1003,
           "name": "22 Series",
-          "label": "3rd Year (Even)|2022 Series"
+          "label": "3rd Year (Even)|2022 Series",
+          "runningSemester": "3rd Year (Even)"
         },
         {
           "id": 1004,
           "name": "21 Series",
-          "label": "4th Year (Odd)|2021 Series"
+          "label": "4th Year (Even)|21 Series",
+          "runningSemester": "4th Year (Even)"
         }
       ],
-      "activeSeriesId": 1003,
+      "activeSeriesId": 1000,
+      "semesters": [
+        "1st Year (Odd)",
+        "1st Year (Even)",
+        "2nd Year (Odd)",
+        "2nd Year (Even)",
+        "3rd Year (Odd)",
+        "3rd Year (Even)",
+        "4th Year (Odd)",
+        "4th Year (Even)"
+      ],
+      "activeSemester": "4th Year (Even)",
+      "semesterCourses": [
+        {
+          "id": 1000,
+          "semester": "1st Year (Odd)",
+          "code": "ECE 1101",
+          "title": "Circuits and Systems-I",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1001,
+          "semester": "1st Year (Odd)",
+          "code": "ECE 1102",
+          "title": "Circuits and Systems-I Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1002,
+          "semester": "1st Year (Odd)",
+          "code": "ECE 1103",
+          "title": "Computer Programming",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1003,
+          "semester": "1st Year (Odd)",
+          "code": "ECE 1104",
+          "title": "Computer Programming Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1004,
+          "semester": "1st Year (Odd)",
+          "code": "Math 1117",
+          "title": "Calculus and Ordinary Differential Equation",
+          "credit": 3,
+          "dept": "MATH",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1005,
+          "semester": "1st Year (Odd)",
+          "code": "Phy 1117",
+          "title": "Optics and Modern Physics",
+          "credit": 3,
+          "dept": "PHY",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1006,
+          "semester": "1st Year (Odd)",
+          "code": "Phy 1118",
+          "title": "Optics and Modern Physics Sessional",
+          "credit": 0.75,
+          "dept": "PHY",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1007,
+          "semester": "1st Year (Odd)",
+          "code": "Hum 1117",
+          "title": "Technical English",
+          "credit": 3,
+          "dept": "HUM",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1008,
+          "semester": "1st Year (Odd)",
+          "code": "Hum 1118",
+          "title": "Technical English Sessional",
+          "credit": 0.75,
+          "dept": "HUM",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1009,
+          "semester": "1st Year (Odd)",
+          "code": "ECE 1100",
+          "title": "Introduction to Computer System",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1010,
+          "semester": "1st Year (Even)",
+          "code": "ECE 1201",
+          "title": "Circuits and Systems-II",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1011,
+          "semester": "1st Year (Even)",
+          "code": "ECE 1202",
+          "title": "Circuits and Systems-II Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1012,
+          "semester": "1st Year (Even)",
+          "code": "ECE 1203",
+          "title": "Object Oriented Programming",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1013,
+          "semester": "1st Year (Even)",
+          "code": "ECE 1204",
+          "title": "Object Oriented Programming Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1014,
+          "semester": "1st Year (Even)",
+          "code": "ECE 1205",
+          "title": "Analog Electronic Circuits-I",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1015,
+          "semester": "1st Year (Even)",
+          "code": "ECE 1206",
+          "title": "Analog Electronic Circuits-I Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1016,
+          "semester": "1st Year (Even)",
+          "code": "Math 1217",
+          "title": "Transform Methods, Statistics & Complex Variable",
+          "credit": 3,
+          "dept": "MATH",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1017,
+          "semester": "1st Year (Even)",
+          "code": "Hum 1217",
+          "title": "Government, Sociology, Environment Protection & History of Independence",
+          "credit": 3,
+          "dept": "HUM",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1018,
+          "semester": "1st Year (Even)",
+          "code": "ECE 1200",
+          "title": "Engineering Ethics",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1019,
+          "semester": "2nd Year (Odd)",
+          "code": "ECE 2103",
+          "title": "Data Structure & Algorithms",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1020,
+          "semester": "2nd Year (Odd)",
+          "code": "ECE 2104",
+          "title": "Data Structure & Algorithms Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1021,
+          "semester": "2nd Year (Odd)",
+          "code": "ECE 2105",
+          "title": "Analog Electronic Circuits-II",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1022,
+          "semester": "2nd Year (Odd)",
+          "code": "ECE 2106",
+          "title": "Analog Electronic Circuits-II Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1023,
+          "semester": "2nd Year (Odd)",
+          "code": "ECE 2111",
+          "title": "Digital Techniques",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1024,
+          "semester": "2nd Year (Odd)",
+          "code": "ECE 2112",
+          "title": "Digital Techniques Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1025,
+          "semester": "2nd Year (Odd)",
+          "code": "Math 2117",
+          "title": "Vector Analysis & Linear Algebra",
+          "credit": 3,
+          "dept": "MATH",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1026,
+          "semester": "2nd Year (Odd)",
+          "code": "Chem 2117",
+          "title": "Inorganic and Physical Chemistry",
+          "credit": 3,
+          "dept": "CHEM",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1027,
+          "semester": "2nd Year (Odd)",
+          "code": "Chem 2118",
+          "title": "Inorganic and Physical Chemistry Sessional",
+          "credit": 0.75,
+          "dept": "CHEM",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1028,
+          "semester": "2nd Year (Odd)",
+          "code": "ECE 2100",
+          "title": "Software Development Project-I",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1029,
+          "semester": "2nd Year (Even)",
+          "code": "ECE 2207",
+          "title": "Electrical Machine-I",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1030,
+          "semester": "2nd Year (Even)",
+          "code": "ECE 2208",
+          "title": "Electrical Machine-I Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1031,
+          "semester": "2nd Year (Even)",
+          "code": "ECE 2213",
+          "title": "Numerical Methods & Discrete Mathematics",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1032,
+          "semester": "2nd Year (Even)",
+          "code": "ECE 2214",
+          "title": "Numerical Methods & Discrete Mathematics Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1033,
+          "semester": "2nd Year (Even)",
+          "code": "ECE 2215",
+          "title": "Data Base Systems",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1034,
+          "semester": "2nd Year (Even)",
+          "code": "ECE 2216",
+          "title": "Data Base Systems Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1035,
+          "semester": "2nd Year (Even)",
+          "code": "Math 2217",
+          "title": "Co-ordinate Geometry & Partial Differential Equations",
+          "credit": 3,
+          "dept": "MATH",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1036,
+          "semester": "2nd Year (Even)",
+          "code": "Hum 2217",
+          "title": "Legal Issues, Industrial & Operational Management",
+          "credit": 3,
+          "dept": "HUM",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1037,
+          "semester": "2nd Year (Even)",
+          "code": "ECE 2200",
+          "title": "Electronic Shop Practice",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1038,
+          "semester": "3rd Year (Odd)",
+          "code": "ECE 3107",
+          "title": "Electrical Machine-II",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1039,
+          "semester": "3rd Year (Odd)",
+          "code": "ECE 3108",
+          "title": "Electrical Machine-II Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1040,
+          "semester": "3rd Year (Odd)",
+          "code": "ECE 3111",
+          "title": "Microprocessor, Assembly Language & Interfacing",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1041,
+          "semester": "3rd Year (Odd)",
+          "code": "ECE 3112",
+          "title": "Microprocessor, Assembly Language & Interfacing Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1042,
+          "semester": "3rd Year (Odd)",
+          "code": "ECE 3117",
+          "title": "Software Engineering & Information System Design",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1043,
+          "semester": "3rd Year (Odd)",
+          "code": "ECE 3118",
+          "title": "Software Engineering & Information System Design Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1044,
+          "semester": "3rd Year (Odd)",
+          "code": "ECE 3119",
+          "title": "Computer Architecture and Design",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1045,
+          "semester": "3rd Year (Odd)",
+          "code": "ECE 3121",
+          "title": "Electromagnetic Fields & Waves",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1046,
+          "semester": "3rd Year (Odd)",
+          "code": "CE 3100",
+          "title": "Civil Engineering Drawing",
+          "credit": 0.75,
+          "dept": "CE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1047,
+          "semester": "3rd Year (Odd)",
+          "code": "ECE 3100",
+          "title": "Software Development Project-II",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1048,
+          "semester": "3rd Year (Even)",
+          "code": "ECE 3205",
+          "title": "Industrial Electronics",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1049,
+          "semester": "3rd Year (Even)",
+          "code": "ECE 3206",
+          "title": "Industrial Electronics Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1050,
+          "semester": "3rd Year (Even)",
+          "code": "ECE 3207",
+          "title": "Communication Engineering",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1051,
+          "semester": "3rd Year (Even)",
+          "code": "ECE 3208",
+          "title": "Communication Engineering Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1052,
+          "semester": "3rd Year (Even)",
+          "code": "ECE 3221",
+          "title": "Operating System",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1053,
+          "semester": "3rd Year (Even)",
+          "code": "ECE 3222",
+          "title": "Operating System Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1054,
+          "semester": "3rd Year (Even)",
+          "code": "ME 3219",
+          "title": "Basic Mechanical Engineering",
+          "credit": 3,
+          "dept": "ME",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1055,
+          "semester": "3rd Year (Even)",
+          "code": "ME 3220",
+          "title": "Basic Mechanical Engineering Sessional",
+          "credit": 0.75,
+          "dept": "ME",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1056,
+          "semester": "3rd Year (Even)",
+          "code": "Hum 3217",
+          "title": "Economics & Accountancy",
+          "credit": 3,
+          "dept": "HUM",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1057,
+          "semester": "3rd Year (Even)",
+          "code": "ECE 3200",
+          "title": "Electrical Services Design",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1058,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4109",
+          "title": "Power System",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1059,
+          "semester": "4th Year (Odd)",
+          "code": "MTE 4117",
+          "title": "Control Systems & Robotics",
+          "credit": 3,
+          "dept": "MTE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1060,
+          "semester": "4th Year (Odd)",
+          "code": "MTE 4118",
+          "title": "Control Systems & Robotics Sessional",
+          "credit": 0.75,
+          "dept": "MTE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1061,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4123",
+          "title": "Digital Signal Processing",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1062,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4124",
+          "title": "Digital Signal Processing Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1063,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4111",
+          "title": "Digital Communication",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1064,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4112",
+          "title": "Digital Communication Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1065,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4127",
+          "title": "VLSI Design",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1066,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4128",
+          "title": "VLSI Design Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1067,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4000",
+          "title": "Thesis/Project-I",
+          "credit": 1,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1068,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4100",
+          "title": "Industrial Training",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1069,
+          "semester": "4th Year (Odd)",
+          "code": "ECE 4122",
+          "title": "Seminar",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1070,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1071,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4211",
+          "title": "Computer Networks",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1072,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4212",
+          "title": "Computer Networks Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1073,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4223",
+          "title": "Digital Image Processing",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1074,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4224",
+          "title": "Digital Image Processing Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1075,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4221",
+          "title": "Unix Programming",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1076,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4222",
+          "title": "Unix Programming Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1077,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4251",
+          "title": "Renewable Energy",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3
+        },
+        {
+          "id": 1078,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4252",
+          "title": "Renewable Energy Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        },
+        {
+          "id": 1079,
+          "semester": "4th Year (Even)",
+          "code": "ECE 4000",
+          "title": "Thesis/Project-II",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1
+        }
+      ],
       "rooms": [
         {
           "id": 1005,
@@ -1082,11 +1900,170 @@
           ]
         },
         {
+          "id": 1476,
+          "seriesId": 1004,
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": 1026,
+          "roomId": 1005,
+          "room": "R-401",
+          "groups": []
+        },
+        {
+          "id": 1477,
+          "seriesId": 1004,
+          "code": "ECE 4211",
+          "title": "Computer Networks",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": 1029,
+          "roomId": 1005,
+          "room": "R-401",
+          "groups": []
+        },
+        {
+          "id": 1478,
+          "seriesId": 1004,
+          "code": "ECE 4212",
+          "title": "Computer Networks Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1479,
+          "seriesId": 1004,
+          "code": "ECE 4223",
+          "title": "Digital Image Processing",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": 1025,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1480,
+          "seriesId": 1004,
+          "code": "ECE 4224",
+          "title": "Digital Image Processing Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1481,
+          "seriesId": 1004,
+          "code": "ECE 4221",
+          "title": "Unix Programming",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": 1025,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1482,
+          "seriesId": 1004,
+          "code": "ECE 4222",
+          "title": "Unix Programming Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1483,
+          "seriesId": 1004,
+          "code": "ECE 4251",
+          "title": "Renewable Energy",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": 1025,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1484,
+          "seriesId": 1004,
+          "code": "ECE 4252",
+          "title": "Renewable Energy Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
           "id": 1162,
           "seriesId": 1004,
           "code": "ECE 4000",
-          "title": "ECE 4000",
-          "credit": 1.5,
+          "title": "Thesis/Project-II",
+          "credit": 3,
           "dept": "ECE",
           "type": "lab",
           "sessionsPerWeek": 1,
@@ -1097,41 +2074,6 @@
               "labId": 1011,
               "teacherId": 1025,
               "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1463,
-          "seriesId": 1004,
-          "code": "ECE 4100",
-          "title": "System Design",
-          "dept": "ECE",
-          "credit": 3,
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1026,
-          "groups": []
-        },
-        {
-          "id": 1468,
-          "seriesId": 1004,
-          "code": "ECE 4200",
-          "title": "VLSI",
-          "dept": "ECE",
-          "credit": 3,
-          "type": "lab",
-          "sessionsPerWeek": 2,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1018,
-              "teacherId": 1025
-            },
-            {
-              "labId": 1018,
-              "teacherId": 1026
             }
           ]
         }
@@ -4234,87 +5176,283 @@
           "section": "All Sections"
         },
         {
-          "id": 1469,
+          "id": 1539,
           "seriesId": 1004,
-          "day": "Tuesday",
-          "start": 14,
+          "day": "Monday",
+          "start": 11,
           "span": 3,
           "cat": "Lab",
-          "code": "ECE 4200",
-          "title": "VLSI",
-          "room": "Lab-8",
-          "teacherId": 1025,
-          "initials": "SMAR+MAH",
+          "code": "ECE 4252",
+          "title": "Renewable Energy Sessional",
+          "room": "Lab-1",
+          "teacherId": null,
+          "initials": "",
           "section": "All Sections"
         },
         {
-          "id": 1470,
+          "id": 1540,
           "seriesId": 1004,
-          "day": "Wednesday",
+          "day": "Sunday",
           "start": 14,
           "span": 3,
           "cat": "Lab",
-          "code": "ECE 4200",
-          "title": "VLSI",
-          "room": "Lab-8",
-          "teacherId": 1025,
-          "initials": "SMAR",
+          "code": "ECE 4224",
+          "title": "Digital Image Processing Sessional",
+          "room": "Lab-1",
+          "teacherId": null,
+          "initials": "",
           "section": "All Sections"
         },
         {
-          "id": 1471,
+          "id": 1541,
           "seriesId": 1004,
-          "day": "Saturday",
-          "start": 14,
+          "day": "Sunday",
+          "start": 11,
           "span": 3,
           "cat": "Lab",
           "code": "ECE 4000",
-          "title": "ECE 4000",
+          "title": "Thesis/Project-II",
           "room": "Lab-1",
           "teacherId": 1025,
           "initials": "SMAR",
           "section": "All Sections"
         },
         {
-          "id": 1472,
+          "id": 1542,
           "seriesId": 1004,
-          "day": "Sunday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4100",
-          "title": "System Design",
-          "room": "S-401",
-          "teacherId": 1026,
-          "initials": "MAH",
+          "day": "Wednesday",
+          "start": 14,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 4212",
+          "title": "Computer Networks Sessional",
+          "room": "Lab-1",
+          "teacherId": null,
+          "initials": "",
           "section": "All Sections"
         },
         {
-          "id": 1473,
+          "id": 1543,
+          "seriesId": 1004,
+          "day": "Saturday",
+          "start": 14,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 4222",
+          "title": "Unix Programming Sessional",
+          "room": "Lab-1",
+          "teacherId": null,
+          "initials": "",
+          "section": "All Sections"
+        },
+        {
+          "id": 1544,
+          "seriesId": 1004,
+          "day": "Tuesday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4211",
+          "title": "Computer Networks",
+          "room": "R-401",
+          "teacherId": 1029,
+          "initials": "HBK",
+          "section": "All Sections"
+        },
+        {
+          "id": 1545,
+          "seriesId": 1004,
+          "day": "Saturday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4251",
+          "title": "Renewable Energy",
+          "room": "S-401",
+          "teacherId": 1025,
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 1546,
           "seriesId": 1004,
           "day": "Monday",
           "start": 10,
           "span": 1,
           "cat": "ECE",
-          "code": "ECE 4100",
-          "title": "System Design",
-          "room": "S-401",
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "room": "R-401",
           "teacherId": 1026,
           "initials": "MAH",
           "section": "All Sections"
         },
         {
-          "id": 1474,
+          "id": 1547,
+          "seriesId": 1004,
+          "day": "Tuesday",
+          "start": 9,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4223",
+          "title": "Digital Image Processing",
+          "room": "S-401",
+          "teacherId": 1025,
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 1548,
+          "seriesId": 1004,
+          "day": "Wednesday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4221",
+          "title": "Unix Programming",
+          "room": "S-401",
+          "teacherId": 1025,
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 1549,
+          "seriesId": 1004,
+          "day": "Saturday",
+          "start": 13,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4211",
+          "title": "Computer Networks",
+          "room": "R-401",
+          "teacherId": 1029,
+          "initials": "HBK",
+          "section": "All Sections"
+        },
+        {
+          "id": 1550,
+          "seriesId": 1004,
+          "day": "Sunday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4251",
+          "title": "Renewable Energy",
+          "room": "S-401",
+          "teacherId": 1025,
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 1551,
+          "seriesId": 1004,
+          "day": "Tuesday",
+          "start": 10,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "room": "R-401",
+          "teacherId": 1026,
+          "initials": "MAH",
+          "section": "All Sections"
+        },
+        {
+          "id": 1552,
+          "seriesId": 1004,
+          "day": "Monday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4223",
+          "title": "Digital Image Processing",
+          "room": "S-401",
+          "teacherId": 1025,
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 1553,
           "seriesId": 1004,
           "day": "Saturday",
           "start": 10,
           "span": 1,
           "cat": "ECE",
-          "code": "ECE 4100",
-          "title": "System Design",
+          "code": "ECE 4221",
+          "title": "Unix Programming",
           "room": "S-401",
+          "teacherId": 1025,
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 1554,
+          "seriesId": 1004,
+          "day": "Wednesday",
+          "start": 12,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4211",
+          "title": "Computer Networks",
+          "room": "R-401",
+          "teacherId": 1029,
+          "initials": "HBK",
+          "section": "All Sections"
+        },
+        {
+          "id": 1555,
+          "seriesId": 1004,
+          "day": "Tuesday",
+          "start": 12,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4251",
+          "title": "Renewable Energy",
+          "room": "S-401",
+          "teacherId": 1025,
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 1556,
+          "seriesId": 1004,
+          "day": "Sunday",
+          "start": 9,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "room": "R-401",
           "teacherId": 1026,
           "initials": "MAH",
+          "section": "All Sections"
+        },
+        {
+          "id": 1557,
+          "seriesId": 1004,
+          "day": "Wednesday",
+          "start": 10,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4223",
+          "title": "Digital Image Processing",
+          "room": "S-401",
+          "teacherId": 1025,
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 1558,
+          "seriesId": 1004,
+          "day": "Saturday",
+          "start": 12,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4221",
+          "title": "Unix Programming",
+          "room": "S-401",
+          "teacherId": 1025,
+          "initials": "SMAR",
           "section": "All Sections"
         }
       ],
@@ -4331,6 +5469,6 @@
       "head": "Head, ECE, RUET",
       "effectiveDate": "10/01/2026"
     },
-    "uid": 1476
+    "uid": 1559
   }
 }
