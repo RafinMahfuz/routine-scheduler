@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "updatedAt": 1789585302340,
+  "updatedAt": 1789740856813,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "dashboard",
+      "activeNav": "routine",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
       "filters": {},
-      "routineAllSeries": false,
+      "routineAllSeries": true,
       "routineDayFilter": "All",
       "routineTeacherFilter": "All",
       "sheetZoom": "fit",
@@ -45,7 +45,7 @@
           "label": "4th Year (Odd)|2021 Series"
         }
       ],
-      "activeSeriesId": 1000,
+      "activeSeriesId": 1002,
       "rooms": [
         {
           "id": 1005,
