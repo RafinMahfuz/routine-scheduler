@@ -12,12 +12,15 @@ function renderSettings() {
   const seriesRows = state.series.map(s => `
     <div class="side-row series-mgmt-row">
       <div class="series-mgmt-info">
-        <strong style="color:var(--text);">${s.name}</strong>
-        ${s.label ? `<div style="font-size:11.5px;color:var(--text-mute);">${s.label.split('|').join(' • ')}</div>` : ''}
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+          <strong style="color:var(--text);">${s.name}</strong>
+          ${s.runningSemester ? `<span class="tag" style="background:var(--primary-soft);color:var(--primary);font-size:10.5px;font-weight:700;padding:1px 6px;">${s.runningSemester}</span>` : ''}
+        </div>
+        ${s.label ? `<div style="font-size:11.5px;color:var(--text-mute);margin-top:2px;">${s.label.split('|').join(' • ')}</div>` : ''}
         ${s.id === state.activeSeriesId ? `<span class="tag" style="background:var(--violet-soft);color:var(--violet-dark);font-size:10px;padding:1px 6px;margin-top:2px;">Active Selection</span>` : ''}
       </div>
       <div class="row-actions">
-        <button class="table-action-btn edit" data-editseries="${s.id}" title="Rename or modify label">✏️</button>
+        <button class="table-action-btn edit" data-editseries="${s.id}" title="Rename or change running semester">✏️</button>
         <button class="table-action-btn delete" data-delseries="${s.id}" title="Delete batch">✕</button>
       </div>
     </div>`).join('');
@@ -129,30 +132,56 @@ function renderSettings() {
 
   document.getElementById('addSeriesBtn').onclick = requireAdmin(() => {
     simpleFormModal({
-      title: "Add Series / Batch", sub: "Create a new academic cohort.",
+      title: "Add Series / Batch", sub: "Create a new academic cohort and select its running semester.",
       fields: [
         { key: 'name', label: 'Series Name', placeholder: 'e.g. 26 Series' },
-        { key: 'label', label: 'Sheet Row Label (optional)', placeholder: 'e.g. 1st Year Odd|Semester 2026 Series' }
+        { key: 'runningSemester', label: 'Select running semester', type: 'select', options: SEMESTERS }
       ],
       onSave: (d) => {
-        const s = { id: nextId(), name: d.name, label: d.label || '' };
+        const sem = d.runningSemester || SEMESTERS[0];
+        const s = { id: nextId(), name: d.name, runningSemester: sem, label: `${sem}|${d.name}` };
         state.series.push(s);
         state.activeSeriesId = s.id;
+        assignSemesterCoursesToSeries(s.id, sem);
+        saveState();
         renderSettings();
-        toast(`Series ${s.name} created`, 'ok');
+        toast(`Series ${s.name} created for ${sem} with courses assigned!`, 'ok');
       }
     });
   });
 
   document.querySelectorAll('[data-editseries]').forEach(b => b.onclick = requireAdmin(() => {
     const s = state.series.find(x => x.id === Number(b.dataset.editseries));
+    if (!s) return;
+    const initialSem = s.runningSemester || SEMESTERS.find(sem => s.label && s.label.includes(sem)) || SEMESTERS[0];
     simpleFormModal({
-      title: "Rename Series / Batch", sub: "Update series title or printed row label (use | for line breaks).", initial: s,
+      title: "Edit Series / Batch", sub: "Update series title or change its current running semester.",
+      initial: { name: s.name, runningSemester: initialSem },
       fields: [
         { key: 'name', label: 'Series Name' },
-        { key: 'label', label: 'Sheet Row Label (optional)', placeholder: 'e.g. 1st Year Odd|Semester 2025 Series' }
+        { key: 'runningSemester', label: 'Select running semester', type: 'select', options: SEMESTERS }
       ],
-      onSave: (d) => { Object.assign(s, d); renderSettings(); toast('Series updated', 'ok'); }
+      onSave: (d) => {
+        const oldSem = s.runningSemester;
+        const newSem = d.runningSemester || SEMESTERS[0];
+        s.name = d.name;
+        s.runningSemester = newSem;
+        s.label = `${newSem}|${s.name}`;
+
+        if (oldSem !== newSem) {
+          const hasClasses = state.classes.some(c => c.seriesId === s.id);
+          let clearRoutine = false;
+          if (hasClasses) {
+            clearRoutine = confirm(`Running semester for ${s.name} changed from ${oldSem || 'previous'} to ${newSem}.\n\nDo you want to reset previous routine slots for ${s.name} so you can schedule the new semester's courses?`);
+          }
+          assignSemesterCoursesToSeries(s.id, newSem, clearRoutine);
+          toast(`Series ${s.name} updated to ${newSem} — syllabus courses assigned!`, 'ok');
+        } else {
+          toast('Series updated', 'ok');
+        }
+        saveState();
+        renderSettings();
+      }
     });
   }));
 

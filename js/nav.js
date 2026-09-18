@@ -6,6 +6,7 @@ const NAV_ICONS = {
   labs: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31L4.62 17.6A2 2 0 0 0 6.28 20.6h11.44a2 2 0 0 0 1.66-3L14 9.31V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/></svg>`,
   teachers: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
   courses: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>`,
+  semesters: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.9a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>`,
   students: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
   reports: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
   settings: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`
@@ -18,6 +19,7 @@ const NAV_ITEMS = [
   { key: "labs", label: "Labs" },
   { key: "teachers", label: "Teachers" },
   { key: "courses", label: "Courses" },
+  { key: "semesters", label: "Semesters" },
   { key: "reports", label: "Reports" },
   { key: "settings", label: "Settings" },
 ];
@@ -32,6 +34,7 @@ function renderNav() {
     let badge = '';
     if (n.key === 'teachers') badge = `<span class="nav-count-badge">${state.teachers.length}</span>`;
     else if (n.key === 'courses') badge = `<span class="nav-count-badge">${coursesInActiveSeries().length}</span>`;
+    else if (n.key === 'semesters') badge = `<span class="nav-count-badge">${(state.semesterCourses || []).filter(c => c.semester === (state.activeSemester || (SEMESTERS && SEMESTERS[0]) || '1st Year (Odd)')).length}</span>`;
     else if (n.key === 'labs') badge = `<span class="nav-count-badge">${state.labs.length}</span>`;
 
     return `
@@ -160,18 +163,21 @@ function renderSeriesTabs(containerId, onSwitchRerender, opts) {
     addSeriesBtn.onclick = requireAdmin(() => {
       simpleFormModal({
         title: "Add Academic Series / Batch",
-        sub: "Create a new batch, e.g. \"26 Series\" or \"Postgraduate M.Sc\".",
+        sub: "Create a new batch and select its running semester.",
         fields: [
           { key: 'name', label: 'Series Name', placeholder: 'e.g. 26 Series' },
-          { key: 'label', label: 'Sheet Row Label (optional)', placeholder: 'e.g. 1st Year Odd|Semester 2026 Series' }
+          { key: 'runningSemester', label: 'Select running semester', type: 'select', options: SEMESTERS }
         ],
         onSave: (d) => {
-          const s = { id: nextId(), name: d.name, label: d.label || '' };
+          const sem = d.runningSemester || SEMESTERS[0];
+          const s = { id: nextId(), name: d.name, runningSemester: sem, label: `${sem}|${d.name}` };
           state.series.push(s);
           state.activeSeriesId = s.id;
           state.routineAllSeries = false;
+          assignSemesterCoursesToSeries(s.id, sem);
+          saveState();
           onSwitchRerender();
-          toast(`Series "${s.name}" added successfully`, 'ok');
+          toast(`Series "${s.name}" added for ${sem} with courses assigned!`, 'ok');
         }
       });
     });
@@ -214,6 +220,7 @@ function renderAll() {
     case 'labs': renderLabs(); break;
     case 'teachers': renderTeachers(); break;
     case 'courses': renderCourses(); break;
+    case 'semesters': renderSemesters(); break;
     case 'reports': renderReports(); break;
     case 'settings': renderSettings(); break;
     default: renderRoutine();

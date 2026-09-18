@@ -32,10 +32,22 @@ const SLOT_COLUMNS = [
 ];
 const SLOT_HOURS = SLOT_COLUMNS.filter(s => s.type === 'slot').map(s => s.start);
 
-const CATS = ["ECE", "MATH", "ECS", "EEE", "ME", "HUM", "PHY", "CHEM", "PDP", "Lab"];
+const CATS = ["ECE", "MATH", "ECS", "EEE", "ME", "MTE", "CE", "HUM", "PHY", "CHEM", "PDP", "Lab"];
 const DEPTS = CATS.filter(c => c !== 'Lab');
 const catClass = c => "c-" + c.toLowerCase().replace(/\s+/g, '');
 const LAB_GROUP_SIZE = 30;
+
+/* Official 8 Undergraduate Academic Semesters in RUET ECE (1st Year Odd to 4th Year Even) */
+const SEMESTERS = [
+  "1st Year (Odd)",
+  "1st Year (Even)",
+  "2nd Year (Odd)",
+  "2nd Year (Even)",
+  "3rd Year (Odd)",
+  "3rd Year (Even)",
+  "4th Year (Odd)",
+  "4th Year (Even)"
+];
 
 /* A distinct, clearly-recognizable color is assigned to every teacher (not just
    per-department), so each teacher's classes are visually identifiable across the
@@ -115,8 +127,12 @@ const state = {
   })(),
   adminPassword: "admin123",
 
-  series: [],          // [{id, name, label}]
+  series: [],          // [{id, name, label, runningSemester}]
   activeSeriesId: null,
+
+  semesters: SEMESTERS,
+  activeSemester: "1st Year (Odd)",
+  semesterCourses: [], // [{id, semester, code, title, credit, dept, type, sessionsPerWeek}]
 
   rooms: [],
   labs: [],
@@ -143,11 +159,11 @@ const state = {
 
 /* Five batch rows exactly as they appear down the left edge of the sheet. */
 const SEED_SERIES = [
-  { name: "25 Series", label: "1st Year (Odd)|2025 Series" },
-  { name: "24 Series", label: "2nd Year (Odd)|2024 Series" },
-  { name: "23 Series", label: "2nd Year (Even)|2023 Series" },
-  { name: "22 Series", label: "3rd Year (Even)|2022 Series" },
-  { name: "21 Series", label: "4th Year (Odd)|2021 Series" },
+  { name: "25 Series", label: "1st Year (Odd)|2025 Series", runningSemester: "1st Year (Odd)" },
+  { name: "24 Series", label: "2nd Year (Odd)|2024 Series", runningSemester: "2nd Year (Odd)" },
+  { name: "23 Series", label: "2nd Year (Even)|2023 Series", runningSemester: "2nd Year (Even)" },
+  { name: "22 Series", label: "3rd Year (Even)|2022 Series", runningSemester: "3rd Year (Even)" },
+  { name: "21 Series", label: "4th Year (Odd)|2021 Series", runningSemester: "4th Year (Odd)" },
 ];
 
 /* Rooms seen on the sheet (Research building R-40x + the Basic-Science lab room). */
@@ -214,6 +230,106 @@ const SEED_TEACHERS = [
   { short: "TK", name: "Tanjila Khanam", dept: "HUM" },
   { short: "MZH", name: "Md. Zahirul Haque", dept: "MATH" },
   { short: "NIS", name: "Md. Nazrul Islam Sarker", dept: "ECE" },
+];
+
+/* Pre-assigned Syllabus Courses for all 8 Academic Semesters (1st Year Odd to 4th Year Even)
+   Transcribed from the official RUET Department of ECE Undergraduate Syllabus Booklet. */
+const SEED_SEMESTER_COURSES = [
+  /* -------------------- 1st Year (Odd) -------------------- */
+  { semester: "1st Year (Odd)", code: "ECE 1101", title: "Circuits and Systems-I", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Odd)", code: "ECE 1102", title: "Circuits and Systems-I Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "1st Year (Odd)", code: "ECE 1103", title: "Computer Programming", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Odd)", code: "ECE 1104", title: "Computer Programming Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "1st Year (Odd)", code: "Math 1117", title: "Calculus and Ordinary Differential Equation", credit: 3.00, dept: "MATH", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Odd)", code: "Phy 1117", title: "Optics and Modern Physics", credit: 3.00, dept: "PHY", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Odd)", code: "Phy 1118", title: "Optics and Modern Physics Sessional", credit: 0.75, dept: "PHY", type: "lab", sessionsPerWeek: 1 },
+  { semester: "1st Year (Odd)", code: "Hum 1117", title: "Technical English", credit: 3.00, dept: "HUM", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Odd)", code: "Hum 1118", title: "Technical English Sessional", credit: 0.75, dept: "HUM", type: "lab", sessionsPerWeek: 1 },
+  { semester: "1st Year (Odd)", code: "ECE 1100", title: "Introduction to Computer System", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+
+  /* -------------------- 1st Year (Even) -------------------- */
+  { semester: "1st Year (Even)", code: "ECE 1201", title: "Circuits and Systems-II", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Even)", code: "ECE 1202", title: "Circuits and Systems-II Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "1st Year (Even)", code: "ECE 1203", title: "Object Oriented Programming", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Even)", code: "ECE 1204", title: "Object Oriented Programming Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "1st Year (Even)", code: "ECE 1205", title: "Analog Electronic Circuits-I", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Even)", code: "ECE 1206", title: "Analog Electronic Circuits-I Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "1st Year (Even)", code: "Math 1217", title: "Transform Methods, Statistics & Complex Variable", credit: 3.00, dept: "MATH", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Even)", code: "Hum 1217", title: "Government, Sociology, Environment Protection & History of Independence", credit: 3.00, dept: "HUM", type: "theory", sessionsPerWeek: 3 },
+  { semester: "1st Year (Even)", code: "ECE 1200", title: "Engineering Ethics", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+
+  /* -------------------- 2nd Year (Odd) -------------------- */
+  { semester: "2nd Year (Odd)", code: "ECE 2103", title: "Data Structure & Algorithms", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Odd)", code: "ECE 2104", title: "Data Structure & Algorithms Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "2nd Year (Odd)", code: "ECE 2105", title: "Analog Electronic Circuits-II", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Odd)", code: "ECE 2106", title: "Analog Electronic Circuits-II Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "2nd Year (Odd)", code: "ECE 2111", title: "Digital Techniques", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Odd)", code: "ECE 2112", title: "Digital Techniques Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "2nd Year (Odd)", code: "Math 2117", title: "Vector Analysis & Linear Algebra", credit: 3.00, dept: "MATH", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Odd)", code: "Chem 2117", title: "Inorganic and Physical Chemistry", credit: 3.00, dept: "CHEM", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Odd)", code: "Chem 2118", title: "Inorganic and Physical Chemistry Sessional", credit: 0.75, dept: "CHEM", type: "lab", sessionsPerWeek: 1 },
+  { semester: "2nd Year (Odd)", code: "ECE 2100", title: "Software Development Project-I", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+
+  /* -------------------- 2nd Year (Even) -------------------- */
+  { semester: "2nd Year (Even)", code: "ECE 2207", title: "Electrical Machine-I", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Even)", code: "ECE 2208", title: "Electrical Machine-I Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "2nd Year (Even)", code: "ECE 2213", title: "Numerical Methods & Discrete Mathematics", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Even)", code: "ECE 2214", title: "Numerical Methods & Discrete Mathematics Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "2nd Year (Even)", code: "ECE 2215", title: "Data Base Systems", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Even)", code: "ECE 2216", title: "Data Base Systems Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "2nd Year (Even)", code: "Math 2217", title: "Co-ordinate Geometry & Partial Differential Equations", credit: 3.00, dept: "MATH", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Even)", code: "Hum 2217", title: "Legal Issues, Industrial & Operational Management", credit: 3.00, dept: "HUM", type: "theory", sessionsPerWeek: 3 },
+  { semester: "2nd Year (Even)", code: "ECE 2200", title: "Electronic Shop Practice", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+
+  /* -------------------- 3rd Year (Odd) -------------------- */
+  { semester: "3rd Year (Odd)", code: "ECE 3107", title: "Electrical Machine-II", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Odd)", code: "ECE 3108", title: "Electrical Machine-II Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "3rd Year (Odd)", code: "ECE 3111", title: "Microprocessor, Assembly Language & Interfacing", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Odd)", code: "ECE 3112", title: "Microprocessor, Assembly Language & Interfacing Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "3rd Year (Odd)", code: "ECE 3117", title: "Software Engineering & Information System Design", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Odd)", code: "ECE 3118", title: "Software Engineering & Information System Design Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "3rd Year (Odd)", code: "ECE 3119", title: "Computer Architecture and Design", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Odd)", code: "ECE 3121", title: "Electromagnetic Fields & Waves", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Odd)", code: "CE 3100", title: "Civil Engineering Drawing", credit: 0.75, dept: "CE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "3rd Year (Odd)", code: "ECE 3100", title: "Software Development Project-II", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+
+  /* -------------------- 3rd Year (Even) -------------------- */
+  { semester: "3rd Year (Even)", code: "ECE 3205", title: "Industrial Electronics", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Even)", code: "ECE 3206", title: "Industrial Electronics Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "3rd Year (Even)", code: "ECE 3207", title: "Communication Engineering", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Even)", code: "ECE 3208", title: "Communication Engineering Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "3rd Year (Even)", code: "ECE 3221", title: "Operating System", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Even)", code: "ECE 3222", title: "Operating System Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "3rd Year (Even)", code: "ME 3219", title: "Basic Mechanical Engineering", credit: 3.00, dept: "ME", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Even)", code: "ME 3220", title: "Basic Mechanical Engineering Sessional", credit: 0.75, dept: "ME", type: "lab", sessionsPerWeek: 1 },
+  { semester: "3rd Year (Even)", code: "Hum 3217", title: "Economics & Accountancy", credit: 3.00, dept: "HUM", type: "theory", sessionsPerWeek: 3 },
+  { semester: "3rd Year (Even)", code: "ECE 3200", title: "Electrical Services Design", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+
+  /* -------------------- 4th Year (Odd) -------------------- */
+  { semester: "4th Year (Odd)", code: "ECE 4109", title: "Power System", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Odd)", code: "MTE 4117", title: "Control Systems & Robotics", credit: 3.00, dept: "MTE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Odd)", code: "MTE 4118", title: "Control Systems & Robotics Sessional", credit: 0.75, dept: "MTE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 4123", title: "Digital Signal Processing", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Odd)", code: "ECE 4124", title: "Digital Signal Processing Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 4111", title: "Digital Communication", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Odd)", code: "ECE 4112", title: "Digital Communication Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 4127", title: "VLSI Design", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Odd)", code: "ECE 4128", title: "VLSI Design Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 4000", title: "Thesis/Project-I", credit: 1.00, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 4100", title: "Industrial Training", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 4122", title: "Seminar", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+
+  /* -------------------- 4th Year (Even) -------------------- */
+  { semester: "4th Year (Even)", code: "ECE 4209", title: "Power Station, Switchgear & Protection", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Even)", code: "ECE 4211", title: "Computer Networks", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Even)", code: "ECE 4212", title: "Computer Networks Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Even)", code: "ECE 4223", title: "Digital Image Processing", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Even)", code: "ECE 4224", title: "Digital Image Processing Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Even)", code: "ECE 4221", title: "Unix Programming", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Even)", code: "ECE 4222", title: "Unix Programming Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Even)", code: "ECE 4251", title: "Renewable Energy", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Even)", code: "ECE 4252", title: "Renewable Energy Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Even)", code: "ECE 4000", title: "Thesis/Project-II", credit: 3.00, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
 ];
 
 /* Grid transcription. Compact tuple form to keep it readable:
@@ -312,8 +428,11 @@ const SEED_CLASSES = [
 
 /* ---- Build state from the compact seed above ---- */
 function seedData() {
-  SEED_SERIES.forEach(s => state.series.push({ id: nextId(), name: s.name, label: s.label }));
+  SEED_SERIES.forEach(s => state.series.push({ id: nextId(), name: s.name, label: s.label, runningSemester: s.runningSemester }));
   state.activeSeriesId = state.series[0].id;
+
+  state.semesterCourses = [];
+  SEED_SEMESTER_COURSES.forEach(sc => state.semesterCourses.push({ id: nextId(), ...sc }));
 
   SEED_ROOMS.forEach(r => state.rooms.push({ id: nextId(), ...r }));
   SEED_LABS.forEach(name => state.labs.push({ id: nextId(), name }));
@@ -398,6 +517,57 @@ function buildCoursesFromClasses() {
       groups: isLab ? [{ labId: labId, teacherId: teacherId, size: 60 }] : []
     });
   });
+}
+
+/* Assign or synchronize all syllabus courses for a running semester to a given series */
+function assignSemesterCoursesToSeries(seriesId, semesterName, clearExistingRoutine = false) {
+  const s = state.series.find(x => x.id === seriesId);
+  if (!s) return;
+  s.runningSemester = semesterName;
+  s.label = `${semesterName}|${s.name}`;
+
+  const syllabus = (state.semesterCourses || []).filter(c => c.semester === semesterName);
+  if (!syllabus.length) return;
+
+  const existingCourses = state.courses.filter(c => c.seriesId === seriesId);
+  const existingMap = new Map(existingCourses.map(c => [c.code.trim().toUpperCase(), c]));
+
+  const newCourses = [];
+  syllabus.forEach(sc => {
+    const existing = existingMap.get(sc.code.trim().toUpperCase());
+    if (existing) {
+      existing.title = sc.title;
+      existing.credit = sc.credit;
+      existing.dept = sc.dept;
+      existing.type = sc.type;
+      existing.sessionsPerWeek = sc.sessionsPerWeek || (sc.type === 'lab' ? 1 : 3);
+      newCourses.push(existing);
+    } else {
+      const isLab = sc.type === 'lab';
+      newCourses.push({
+        id: nextId(),
+        seriesId: seriesId,
+        code: sc.code,
+        title: sc.title,
+        credit: sc.credit,
+        dept: sc.dept,
+        type: sc.type,
+        sessionsPerWeek: sc.sessionsPerWeek || (isLab ? 1 : 3),
+        studentCount: 60,
+        teacherId: null,
+        roomId: null,
+        room: '',
+        groups: isLab ? [{ labId: (state.labs[0] ? state.labs[0].id : null), teacherId: null, size: 60 }] : []
+      });
+    }
+  });
+
+  // Replace this series's courses with the new syllabus course set
+  state.courses = state.courses.filter(c => c.seriesId !== seriesId).concat(newCourses);
+
+  if (clearExistingRoutine) {
+    state.classes = state.classes.filter(c => c.seriesId !== seriesId);
+  }
 }
 
 function seedStudents() {
@@ -628,6 +798,20 @@ function loadState() {
         });
       }
 
+      // Ensure semesterCourses exists and is populated
+      if (parsed.state.semesterCourses && parsed.state.semesterCourses.length) {
+        state.semesterCourses = parsed.state.semesterCourses;
+      } else {
+        state.semesterCourses = [];
+        SEED_SEMESTER_COURSES.forEach(sc => state.semesterCourses.push({ id: nextId(), ...sc }));
+      }
+      if (!state.semesters || !state.semesters.length) {
+        state.semesters = SEMESTERS;
+      }
+      if (!state.activeSemester) {
+        state.activeSemester = SEMESTERS[0];
+      }
+
       // Auto-normalize series labels to clean, readable format without redundant "Semester" repetition
       if (state.series && state.series.length) {
         state.series.forEach(s => {
@@ -638,6 +822,9 @@ function loadState() {
               .replace(/2nd Year Even\|Semester (\d{4}) Series/i, '2nd Year (Even)|$1 Series')
               .replace(/3rd Year Even\|Semester (\d{4}) Series/i, '3rd Year (Even)|$1 Series')
               .replace(/4th Year Odd\|Semester (\d{4}) Series/i, '4th Year (Odd)|$1 Series');
+          }
+          if (!s.runningSemester) {
+            s.runningSemester = SEMESTERS.find(sem => s.label && s.label.includes(sem)) || '1st Year (Odd)';
           }
         });
       }
@@ -658,8 +845,9 @@ function loadState() {
 function resetToSeedData() {
   try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
   state.series = []; state.rooms = []; state.labs = []; state.teachers = [];
-  state.courses = []; state.students = []; state.classes = [];
+  state.courses = []; state.students = []; state.classes = []; state.semesterCourses = [];
   state.routineAllSeries = false; state.routineDayFilter = 'All'; state.activeSeriesId = null;
+  state.activeSemester = SEMESTERS[0];
   uid = 1000;
   seedData();
   if (typeof settings !== 'undefined') Object.assign(settings, DEFAULT_SETTINGS);
