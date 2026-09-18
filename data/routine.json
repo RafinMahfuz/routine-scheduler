@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1789740856813,
+  "updatedAt": 1789741077215,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "routine",
+      "activeNav": "labs",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -45,7 +45,7 @@
           "label": "4th Year (Odd)|2021 Series"
         }
       ],
-      "activeSeriesId": 1002,
+      "activeSeriesId": 1003,
       "rooms": [
         {
           "id": 1005,
@@ -105,7 +105,7 @@
         },
         {
           "id": 1017,
-          "name": "ENG LAB"
+          "name": "HUM LAB"
         },
         {
           "id": 1018,
