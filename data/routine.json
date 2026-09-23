@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1789751940860,
+  "updatedAt": 1790150656600,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "routine",
+      "activeNav": "teachers",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
