@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1795020590116,
+  "updatedAt": 1795021865358,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "teachers",
+      "activeNav": "settings",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -22,20 +22,20 @@
         {
           "id": 1000,
           "name": "25 Series",
-          "label": "1st Year (Odd)|2025 Series",
-          "runningSemester": "1st Year (Odd)"
+          "label": "1st Year (Even)|25 Series",
+          "runningSemester": "1st Year (Even)"
         },
         {
           "id": 1001,
           "name": "24 Series",
-          "label": "2nd Year (Odd)|2024 Series",
-          "runningSemester": "2nd Year (Odd)"
+          "label": "2nd Year (Even)|24 Series",
+          "runningSemester": "2nd Year (Even)"
         },
         {
           "id": 1002,
           "name": "23 Series",
-          "label": "2nd Year (Even)|2023 Series",
-          "runningSemester": "2nd Year (Even)"
+          "label": "3rd Year (Odd)|23 Series",
+          "runningSemester": "3rd Year (Odd)"
         },
         {
           "id": 1003,
@@ -50,7 +50,7 @@
           "runningSemester": "4th Year (Even)"
         }
       ],
-      "activeSeriesId": 1003,
+      "activeSeriesId": 1002,
       "semesters": [
         "1st Year (Odd)",
         "1st Year (Even)",
@@ -61,7 +61,7 @@
         "4th Year (Odd)",
         "4th Year (Even)"
       ],
-      "activeSemester": "2nd Year (Odd)",
+      "activeSemester": "3rd Year (Odd)",
       "semesterCourses": [
         {
           "id": 1000,
@@ -1374,410 +1374,6 @@
       ],
       "courses": [
         {
-          "id": 1128,
-          "seriesId": 1000,
-          "code": "HUM 1117",
-          "title": "HUM 1117",
-          "credit": 3,
-          "dept": "HUM",
-          "type": "theory",
-          "sessionsPerWeek": 2,
-          "studentCount": 60,
-          "teacherId": 1044,
-          "groups": []
-        },
-        {
-          "id": 1129,
-          "seriesId": 1000,
-          "code": "PHY 1117",
-          "title": "PHY 1117",
-          "credit": 3,
-          "dept": "PHY",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1037,
-          "groups": []
-        },
-        {
-          "id": 1130,
-          "seriesId": 1000,
-          "code": "ECE 1103",
-          "title": "ECE 1103",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1029,
-          "groups": []
-        },
-        {
-          "id": 1131,
-          "seriesId": 1000,
-          "code": "MATH 1117",
-          "title": "MATH 1117",
-          "credit": 3,
-          "dept": "MATH",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1031,
-          "groups": []
-        },
-        {
-          "id": 1132,
-          "seriesId": 1000,
-          "code": "ECE 1101",
-          "title": "ECE 1101",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1026,
-          "groups": []
-        },
-        {
-          "id": 1133,
-          "seriesId": 1000,
-          "code": "HUM 1118",
-          "title": "HUM 1118",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1017,
-              "teacherId": 1040,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1134,
-          "seriesId": 1000,
-          "code": "ECE 1102 / 1104",
-          "title": "ECE 1102 / 1104",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1014,
-              "teacherId": 1050,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1135,
-          "seriesId": 1000,
-          "code": "PHY 1118 / ECE 1100",
-          "title": "PHY 1118 / ECE 1100",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1015,
-              "teacherId": 1032,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1136,
-          "seriesId": 1000,
-          "code": "ECE 1102",
-          "title": "ECE 1102",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1014,
-              "teacherId": 1050,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1137,
-          "seriesId": 1001,
-          "code": "ECE 2104",
-          "title": "ECE 2104",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 2,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1011,
-              "teacherId": 1030,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1138,
-          "seriesId": 1001,
-          "code": "ECE 2105",
-          "title": "ECE 2105",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1050,
-          "groups": []
-        },
-        {
-          "id": 1139,
-          "seriesId": 1001,
-          "code": "MATH 2117",
-          "title": "MATH 2117",
-          "credit": 3,
-          "dept": "MATH",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1054,
-          "groups": []
-        },
-        {
-          "id": 1140,
-          "seriesId": 1001,
-          "code": "ECE 2111",
-          "title": "ECE 2111",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1036,
-          "groups": []
-        },
-        {
-          "id": 1141,
-          "seriesId": 1001,
-          "code": "ECE 2103",
-          "title": "ECE 2103",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1030,
-          "groups": []
-        },
-        {
-          "id": 1142,
-          "seriesId": 1001,
-          "code": "CHEM 2117",
-          "title": "CHEM 2117",
-          "credit": 3,
-          "dept": "CHEM",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1033,
-          "groups": []
-        },
-        {
-          "id": 1143,
-          "seriesId": 1001,
-          "code": "ECE 2106 / 2112",
-          "title": "ECE 2106 / 2112",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1024,
-              "teacherId": 1050,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1144,
-          "seriesId": 1001,
-          "code": "ECE 2100",
-          "title": "ECE 2100",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1011,
-              "teacherId": 1025,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1145,
-          "seriesId": 1001,
-          "code": "CHEM 2118",
-          "title": "CHEM 2118",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1016,
-              "teacherId": 1033,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1146,
-          "seriesId": 1002,
-          "code": "ECE 2200",
-          "title": "ECE 2200",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 2,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1014,
-              "teacherId": 1036,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1147,
-          "seriesId": 1002,
-          "code": "MATH 2217",
-          "title": "MATH 2217",
-          "credit": 3,
-          "dept": "MATH",
-          "type": "theory",
-          "sessionsPerWeek": 2,
-          "studentCount": 60,
-          "teacherId": 1047,
-          "groups": []
-        },
-        {
-          "id": 1148,
-          "seriesId": 1002,
-          "code": "ECE 2215",
-          "title": "ECE 2215",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 2,
-          "studentCount": 60,
-          "teacherId": 1055,
-          "groups": []
-        },
-        {
-          "id": 1149,
-          "seriesId": 1002,
-          "code": "ECE 2207",
-          "title": "ECE 2207",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1028,
-          "groups": []
-        },
-        {
-          "id": 1150,
-          "seriesId": 1002,
-          "code": "ECE 2208",
-          "title": "ECE 2208",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1018,
-              "teacherId": 1028,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1151,
-          "seriesId": 1002,
-          "code": "ECE 2213",
-          "title": "ECE 2213",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": 1030,
-          "groups": []
-        },
-        {
-          "id": 1152,
-          "seriesId": 1002,
-          "code": "HUM 2217",
-          "title": "HUM 2217",
-          "credit": 3,
-          "dept": "HUM",
-          "type": "theory",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": 1041,
-          "groups": []
-        },
-        {
-          "id": 1153,
-          "seriesId": 1002,
-          "code": "ECE 2214 / 2216",
-          "title": "ECE 2214 / 2216",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1012,
-              "teacherId": 1048,
-              "size": 60
-            }
-          ]
-        },
-        {
           "id": 1154,
           "seriesId": 1003,
           "code": "ECE 3207",
@@ -2073,6 +1669,504 @@
             {
               "labId": 1011,
               "teacherId": 1025,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1559,
+          "seriesId": 1000,
+          "code": "ECE 1201",
+          "title": "Circuits and Systems-II",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1560,
+          "seriesId": 1000,
+          "code": "ECE 1202",
+          "title": "Circuits and Systems-II Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1561,
+          "seriesId": 1000,
+          "code": "ECE 1203",
+          "title": "Object Oriented Programming",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1562,
+          "seriesId": 1000,
+          "code": "ECE 1204",
+          "title": "Object Oriented Programming Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1563,
+          "seriesId": 1000,
+          "code": "ECE 1205",
+          "title": "Analog Electronic Circuits-I",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1564,
+          "seriesId": 1000,
+          "code": "ECE 1206",
+          "title": "Analog Electronic Circuits-I Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1565,
+          "seriesId": 1000,
+          "code": "Math 1217",
+          "title": "Transform Methods, Statistics & Complex Variable",
+          "credit": 3,
+          "dept": "MATH",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1566,
+          "seriesId": 1000,
+          "code": "Hum 1217",
+          "title": "Government, Sociology, Environment Protection & History of Independence",
+          "credit": 3,
+          "dept": "HUM",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1567,
+          "seriesId": 1000,
+          "code": "ECE 1200",
+          "title": "Engineering Ethics",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1568,
+          "seriesId": 1001,
+          "code": "ECE 2207",
+          "title": "Electrical Machine-I",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1569,
+          "seriesId": 1001,
+          "code": "ECE 2208",
+          "title": "Electrical Machine-I Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1570,
+          "seriesId": 1001,
+          "code": "ECE 2213",
+          "title": "Numerical Methods & Discrete Mathematics",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1571,
+          "seriesId": 1001,
+          "code": "ECE 2214",
+          "title": "Numerical Methods & Discrete Mathematics Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1572,
+          "seriesId": 1001,
+          "code": "ECE 2215",
+          "title": "Data Base Systems",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1573,
+          "seriesId": 1001,
+          "code": "ECE 2216",
+          "title": "Data Base Systems Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1574,
+          "seriesId": 1001,
+          "code": "Math 2217",
+          "title": "Co-ordinate Geometry & Partial Differential Equations",
+          "credit": 3,
+          "dept": "MATH",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1575,
+          "seriesId": 1001,
+          "code": "Hum 2217",
+          "title": "Legal Issues, Industrial & Operational Management",
+          "credit": 3,
+          "dept": "HUM",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1576,
+          "seriesId": 1001,
+          "code": "ECE 2200",
+          "title": "Electronic Shop Practice",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1577,
+          "seriesId": 1002,
+          "code": "ECE 3107",
+          "title": "Electrical Machine-II",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1578,
+          "seriesId": 1002,
+          "code": "ECE 3108",
+          "title": "Electrical Machine-II Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1579,
+          "seriesId": 1002,
+          "code": "ECE 3111",
+          "title": "Microprocessor, Assembly Language & Interfacing",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1580,
+          "seriesId": 1002,
+          "code": "ECE 3112",
+          "title": "Microprocessor, Assembly Language & Interfacing Sessional",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1581,
+          "seriesId": 1002,
+          "code": "ECE 3117",
+          "title": "Software Engineering & Information System Design",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1582,
+          "seriesId": 1002,
+          "code": "ECE 3118",
+          "title": "Software Engineering & Information System Design Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1583,
+          "seriesId": 1002,
+          "code": "ECE 3119",
+          "title": "Computer Architecture and Design",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1584,
+          "seriesId": 1002,
+          "code": "ECE 3121",
+          "title": "Electromagnetic Fields & Waves",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": []
+        },
+        {
+          "id": 1585,
+          "seriesId": 1002,
+          "code": "CE 3100",
+          "title": "Civil Engineering Drawing",
+          "credit": 0.75,
+          "dept": "CE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1586,
+          "seriesId": 1002,
+          "code": "ECE 3100",
+          "title": "Software Development Project-II",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "roomId": null,
+          "room": "",
+          "groups": [
+            {
+              "labId": 1011,
+              "teacherId": null,
               "size": 60
             }
           ]
@@ -4182,720 +4276,6 @@
       ],
       "classes": [
         {
-          "id": 1056,
-          "seriesId": 1000,
-          "day": "Saturday",
-          "start": 9,
-          "span": 1,
-          "cat": "HUM",
-          "code": "HUM 1117",
-          "title": "HUM 1117",
-          "room": "R-404",
-          "teacherId": 1044,
-          "initials": "MHS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1057,
-          "seriesId": 1000,
-          "day": "Saturday",
-          "start": 10,
-          "span": 1,
-          "cat": "PHY",
-          "code": "PHY 1117",
-          "title": "PHY 1117",
-          "room": "R-404",
-          "teacherId": 1037,
-          "initials": "MFH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1058,
-          "seriesId": 1000,
-          "day": "Saturday",
-          "start": 11,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 1103",
-          "title": "ECE 1103",
-          "room": "R-404",
-          "teacherId": 1029,
-          "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1059,
-          "seriesId": 1000,
-          "day": "Saturday",
-          "start": 12,
-          "span": 1,
-          "cat": "MATH",
-          "code": "MATH 1117",
-          "title": "MATH 1117",
-          "room": "R-404",
-          "teacherId": 1031,
-          "initials": "MRK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1060,
-          "seriesId": 1000,
-          "day": "Saturday",
-          "start": 13,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 1101",
-          "title": "ECE 1101",
-          "room": "R-404",
-          "teacherId": 1026,
-          "initials": "MAH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1061,
-          "seriesId": 1000,
-          "day": "Sunday",
-          "start": 8,
-          "span": 3,
-          "cat": "Lab",
-          "code": "HUM 1118",
-          "title": "HUM 1118",
-          "room": "Lab-7",
-          "teacherId": 1040,
-          "initials": "SA",
-          "section": "All Sections"
-        },
-        {
-          "id": 1062,
-          "seriesId": 1000,
-          "day": "Sunday",
-          "start": 11,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 1103",
-          "title": "ECE 1103",
-          "room": "R-404",
-          "teacherId": 1029,
-          "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1063,
-          "seriesId": 1000,
-          "day": "Sunday",
-          "start": 12,
-          "span": 1,
-          "cat": "PHY",
-          "code": "PHY 1117",
-          "title": "PHY 1117",
-          "room": "R-404",
-          "teacherId": 1037,
-          "initials": "MFH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1064,
-          "seriesId": 1000,
-          "day": "Sunday",
-          "start": 13,
-          "span": 1,
-          "cat": "MATH",
-          "code": "MATH 1117",
-          "title": "MATH 1117",
-          "room": "R-404",
-          "teacherId": 1042,
-          "initials": "MZA",
-          "section": "All Sections"
-        },
-        {
-          "id": 1065,
-          "seriesId": 1000,
-          "day": "Monday",
-          "start": 11,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 1103",
-          "title": "ECE 1103",
-          "room": "R-404",
-          "teacherId": 1029,
-          "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1066,
-          "seriesId": 1000,
-          "day": "Monday",
-          "start": 12,
-          "span": 1,
-          "cat": "PHY",
-          "code": "PHY 1117",
-          "title": "PHY 1117",
-          "room": "R-404",
-          "teacherId": 1037,
-          "initials": "MFH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1067,
-          "seriesId": 1000,
-          "day": "Monday",
-          "start": 13,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 1101",
-          "title": "ECE 1101",
-          "room": "R-404",
-          "teacherId": 1025,
-          "initials": "SMAR",
-          "section": "All Sections"
-        },
-        {
-          "id": 1068,
-          "seriesId": 1000,
-          "day": "Tuesday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 1101",
-          "title": "ECE 1101",
-          "room": "R-404",
-          "teacherId": 1026,
-          "initials": "MAH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1069,
-          "seriesId": 1000,
-          "day": "Tuesday",
-          "start": 9,
-          "span": 1,
-          "cat": "MATH",
-          "code": "MATH 1117",
-          "title": "MATH 1117",
-          "room": "R-404",
-          "teacherId": 1031,
-          "initials": "MRK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1070,
-          "seriesId": 1000,
-          "day": "Tuesday",
-          "start": 10,
-          "span": 1,
-          "cat": "HUM",
-          "code": "HUM 1117",
-          "title": "HUM 1117",
-          "room": "R-404",
-          "teacherId": 1052,
-          "initials": "OF",
-          "section": "All Sections"
-        },
-        {
-          "id": 1071,
-          "seriesId": 1000,
-          "day": "Tuesday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 1102 / 1104",
-          "title": "ECE 1102 / 1104",
-          "room": "Lab-4 / Lab-2",
-          "teacherId": 1050,
-          "initials": "MKG+MNT / HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1072,
-          "seriesId": 1000,
-          "day": "Wednesday",
-          "start": 8,
-          "span": 3,
-          "cat": "Lab",
-          "code": "PHY 1118 / ECE 1100",
-          "title": "PHY 1118 / ECE 1100",
-          "room": "Lab-5 / Lab-1",
-          "teacherId": 1032,
-          "initials": "MSH+MSI / MFA",
-          "section": "All Sections"
-        },
-        {
-          "id": 1073,
-          "seriesId": 1000,
-          "day": "Wednesday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 1102",
-          "title": "ECE 1102",
-          "room": "Lab-4",
-          "teacherId": 1050,
-          "initials": "MKG+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1074,
-          "seriesId": 1001,
-          "day": "Saturday",
-          "start": 8,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 2104",
-          "title": "ECE 2104",
-          "room": "Lab-1",
-          "teacherId": 1030,
-          "initials": "MFA+NIS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1075,
-          "seriesId": 1001,
-          "day": "Saturday",
-          "start": 11,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2105",
-          "title": "ECE 2105",
-          "room": "R-403",
-          "teacherId": 1050,
-          "initials": "MKG+MI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1076,
-          "seriesId": 1001,
-          "day": "Saturday",
-          "start": 12,
-          "span": 1,
-          "cat": "MATH",
-          "code": "MATH 2117",
-          "title": "MATH 2117",
-          "room": "R-403",
-          "teacherId": 1054,
-          "initials": "MZH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1077,
-          "seriesId": 1001,
-          "day": "Saturday",
-          "start": 13,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2111",
-          "title": "ECE 2111",
-          "room": "R-403",
-          "teacherId": 1036,
-          "initials": "NRP+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1078,
-          "seriesId": 1001,
-          "day": "Sunday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2103",
-          "title": "ECE 2103",
-          "room": "R-403",
-          "teacherId": 1030,
-          "initials": "MFA+NIS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1079,
-          "seriesId": 1001,
-          "day": "Sunday",
-          "start": 9,
-          "span": 1,
-          "cat": "CHEM",
-          "code": "CHEM 2117",
-          "title": "CHEM 2117",
-          "room": "R-403",
-          "teacherId": 1033,
-          "initials": "SR",
-          "section": "All Sections"
-        },
-        {
-          "id": 1080,
-          "seriesId": 1001,
-          "day": "Sunday",
-          "start": 10,
-          "span": 1,
-          "cat": "MATH",
-          "code": "MATH 2117",
-          "title": "MATH 2117",
-          "room": "R-403",
-          "teacherId": 1054,
-          "initials": "MZH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1081,
-          "seriesId": 1001,
-          "day": "Sunday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 2106 / 2112",
-          "title": "ECE 2106 / 2112",
-          "room": "Lab-14 / Lab-2",
-          "teacherId": 1050,
-          "initials": "MKG+MI / NRP+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1082,
-          "seriesId": 1001,
-          "day": "Monday",
-          "start": 8,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 2104",
-          "title": "ECE 2104",
-          "room": "Lab-1",
-          "teacherId": 1030,
-          "initials": "MFA+NIS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1083,
-          "seriesId": 1001,
-          "day": "Monday",
-          "start": 11,
-          "span": 1,
-          "cat": "CHEM",
-          "code": "CHEM 2117",
-          "title": "CHEM 2117",
-          "room": "R-403",
-          "teacherId": 1033,
-          "initials": "SR",
-          "section": "All Sections"
-        },
-        {
-          "id": 1084,
-          "seriesId": 1001,
-          "day": "Monday",
-          "start": 12,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2111",
-          "title": "ECE 2111",
-          "room": "R-404",
-          "teacherId": 1036,
-          "initials": "NRP+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1085,
-          "seriesId": 1001,
-          "day": "Tuesday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2103",
-          "title": "ECE 2103",
-          "room": "R-403",
-          "teacherId": 1055,
-          "initials": "NIS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1086,
-          "seriesId": 1001,
-          "day": "Tuesday",
-          "start": 9,
-          "span": 1,
-          "cat": "CHEM",
-          "code": "CHEM 2117",
-          "title": "CHEM 2117",
-          "room": "R-404",
-          "teacherId": 1046,
-          "initials": "AAI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1087,
-          "seriesId": 1001,
-          "day": "Tuesday",
-          "start": 10,
-          "span": 1,
-          "cat": "MATH",
-          "code": "MATH 2117",
-          "title": "MATH 2117",
-          "room": "R-404",
-          "teacherId": 1042,
-          "initials": "MZA",
-          "section": "All Sections"
-        },
-        {
-          "id": 1088,
-          "seriesId": 1001,
-          "day": "Tuesday",
-          "start": 11,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2105",
-          "title": "ECE 2105",
-          "room": "R-404",
-          "teacherId": 1047,
-          "initials": "MI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1089,
-          "seriesId": 1001,
-          "day": "Tuesday",
-          "start": 12,
-          "span": 2,
-          "cat": "Lab",
-          "code": "ECE 2100",
-          "title": "ECE 2100",
-          "room": "LAB-All",
-          "teacherId": null,
-          "initials": "ALL Faculty",
-          "section": "All Sections"
-        },
-        {
-          "id": 1090,
-          "seriesId": 1001,
-          "day": "Wednesday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2103",
-          "title": "ECE 2103",
-          "room": "R-403",
-          "teacherId": 1030,
-          "initials": "MFA+NIS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1091,
-          "seriesId": 1001,
-          "day": "Wednesday",
-          "start": 9,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2105",
-          "title": "ECE 2105",
-          "room": "R-404",
-          "teacherId": 1050,
-          "initials": "MKG+MI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1092,
-          "seriesId": 1001,
-          "day": "Wednesday",
-          "start": 10,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2111",
-          "title": "ECE 2111",
-          "room": "R-404",
-          "teacherId": 1036,
-          "initials": "NRP+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1093,
-          "seriesId": 1001,
-          "day": "Wednesday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "CHEM 2118",
-          "title": "CHEM 2118",
-          "room": "Lab-6",
-          "teacherId": 1033,
-          "initials": "SR+AAI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1094,
-          "seriesId": 1002,
-          "day": "Saturday",
-          "start": 8,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 2200",
-          "title": "ECE 2200",
-          "room": "Lab-4",
-          "teacherId": 1036,
-          "initials": "NRP+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1095,
-          "seriesId": 1002,
-          "day": "Sunday",
-          "start": 8,
-          "span": 1,
-          "cat": "MATH",
-          "code": "MATH 2217",
-          "title": "MATH 2217",
-          "room": "R-402",
-          "teacherId": 1047,
-          "initials": "MI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1096,
-          "seriesId": 1002,
-          "day": "Sunday",
-          "start": 9,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2215",
-          "title": "ECE 2215",
-          "room": "R-402",
-          "teacherId": 1055,
-          "initials": "NIS/MRI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1097,
-          "seriesId": 1002,
-          "day": "Sunday",
-          "start": 10,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2207",
-          "title": "ECE 2207",
-          "room": "R-402",
-          "teacherId": 1028,
-          "initials": "FT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1098,
-          "seriesId": 1002,
-          "day": "Sunday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 2208",
-          "title": "ECE 2208",
-          "room": "Lab-8",
-          "teacherId": 1028,
-          "initials": "FT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1099,
-          "seriesId": 1002,
-          "day": "Monday",
-          "start": 8,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 2200",
-          "title": "ECE 2200",
-          "room": "Lab-4",
-          "teacherId": 1036,
-          "initials": "NRP+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1100,
-          "seriesId": 1002,
-          "day": "Tuesday",
-          "start": 9,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2213",
-          "title": "ECE 2213",
-          "room": "R-403",
-          "teacherId": 1030,
-          "initials": "MFA+NRP",
-          "section": "All Sections"
-        },
-        {
-          "id": 1101,
-          "seriesId": 1002,
-          "day": "Tuesday",
-          "start": 10,
-          "span": 1,
-          "cat": "HUM",
-          "code": "HUM 2217",
-          "title": "HUM 2217",
-          "room": "R-403",
-          "teacherId": 1041,
-          "initials": "SI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1102,
-          "seriesId": 1002,
-          "day": "Tuesday",
-          "start": 11,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2207",
-          "title": "ECE 2207",
-          "room": "R-403",
-          "teacherId": 1028,
-          "initials": "FT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1103,
-          "seriesId": 1002,
-          "day": "Wednesday",
-          "start": 8,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 2214 / 2216",
-          "title": "ECE 2214 / 2216",
-          "room": "Lab-2 / R-401",
-          "teacherId": 1048,
-          "initials": "MRI+MI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1104,
-          "seriesId": 1002,
-          "day": "Wednesday",
-          "start": 11,
-          "span": 1,
-          "cat": "MATH",
-          "code": "MATH 2217",
-          "title": "MATH 2217",
-          "room": "R-403",
-          "teacherId": 1047,
-          "initials": "MI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1105,
-          "seriesId": 1002,
-          "day": "Wednesday",
-          "start": 12,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2215",
-          "title": "ECE 2215",
-          "room": "R-403",
-          "teacherId": 1055,
-          "initials": "NIS/MRI",
-          "section": "All Sections"
-        },
-        {
-          "id": 1106,
-          "seriesId": 1002,
-          "day": "Wednesday",
-          "start": 13,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 2207",
-          "title": "ECE 2207",
-          "room": "R-403",
-          "teacherId": 1028,
-          "initials": "FT",
-          "section": "All Sections"
-        },
-        {
           "id": 1107,
           "seriesId": 1003,
           "day": "Saturday",
@@ -5469,6 +4849,6 @@
       "head": "Head, ECE, RUET",
       "effectiveDate": "10/01/2026"
     },
-    "uid": 1559
+    "uid": 1587
   }
 }
