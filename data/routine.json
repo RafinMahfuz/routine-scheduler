@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1795021865358,
+  "updatedAt": 1795022482330,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "settings",
+      "activeNav": "courses",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -50,7 +50,7 @@
           "runningSemester": "4th Year (Even)"
         }
       ],
-      "activeSeriesId": 1002,
+      "activeSeriesId": 1001,
       "semesters": [
         "1st Year (Odd)",
         "1st Year (Even)",
@@ -61,7 +61,7 @@
         "4th Year (Odd)",
         "4th Year (Even)"
       ],
-      "activeSemester": "3rd Year (Odd)",
+      "activeSemester": "4th Year (Even)",
       "semesterCourses": [
         {
           "id": 1000,
@@ -1842,9 +1842,9 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
-          "roomId": null,
-          "room": "",
+          "teacherId": 1028,
+          "roomId": 1008,
+          "room": "R-404",
           "groups": []
         },
         {
@@ -1862,9 +1862,12 @@
           "room": "",
           "groups": [
             {
-              "labId": 1011,
-              "teacherId": null,
-              "size": 60
+              "labId": 1013,
+              "teacherId": 1026
+            },
+            {
+              "labId": 1013,
+              "teacherId": 1036
             }
           ]
         },
