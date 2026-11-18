@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1790150678296,
+  "updatedAt": 1795020590116,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
@@ -50,7 +50,7 @@
           "runningSemester": "4th Year (Even)"
         }
       ],
-      "activeSeriesId": 1004,
+      "activeSeriesId": 1003,
       "semesters": [
         "1st Year (Odd)",
         "1st Year (Even)",
@@ -61,7 +61,7 @@
         "4th Year (Odd)",
         "4th Year (Even)"
       ],
-      "activeSemester": "3rd Year (Odd)",
+      "activeSemester": "2nd Year (Odd)",
       "semesterCourses": [
         {
           "id": 1000,
@@ -1087,8 +1087,8 @@
         },
         {
           "id": 1035,
-          "name": "Ms. Rupali Khatun",
-          "shortName": "RK",
+          "name": "MST. Rupali Khatun",
+          "shortName": "MRK",
           "dept": "ECE",
           "email": "rk@ruet.ac.bd",
           "color": {
