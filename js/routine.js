@@ -188,11 +188,19 @@ function runAutoGenerationEngine(options = {}) {
     : state.series.filter(s => s.id === targetSeriesId);
 
   // Classes to preserve:
-  // In single-series scope: all classes from other series, PLUS any optional classes in target series.
-  // In all-series scope: all optional classes across all series.
-  const preservedClasses = scope === 'all'
-    ? state.classes.filter(c => typeof isOptionalCourse === 'function' && isOptionalCourse(c))
-    : state.classes.filter(c => c.seriesId !== targetSeriesId || (typeof isOptionalCourse === 'function' && isOptionalCourse(c)));
+  // 1. Classes from other series (when single-series scope is chosen).
+  // 2. Any MANUALLY placed optional/elective classes (c.isManual === true && isOptionalCourse(c)).
+  // Note: Placeholders with '**' (e.g. ECE 41**, ECE 42**) and un-manual optional classes are NEVER preserved or scheduled.
+  const isPreservedClass = (c) => {
+    if (c.code && c.code.includes('**')) return false;
+    if (scope !== 'all' && c.seriesId !== targetSeriesId) return true;
+    if (typeof isOptionalCourse === 'function' && isOptionalCourse(c)) {
+      return !!c.isManual;
+    }
+    return false;
+  };
+
+  const preservedClasses = state.classes.filter(isPreservedClass);
 
   // Ensure every course has valid lab/teacher references before running
   state.courses.forEach(c => {
@@ -313,20 +321,22 @@ function runAutoGenerationEngine(options = {}) {
 
     // Seed preserved classes from other batches
     preservedClasses.forEach(c => {
+      const span = c.span || 1;
       const tids = (c.teacherIds && c.teacherIds.length) ? c.teacherIds : (c.teacherId ? [c.teacherId] : []);
       tids.forEach(tid => {
-        getTeacherList(c.day, tid).push({ start: c.start, span: c.span, code: c.code });
+        getTeacherList(c.day, tid).push({ start: c.start, span, code: c.code });
       });
       if (c.room) {
         const rk = c.cat === 'Lab' ? 'lab-' + c.room : 'room-' + c.room;
-        getRoomList(c.day, rk).push({ start: c.start, span: c.span, code: c.code });
+        getRoomList(c.day, rk).push({ start: c.start, span, code: c.code });
       }
-      getSeriesList(c.day, c.seriesId).push({ start: c.start, span: c.span, code: c.code });
+      getSeriesList(c.day, c.seriesId).push({ start: c.start, span, code: c.code });
     });
 
     const targetCourses = state.courses.filter(c =>
       seriesToSchedule.some(s => s.id === c.seriesId) &&
-      !(typeof isOptionalCourse === 'function' && isOptionalCourse(c))
+      !(typeof isOptionalCourse === 'function' && isOptionalCourse(c)) &&
+      !(c.code && c.code.includes('**'))
     );
     const labCourses = shuffle(targetCourses.filter(c => c.type === 'lab'));
     const theoryCourses = shuffle(targetCourses.filter(c => c.type === 'theory'));
@@ -2589,10 +2599,85 @@ function openSelectClassModal(day, start, seriesId) {
   const targetSeriesId = seriesId || state.activeSeriesId || (state.series[0] ? state.series[0].id : null);
   const s = state.series.find(x => x.id === targetSeriesId) || state.series[0];
   const seriesName = s ? s.name : 'Current Series';
+  const runningSem = s ? (s.runningSemester || '') : '';
 
-  const theoryCourses = (state.courses || []).filter(c => c.seriesId === targetSeriesId && c.type === 'theory');
+  function ensureElectiveCourseRecord(oc) {
+    let existing = (state.courses || []).find(c => c.seriesId === targetSeriesId && (c.code || '').trim().toUpperCase() === oc.code.trim().toUpperCase());
+    if (!existing) {
+      existing = {
+        id: nextId(),
+        seriesId: targetSeriesId,
+        code: oc.code,
+        title: oc.title,
+        credit: oc.credit || (oc.type === 'lab' ? 0.75 : 3.0),
+        dept: oc.dept || 'ECE',
+        type: oc.type,
+        sessionsPerWeek: oc.sessionsPerWeek || (oc.type === 'lab' ? 1 : 3),
+        studentCount: 60,
+        teacherId: null,
+        teacherIds: [],
+        roomId: null,
+        room: '',
+        labId: oc.type === 'lab' ? (state.labs[0] ? state.labs[0].id : null) : null,
+        groups: oc.type === 'lab' ? [{ labId: (state.labs[0] ? state.labs[0].id : null), teacherId: null, teacherIds: [], size: 60 }] : [],
+        isOptional: true
+      };
+      state.courses.push(existing);
+    } else {
+      existing.isOptional = true;
+    }
+    return existing;
+  }
 
-  if (!theoryCourses.length) {
+  // Filter out any raw placeholder ** courses from options
+  const compulsoryTheoryCourses = (state.courses || []).filter(c =>
+    c.seriesId === targetSeriesId &&
+    c.type === 'theory' &&
+    !(typeof isOptionalCourse === 'function' && isOptionalCourse(c)) &&
+    !(c.code && c.code.includes('**'))
+  );
+
+  const selectableTheoryCourses = [...compulsoryTheoryCourses];
+
+  let courseOptionsHtml = '';
+  if (compulsoryTheoryCourses.length) {
+    courseOptionsHtml += `<optgroup label="Core / Compulsory Theory Courses">
+      ${compulsoryTheoryCourses.map(c => `<option value="${c.id}">${c.code} — ${c.title} (${c.dept || 'ECE'})</option>`).join('')}
+    </optgroup>`;
+  }
+
+  if (typeof OPTIONAL_COURSES !== 'undefined' && runningSem && OPTIONAL_COURSES[runningSem]) {
+    OPTIONAL_COURSES[runningSem].forEach(grp => {
+      const theoryInGrp = (grp.courses || []).filter(oc => oc.type === 'theory');
+      if (theoryInGrp.length) {
+        courseOptionsHtml += `<optgroup label="Elective: ${grp.title || grp.group}">
+          ${theoryInGrp.map(oc => {
+            const courseObj = ensureElectiveCourseRecord(oc);
+            if (!selectableTheoryCourses.some(x => x.id === courseObj.id)) selectableTheoryCourses.push(courseObj);
+            return `<option value="${courseObj.id}">${courseObj.code} — ${courseObj.title} (${courseObj.credit} Cr)</option>`;
+          }).join('')}
+        </optgroup>`;
+      }
+    });
+  }
+
+  // Also include any other theory courses assigned to this series that aren't placeholders
+  const otherTheoryCourses = (state.courses || []).filter(c =>
+    c.seriesId === targetSeriesId &&
+    c.type === 'theory' &&
+    !(c.code && c.code.includes('**')) &&
+    !selectableTheoryCourses.some(x => x.id === c.id)
+  );
+  if (otherTheoryCourses.length) {
+    courseOptionsHtml += `<optgroup label="Other Assigned Theory Courses">
+      ${otherTheoryCourses.map(c => {
+        selectableTheoryCourses.push(c);
+        return `<option value="${c.id}">${c.code} — ${c.title}</option>`;
+      }).join('')}
+    </optgroup>`;
+  }
+
+  if (!selectableTheoryCourses.length) {
     openModal(`
       <div class="modal-header">
         <h2>Select Class — ${seriesName}</h2>
@@ -2615,10 +2700,6 @@ function openSelectClassModal(day, start, seriesId) {
   const preferredRoomCode = ['R-404', 'R-403', 'R-402', 'R-401', 'S-401'];
   const defaultRoom = preferredRoomCode[sIdx >= 0 ? sIdx : 0] || 'R-404';
 
-  const courseOptionsHtml = theoryCourses.map(c => `
-    <option value="${c.id}">${c.code} — ${c.title} (${c.dept || 'ECE'})</option>
-  `).join('');
-
   const modalHtml = `
     <div class="modal-header">
       <h2>Select Class — ${seriesName}</h2>
@@ -2629,7 +2710,7 @@ function openSelectClassModal(day, start, seriesId) {
       <div class="field">
         <label for="sc-course-select" style="font-weight:700;">Select Theory Course <span style="color:var(--primary);">*</span></label>
         <select id="sc-course-select" style="font-weight:600;font-size:13.5px;padding:8px 10px;">
-          <option value="">-- Choose Course for ${seriesName} (${theoryCourses.length} available) --</option>
+          <option value="">-- Choose Course for ${seriesName} (${selectableTheoryCourses.length} available) --</option>
           ${courseOptionsHtml}
         </select>
       </div>
@@ -2688,7 +2769,7 @@ function openSelectClassModal(day, start, seriesId) {
   const initialsInput = document.getElementById('f-initials');
 
   function onCourseChange(courseId) {
-    const course = theoryCourses.find(c => c.id === Number(courseId));
+    const course = selectableTheoryCourses.find(c => c.id === Number(courseId));
     if (!course) {
       if (detailsWrap) detailsWrap.style.display = 'none';
       if (saveBtn) saveBtn.disabled = true;
@@ -2721,16 +2802,16 @@ function openSelectClassModal(day, start, seriesId) {
 
   if (selectEl) {
     selectEl.onchange = () => onCourseChange(selectEl.value);
-    if (theoryCourses.length === 1) {
-      selectEl.value = String(theoryCourses[0].id);
-      onCourseChange(theoryCourses[0].id);
+    if (selectableTheoryCourses.length === 1) {
+      selectEl.value = String(selectableTheoryCourses[0].id);
+      onCourseChange(selectableTheoryCourses[0].id);
     }
   }
 
   if (saveBtn) {
     saveBtn.onclick = () => {
       const courseId = Number(selectEl.value);
-      const course = theoryCourses.find(c => c.id === courseId);
+      const course = selectableTheoryCourses.find(c => c.id === courseId);
       if (!course) { toast('Please select a course first', 'warn'); return; }
 
       const span = THEORY_SPAN;
@@ -2754,7 +2835,9 @@ function openSelectClassModal(day, start, seriesId) {
         teacherId: primaryTid,
         teacherIds: chosenTeacherIds,
         initials,
-        section: "All Sections"
+        section: "All Sections",
+        isOptional: isOptionalCourse(course),
+        isManual: true
       });
 
       saveState();
@@ -2769,10 +2852,84 @@ function openSelectLabModal(day, start, seriesId) {
   const targetSeriesId = seriesId || state.activeSeriesId || (state.series[0] ? state.series[0].id : null);
   const s = state.series.find(x => x.id === targetSeriesId) || state.series[0];
   const seriesName = s ? s.name : 'Routine';
+  const runningSem = s ? (s.runningSemester || '') : '';
 
-  const labCourses = (state.courses || []).filter(c => c.seriesId === targetSeriesId && c.type === 'lab');
+  function ensureElectiveCourseRecord(oc) {
+    let existing = (state.courses || []).find(c => c.seriesId === targetSeriesId && (c.code || '').trim().toUpperCase() === oc.code.trim().toUpperCase());
+    if (!existing) {
+      existing = {
+        id: nextId(),
+        seriesId: targetSeriesId,
+        code: oc.code,
+        title: oc.title,
+        credit: oc.credit || (oc.type === 'lab' ? 0.75 : 3.0),
+        dept: oc.dept || 'ECE',
+        type: oc.type,
+        sessionsPerWeek: oc.sessionsPerWeek || (oc.type === 'lab' ? 1 : 3),
+        studentCount: 60,
+        teacherId: null,
+        teacherIds: [],
+        roomId: null,
+        room: '',
+        labId: oc.type === 'lab' ? (state.labs[0] ? state.labs[0].id : null) : null,
+        groups: oc.type === 'lab' ? [{ labId: (state.labs[0] ? state.labs[0].id : null), teacherId: null, teacherIds: [], size: 60 }] : [],
+        isOptional: true
+      };
+      state.courses.push(existing);
+    } else {
+      existing.isOptional = true;
+    }
+    return existing;
+  }
 
-  if (!labCourses.length) {
+  // Filter out any raw placeholder ** courses from options
+  const compulsoryLabCourses = (state.courses || []).filter(c =>
+    c.seriesId === targetSeriesId &&
+    c.type === 'lab' &&
+    !(typeof isOptionalCourse === 'function' && isOptionalCourse(c)) &&
+    !(c.code && c.code.includes('**'))
+  );
+
+  const selectableLabCourses = [...compulsoryLabCourses];
+
+  let labOptionsHtml = '';
+  if (compulsoryLabCourses.length) {
+    labOptionsHtml += `<optgroup label="Core / Compulsory Sessional Labs">
+      ${compulsoryLabCourses.map(c => `<option value="${c.id}">${c.code} — ${c.title}</option>`).join('')}
+    </optgroup>`;
+  }
+
+  if (typeof OPTIONAL_COURSES !== 'undefined' && runningSem && OPTIONAL_COURSES[runningSem]) {
+    OPTIONAL_COURSES[runningSem].forEach(grp => {
+      const labInGrp = (grp.courses || []).filter(oc => oc.type === 'lab');
+      if (labInGrp.length) {
+        labOptionsHtml += `<optgroup label="Elective Sessional: ${grp.title || grp.group}">
+          ${labInGrp.map(oc => {
+            const courseObj = ensureElectiveCourseRecord(oc);
+            if (!selectableLabCourses.some(x => x.id === courseObj.id)) selectableLabCourses.push(courseObj);
+            return `<option value="${courseObj.id}">${courseObj.code} — ${courseObj.title} (Elective Lab, ${courseObj.credit} Cr)</option>`;
+          }).join('')}
+        </optgroup>`;
+      }
+    });
+  }
+
+  const otherLabCourses = (state.courses || []).filter(c =>
+    c.seriesId === targetSeriesId &&
+    c.type === 'lab' &&
+    !(c.code && c.code.includes('**')) &&
+    !selectableLabCourses.some(x => x.id === c.id)
+  );
+  if (otherLabCourses.length) {
+    labOptionsHtml += `<optgroup label="Other Assigned Sessional Labs">
+      ${otherLabCourses.map(c => {
+        selectableLabCourses.push(c);
+        return `<option value="${c.id}">${c.code} — ${c.title}</option>`;
+      }).join('')}
+    </optgroup>`;
+  }
+
+  if (!selectableLabCourses.length) {
     openModal(`
       <div class="modal-header">
         <h2>Select Lab — ${seriesName}</h2>
@@ -2791,10 +2948,6 @@ function openSelectLabModal(day, start, seriesId) {
     return;
   }
 
-  const labOptionsHtml = labCourses.map(c => `
-    <option value="${c.id}">${c.code} — ${c.title}</option>
-  `).join('');
-
   const modalHtml = `
     <div class="modal-header">
       <h2>Select Lab — ${seriesName}</h2>
@@ -2805,7 +2958,7 @@ function openSelectLabModal(day, start, seriesId) {
       <div class="field">
         <label for="sl-course-select" style="font-weight:700;">Select Sessional Lab Course <span style="color:var(--primary);">*</span></label>
         <select id="sl-course-select" style="font-weight:600;font-size:13.5px;padding:8px 10px;">
-          <option value="">-- Choose Lab Course for ${seriesName} (${labCourses.length} available) --</option>
+          <option value="">-- Choose Lab Course for ${seriesName} (${selectableLabCourses.length} available) --</option>
           ${labOptionsHtml}
         </select>
       </div>
@@ -2857,7 +3010,7 @@ function openSelectLabModal(day, start, seriesId) {
   const initialsInput = document.getElementById('f-lab-initials');
 
   function onLabChange(courseId) {
-    const course = labCourses.find(c => c.id === Number(courseId));
+    const course = selectableLabCourses.find(c => c.id === Number(courseId));
     if (!course) {
       if (detailsWrap) detailsWrap.style.display = 'none';
       if (saveBtn) saveBtn.disabled = true;
@@ -2888,16 +3041,16 @@ function openSelectLabModal(day, start, seriesId) {
 
   if (selectEl) {
     selectEl.onchange = () => onLabChange(selectEl.value);
-    if (labCourses.length === 1) {
-      selectEl.value = String(labCourses[0].id);
-      onLabChange(labCourses[0].id);
+    if (selectableLabCourses.length === 1) {
+      selectEl.value = String(selectableLabCourses[0].id);
+      onLabChange(selectableLabCourses[0].id);
     }
   }
 
   if (saveBtn) {
     saveBtn.onclick = () => {
       const courseId = Number(selectEl.value);
-      const course = labCourses.find(c => c.id === courseId);
+      const course = selectableLabCourses.find(c => c.id === courseId);
       if (!course) { toast('Please select a lab course first', 'warn'); return; }
 
       const span = LAB_SPAN;
@@ -2923,7 +3076,9 @@ function openSelectLabModal(day, start, seriesId) {
         teacherId: primaryTid,
         teacherIds: chosenTeacherIds,
         initials,
-        section: "All Sections"
+        section: "All Sections",
+        isOptional: true,
+        isManual: true
       });
 
       saveState();

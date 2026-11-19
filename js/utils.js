@@ -132,7 +132,7 @@ function isOptionalCourse(item) {
   if (item.isOptional) return true;
   const code = (item.code || '').trim().toUpperCase();
   const title = (item.title || '').trim().toUpperCase();
-  if (code.includes('41**') || code.includes('42**')) return true;
+  if (code.includes('**')) return true;
   if (code.includes('OPTIONAL') || title.includes('OPTIONAL')) return true;
   if (typeof OPTIONAL_COURSES !== 'undefined') {
     for (const sem in OPTIONAL_COURSES) {

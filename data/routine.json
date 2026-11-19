@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1795022620152,
+  "updatedAt": 1795098717322,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
@@ -1567,78 +1567,6 @@
           "code": "ECE 4224",
           "title": "Digital Image Processing Sessional",
           "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "roomId": null,
-          "room": "",
-          "groups": [
-            {
-              "labId": 1011,
-              "teacherId": null,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1481,
-          "seriesId": 1004,
-          "code": "ECE 4221",
-          "title": "Unix Programming",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1025,
-          "roomId": null,
-          "room": "",
-          "groups": []
-        },
-        {
-          "id": 1482,
-          "seriesId": 1004,
-          "code": "ECE 4222",
-          "title": "Unix Programming Sessional",
-          "credit": 0.75,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "roomId": null,
-          "room": "",
-          "groups": [
-            {
-              "labId": 1011,
-              "teacherId": null,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1483,
-          "seriesId": 1004,
-          "code": "ECE 4251",
-          "title": "Renewable Energy",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1025,
-          "roomId": null,
-          "room": "",
-          "groups": []
-        },
-        {
-          "id": 1484,
-          "seriesId": 1004,
-          "code": "ECE 4252",
-          "title": "Renewable Energy Sessional",
-          "credit": 0.75,
           "dept": "ECE",
           "type": "lab",
           "sessionsPerWeek": 1,
@@ -4559,20 +4487,6 @@
           "section": "All Sections"
         },
         {
-          "id": 1539,
-          "seriesId": 1004,
-          "day": "Monday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 4252",
-          "title": "Renewable Energy Sessional",
-          "room": "Lab-1",
-          "teacherId": null,
-          "initials": "",
-          "section": "All Sections"
-        },
-        {
           "id": 1540,
           "seriesId": 1004,
           "day": "Sunday",
@@ -4615,20 +4529,6 @@
           "section": "All Sections"
         },
         {
-          "id": 1543,
-          "seriesId": 1004,
-          "day": "Saturday",
-          "start": 14,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 4222",
-          "title": "Unix Programming Sessional",
-          "room": "Lab-1",
-          "teacherId": null,
-          "initials": "",
-          "section": "All Sections"
-        },
-        {
           "id": 1544,
           "seriesId": 1004,
           "day": "Tuesday",
@@ -4640,20 +4540,6 @@
           "room": "R-401",
           "teacherId": 1029,
           "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1545,
-          "seriesId": 1004,
-          "day": "Saturday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4251",
-          "title": "Renewable Energy",
-          "room": "S-401",
-          "teacherId": 1025,
-          "initials": "SMAR",
           "section": "All Sections"
         },
         {
@@ -4685,20 +4571,6 @@
           "section": "All Sections"
         },
         {
-          "id": 1548,
-          "seriesId": 1004,
-          "day": "Wednesday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4221",
-          "title": "Unix Programming",
-          "room": "S-401",
-          "teacherId": 1025,
-          "initials": "SMAR",
-          "section": "All Sections"
-        },
-        {
           "id": 1549,
           "seriesId": 1004,
           "day": "Saturday",
@@ -4710,20 +4582,6 @@
           "room": "R-401",
           "teacherId": 1029,
           "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1550,
-          "seriesId": 1004,
-          "day": "Sunday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4251",
-          "title": "Renewable Energy",
-          "room": "S-401",
-          "teacherId": 1025,
-          "initials": "SMAR",
           "section": "All Sections"
         },
         {
@@ -4755,20 +4613,6 @@
           "section": "All Sections"
         },
         {
-          "id": 1553,
-          "seriesId": 1004,
-          "day": "Saturday",
-          "start": 10,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4221",
-          "title": "Unix Programming",
-          "room": "S-401",
-          "teacherId": 1025,
-          "initials": "SMAR",
-          "section": "All Sections"
-        },
-        {
           "id": 1554,
           "seriesId": 1004,
           "day": "Wednesday",
@@ -4780,20 +4624,6 @@
           "room": "R-401",
           "teacherId": 1029,
           "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1555,
-          "seriesId": 1004,
-          "day": "Tuesday",
-          "start": 12,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4251",
-          "title": "Renewable Energy",
-          "room": "S-401",
-          "teacherId": 1025,
-          "initials": "SMAR",
           "section": "All Sections"
         },
         {
@@ -4819,20 +4649,6 @@
           "cat": "ECE",
           "code": "ECE 4223",
           "title": "Digital Image Processing",
-          "room": "S-401",
-          "teacherId": 1025,
-          "initials": "SMAR",
-          "section": "All Sections"
-        },
-        {
-          "id": 1558,
-          "seriesId": 1004,
-          "day": "Saturday",
-          "start": 12,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4221",
-          "title": "Unix Programming",
           "room": "S-401",
           "teacherId": 1025,
           "initials": "SMAR",

@@ -311,10 +311,10 @@ const SEED_SEMESTER_COURSES = [
   { semester: "4th Year (Odd)", code: "MTE 4118", title: "Control Systems & Robotics Sessional", credit: 0.75, dept: "MTE", type: "lab", sessionsPerWeek: 1 },
   { semester: "4th Year (Odd)", code: "ECE 4123", title: "Digital Signal Processing", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
   { semester: "4th Year (Odd)", code: "ECE 4124", title: "Digital Signal Processing Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional I", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
-  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional I Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional II", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
-  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional II Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional I", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3, isOptional: true },
+  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional I Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1, isOptional: true },
+  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional II", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3, isOptional: true },
+  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional II Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1, isOptional: true },
   { semester: "4th Year (Odd)", code: "ECE 4000", title: "Thesis/ Project-I", credit: 1.00, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
   { semester: "4th Year (Odd)", code: "ECE 4100", title: "Industrial Training", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
   { semester: "4th Year (Odd)", code: "ECE 4122", title: "Seminar", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
@@ -325,10 +325,10 @@ const SEED_SEMESTER_COURSES = [
   { semester: "4th Year (Even)", code: "ECE 4212", title: "Computer Networks Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
   { semester: "4th Year (Even)", code: "ECE 4223", title: "Digital Image Processing", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
   { semester: "4th Year (Even)", code: "ECE 4224", title: "Digital Image Processing Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional III", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
-  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional III Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional IV", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
-  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional IV Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional III", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3, isOptional: true },
+  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional III Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1, isOptional: true },
+  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional IV", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3, isOptional: true },
+  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional IV Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1, isOptional: true },
   { semester: "4th Year (Even)", code: "ECE 4000", title: "Thesis/ Project -II", credit: 3.00, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
 ];
 
@@ -932,6 +932,8 @@ function loadState() {
             }
           }
         });
+        // Purge any placeholder ** classes (e.g. ECE 41**, ECE 42**) that should never be on the routine
+        state.classes = state.classes.filter(c => !(c.code && c.code.includes('**')));
       }
 
       // Ensure semesterCourses exists and is populated
