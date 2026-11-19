@@ -1,10 +1,94 @@
 /* ============================= COURSES & TEACHER ASSIGNMENT ============================= */
 
+/* Reusable Multi-Teacher Selector HTML and initializer */
+function renderMultiTeacherSelectorHtml(containerId) {
+  return `<div id="${containerId}" class="multi-teacher-picker"></div>`;
+}
+
+function initMultiTeacherSelector(containerId, initialTeacherIds, onChange) {
+  let ids = Array.isArray(initialTeacherIds) ? [...initialTeacherIds] : (initialTeacherIds ? [initialTeacherIds] : []);
+  ids = Array.from(new Set(ids.map(Number).filter(Boolean)));
+
+  const container = document.getElementById(containerId);
+  if (!container) {
+    return {
+      getTeacherIds: () => ids,
+      setTeacherIds: (newIds) => { ids = [...newIds]; }
+    };
+  }
+
+  function render() {
+    const teachers = ids.map(id => teacherById(id)).filter(Boolean);
+    const unselectedTeachers = state.teachers.filter(t => !ids.includes(t.id));
+
+    const chipsHtml = teachers.length > 0
+      ? teachers.map(t => `
+          <span class="multi-teacher-chip" style="background:${t.color.bg};color:${t.color.fg};border:1px solid ${t.color.border || t.color.fg}77;">
+            <span class="swatch" style="background:${t.color.fg};width:8px;height:8px;border-radius:2px;"></span>
+            <strong>${teacherShort(t)}</strong>
+            <span style="font-size:11.5px;font-weight:500;opacity:0.9;">(${t.name})</span>
+            <button type="button" class="multi-teacher-chip-remove" data-remove-tid="${t.id}" title="Remove ${t.shortName || t.name}">✕</button>
+          </span>
+        `).join('')
+      : `<span class="multi-teacher-empty-hint">No instructors assigned yet. Select one or more teachers below.</span>`;
+
+    const selectOptions = unselectedTeachers.map(t => `<option value="${t.id}">${teacherOptionLabel(t)} — ${t.dept}</option>`).join('');
+
+    container.innerHTML = `
+      <div class="multi-teacher-chips" id="${containerId}-chips">
+        ${chipsHtml}
+      </div>
+      <div class="multi-teacher-select-row">
+        <select id="${containerId}-select" style="margin-top:2px;">
+          <option value="">➕ Select instructor to add (multiple allowed)...</option>
+          ${selectOptions}
+        </select>
+      </div>
+    `;
+
+    // Hook remove buttons
+    container.querySelectorAll('[data-remove-tid]').forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const tid = Number(btn.getAttribute('data-remove-tid'));
+        ids = ids.filter(x => x !== tid);
+        render();
+        if (typeof onChange === 'function') onChange(ids);
+      };
+    });
+
+    // Hook add select
+    const sel = document.getElementById(`${containerId}-select`);
+    if (sel) {
+      sel.onchange = () => {
+        const tid = Number(sel.value);
+        if (tid && !ids.includes(tid)) {
+          ids.push(tid);
+          render();
+          if (typeof onChange === 'function') onChange(ids);
+        }
+      };
+    }
+  }
+
+  render();
+
+  return {
+    getTeacherIds: () => ids,
+    setTeacherIds: (newIds) => {
+      ids = Array.from(new Set((newIds || []).map(Number).filter(Boolean)));
+      render();
+      if (typeof onChange === 'function') onChange(ids);
+    }
+  };
+}
+
 function renderCourses() {
   saveState();
   crudPage({
     title: "Academic Courses",
-    sub: `Curriculum definitions, teacher assignments, and parallel lab group configurations for ${activeSeries() ? activeSeries().name : 'current batch'}.`,
+    sub: `Curriculum definitions, instructor assignments, and room allocations for ${activeSeries() ? activeSeries().name : 'current batch'}.`,
     icon: "📘",
     items: coursesInActiveSeries(),
     addLabel: "Add New Course",
@@ -16,20 +100,34 @@ function renderCourses() {
       { key: 'sessionsPerWeek', label: 'Weekly Load', render: c => `<span style="font-weight:600;">${c.sessionsPerWeek} session(s)</span>` },
       {
         key: 'teacher', label: 'Assigned Instructor(s)', render: c => {
+          const teachers = courseTeachers(c);
+          let locHtml = '';
           if (c.type === 'theory') {
-            const t = teacherById(c.teacherId);
             const r = (c.roomId ? roomById(c.roomId) : null) || (c.room ? state.rooms.find(x => x.code === c.room) : null);
-            const roomHtml = r ? `<span style="font-size:12px;color:var(--text-mute);">in <strong>${r.code}</strong></span>` : '';
-            return t
-              ? `<div style="display:flex;align-items:center;gap:6px;"><span class="swatch" style="background:${t.color.fg};"></span><strong>${teacherShort(t)}</strong> <span style="font-size:12px;color:var(--text-mute);">(${t.name})</span>${roomHtml ? ' ' + roomHtml : ''}</div>`
-              : `<div style="display:flex;align-items:center;gap:6px;"><span class="tag" style="background:#fee2e2;color:#991b1b;font-weight:700;">⚠️ Not Assigned</span>${roomHtml ? ' ' + roomHtml : ''}</div>`;
+            if (r) locHtml = `<span style="font-size:12px;color:var(--text-mute);margin-left:4px;">in <strong>${r.code}</strong></span>`;
+          } else {
+            const labId = c.labId || (c.groups && c.groups[0] && c.groups[0].labId);
+            const lab = labId ? labById(labId) : (c.room ? state.labs.find(l => l.name === c.room) : null);
+            if (lab) locHtml = `<span style="font-size:12px;color:var(--text-mute);margin-left:4px;">in <strong>${lab ? lab.name : 'Lab Room'}</strong></span>`;
           }
-          const groups = computeLabGroups(c);
-          return `<div style="display:flex;flex-direction:column;gap:3px;">${groups.map((g, i) => {
-            const t = teacherById(g.teacherId);
-            const lab = labById(g.labId);
-            return `<div style="font-size:12px;"><span class="tag" style="background:#f3f4f6;color:#374151;font-weight:700;padding:2px 6px;">Grp ${String.fromCharCode(65 + i)}</span> <strong>${t ? teacherShort(t) : 'Unassigned'}</strong> <span style="color:var(--text-mute);">in ${lab ? lab.name : 'No Lab'}</span></div>`;
-          }).join('')}</div>`;
+
+          if (!teachers.length) {
+            return `<div style="display:flex;align-items:center;gap:6px;"><span class="tag" style="background:#fee2e2;color:#991b1b;font-weight:700;">⚠️ Not Assigned</span>${locHtml}</div>`;
+          }
+
+          return `
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:5px;">
+                ${teachers.map(t => `
+                  <span class="tag" style="background:${t.color.bg};color:${t.color.fg};border:1px solid ${t.color.border || t.color.fg}55;font-weight:700;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;">
+                    <span class="swatch" style="background:${t.color.fg};width:7px;height:7px;border-radius:2px;"></span>
+                    ${teacherShort(t)}
+                    <span style="font-size:11px;font-weight:500;opacity:0.85;">(${t.name})</span>
+                  </span>
+                `).join('')}
+                ${locHtml}
+              </div>
+            </div>`;
         }
       },
       { key: 'studentCount', label: 'Students', render: c => `<span class="tag" style="background:#f1f5f9;color:#475569;font-weight:700;">${c.studentCount} students</span>` }
@@ -47,7 +145,7 @@ function renderCourses() {
       const btn = document.createElement('button');
       btn.className = 'table-action-btn quick-teacher';
       btn.setAttribute('data-quickteacher', id);
-      btn.title = "Quickly reassign teacher without opening full edit form";
+      btn.title = "Quickly reassign faculty without opening full edit form";
       btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg><span>Faculty</span>`;
       btn.onclick = requireAdmin(() => openQuickTeacherModal(id));
       actions.insertBefore(btn, actions.firstChild);
@@ -86,12 +184,28 @@ function courseGroupsHtml(course) {
 
 function openCourseModal(course) {
   const isEdit = !!course;
-  const c = course || { code: '', title: '', credit: 3, dept: 'ECE', type: 'theory', sessionsPerWeek: 1, studentCount: 60, teacherId: null, roomId: null, groups: [] };
+  let initialTeacherIds = [];
+  if (course) {
+    if (Array.isArray(course.teacherIds) && course.teacherIds.length) {
+      initialTeacherIds = [...course.teacherIds];
+    } else if (course.teacherId) {
+      initialTeacherIds = [course.teacherId];
+    } else if (course.groups && course.groups.length) {
+      initialTeacherIds = course.groups.map(g => g.teacherId).filter(Boolean);
+    }
+  }
+  let currentTeacherIds = Array.from(new Set(initialTeacherIds.map(Number).filter(Boolean)));
+  let teacherPicker = null;
+
+  const c = course || {
+    code: '', title: '', credit: 3, dept: 'ECE', type: 'theory',
+    sessionsPerWeek: 1, studentCount: 60, teacherId: null, teacherIds: [], roomId: null, labId: null, groups: []
+  };
 
   const body = () => `
     <div class="modal-header">
       <h2>${isEdit ? 'Edit Course Information' : 'Register New Course'}</h2>
-      <div class="sub">Set up syllabus codes, department attributes, and faculty allocations for <strong>${activeSeries() ? activeSeries().name : ''}</strong>.</div>
+      <div class="sub">Set up syllabus codes, department attributes, room allocation, and instructors for <strong>${activeSeries() ? activeSeries().name : ''}</strong>.</div>
       <button class="modal-close-icon" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-form-body">
@@ -101,7 +215,7 @@ function openCourseModal(course) {
       </div>
       <div class="field-row">
         <div class="field"><label>Department</label><select id="cf-dept">${DEPTS.map(d => `<option ${c.dept === d ? 'selected' : ''}>${d}</option>`).join('')}</select></div>
-        <div class="field"><label>Credits</label><input id="cf-credit" type="number" step="0.5" value="${c.credit}"></div>
+        <div class="field"><label>Credits</label><input id="cf-credit" type="number" step="0.25" value="${c.credit}"></div>
       </div>
       <div class="field-row">
         <div class="field"><label>Course Category</label>
@@ -127,69 +241,135 @@ function openCourseModal(course) {
   openModal(body());
 
   function renderTeacherSection() {
-    const tSel = document.getElementById('cf-teacher');
-    if (tSel) c.teacherId = Number(tSel.value) || null;
+    // Preserve any current room selection before re-rendering
     const rSel = document.getElementById('cf-room');
     if (rSel) c.roomId = Number(rSel.value) || null;
+    const lSel = document.getElementById('cf-lab');
+    if (lSel) c.labId = Number(lSel.value) || null;
 
     const type = document.getElementById('cf-type').value;
-    const students = Number(document.getElementById('cf-students').value) || 0;
     const box = document.getElementById('teacherSection');
+
     if (type === 'theory') {
       const currentRoomId = c.roomId || (c.room ? (state.rooms.find(r => r.code === c.room) || {}).id : null);
+      const primaryTeacherId = (currentTeacherIds && currentTeacherIds[0]) || c.teacherId || null;
       box.innerHTML = `
-        <div class="field-row">
-          <div class="field"><label>Assign Theory Instructor</label>
-            <select id="cf-teacher"><option value="">— Select Instructor —</option>${state.teachers.map(t => `<option value="${t.id}" ${c.teacherId === t.id ? 'selected' : ''}>${teacherOptionLabel(t)} — ${t.dept}</option>`).join('')}</select>
-          </div>
-          <div class="field"><label>Assign Classroom / Room</label>
-            <select id="cf-room"><option value="">— Select Room —</option>${state.rooms.map(r => `<option value="${r.id}" ${currentRoomId === r.id ? 'selected' : ''}>${r.code} (${r.loc || 'Main Campus'})</option>`).join('')}</select>
-          </div>
+        <div class="field"><label>Assign Classroom / Room</label>
+          <select id="cf-room">
+            <option value="">— Select Room —</option>
+            ${state.rooms.map(r => `<option value="${r.id}" ${currentRoomId === r.id ? 'selected' : ''}>${r.code} (${r.loc || 'Main Campus'})</option>`).join('')}
+          </select>
+        </div>
+        <div class="field" style="margin-top:10px;">
+          <label style="display:flex;justify-content:space-between;align-items:center;">
+            <span>Assigned Instructor(s) <span style="font-weight:400;color:var(--text-mute);">(Multiple instructors can be assigned)</span></span>
+          </label>
+          ${renderMultiTeacherSelectorHtml('cf-multi-teachers')}
+          <select id="cf-teacher" style="display:none;">
+            <option value="">— Select Instructor —</option>
+            ${state.teachers.map(t => `<option value="${t.id}" ${primaryTeacherId === t.id ? 'selected' : ''}>${teacherOptionLabel(t)} — ${t.dept}</option>`).join('')}
+          </select>
         </div>`;
     } else {
-      box.innerHTML = `<label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:8px;color:var(--violet-dark);">Parallel Lab Groups (${LAB_GROUP_SIZE} students per group)</label>` + courseGroupsHtml({ ...c, studentCount: students });
+      const currentLabId = c.labId || (c.groups && c.groups[0] && c.groups[0].labId) || (c.room ? (state.labs.find(l => l.name === c.room) || {}).id : null);
+      const primaryTeacherId = (currentTeacherIds && currentTeacherIds[0]) || c.teacherId || null;
+      box.innerHTML = `
+        <div class="field"><label>Allocated Lab Facility / Room</label>
+          <select id="cf-lab">
+            <option value="">— Select Lab Facility —</option>
+            ${state.labs.map(l => `<option value="${l.id}" ${currentLabId === l.id ? 'selected' : ''}>${l.name}</option>`).join('')}
+          </select>
+        </div>
+        <div class="field" style="margin-top:10px;">
+          <label style="display:flex;justify-content:space-between;align-items:center;">
+            <span>Assigned Lab Instructor(s) <span style="font-weight:400;color:var(--text-mute);">(Multiple instructors can be assigned)</span></span>
+          </label>
+          ${renderMultiTeacherSelectorHtml('cf-multi-teachers')}
+          <select id="cf-teacher" style="display:none;">
+            <option value="">— Select Instructor —</option>
+            ${state.teachers.map(t => `<option value="${t.id}" ${primaryTeacherId === t.id ? 'selected' : ''}>${teacherOptionLabel(t)} — ${t.dept}</option>`).join('')}
+          </select>
+        </div>
+        <div class="hint-card" style="margin-top:10px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>Multiple teachers can be assigned to guide and conduct this lab course simultaneously.</span>
+        </div>`;
     }
+
+    // Initialize multi-teacher picker with current teacher IDs
+    teacherPicker = initMultiTeacherSelector('cf-multi-teachers', currentTeacherIds, (newIds) => {
+      currentTeacherIds = newIds;
+      const tSel = document.getElementById('cf-teacher');
+      if (tSel) tSel.value = newIds[0] || '';
+    });
   }
+
   renderTeacherSection();
   document.getElementById('cf-type').onchange = renderTeacherSection;
-  document.getElementById('cf-students').oninput = renderTeacherSection;
 
   document.getElementById('cSave').onclick = () => {
     const code = document.getElementById('cf-code').value.trim();
     if (!code) { toast('Course code is required.', 'warn'); return; }
     const type = document.getElementById('cf-type').value;
     const studentCount = Number(document.getElementById('cf-students').value) || 0;
+
+    let finalTeacherIds = teacherPicker ? teacherPicker.getTeacherIds() : currentTeacherIds;
+    const legacyTeacherInput = document.getElementById('cf-teacher');
+    if ((!finalTeacherIds || !finalTeacherIds.length) && legacyTeacherInput && Number(legacyTeacherInput.value)) {
+      finalTeacherIds = [Number(legacyTeacherInput.value)];
+    }
+    const primaryTeacherId = finalTeacherIds.length ? finalTeacherIds[0] : null;
+
     const data = {
-      code, title: document.getElementById('cf-title').value.trim(),
+      code,
+      title: document.getElementById('cf-title').value.trim(),
       dept: document.getElementById('cf-dept').value,
       credit: Number(document.getElementById('cf-credit').value) || 0,
-      type, sessionsPerWeek: Number(document.getElementById('cf-sessions').value) || 1,
+      type,
+      sessionsPerWeek: Number(document.getElementById('cf-sessions').value) || 1,
       studentCount,
+      teacherIds: finalTeacherIds,
+      teacherId: primaryTeacherId
     };
+
     if (type === 'theory') {
-      data.teacherId = Number(document.getElementById('cf-teacher').value) || null;
       data.roomId = (document.getElementById('cf-room') && Number(document.getElementById('cf-room').value)) || null;
       const rObj = data.roomId ? roomById(data.roomId) : null;
       data.room = rObj ? rObj.code : '';
+      data.labId = null;
       data.groups = [];
     } else {
-      const n = Math.max(1, Math.ceil(studentCount / LAB_GROUP_SIZE));
-      data.teacherId = null;
+      data.labId = (document.getElementById('cf-lab') && Number(document.getElementById('cf-lab').value)) || null;
+      const labObj = data.labId ? labById(data.labId) : null;
+      data.room = labObj ? labObj.name : '';
       data.roomId = null;
-      data.room = '';
-      data.groups = [];
-      for (let i = 0; i < n; i++) {
-        data.groups.push({
-          labId: Number(document.getElementById('grp-lab-' + i).value) || null,
-          teacherId: Number(document.getElementById('grp-teacher-' + i).value) || null,
-        });
-      }
+      data.groups = [{
+        labId: data.labId,
+        teacherId: primaryTeacherId,
+        teacherIds: finalTeacherIds,
+        size: studentCount || 60
+      }];
     }
-    if (isEdit) { Object.assign(course, data); toast(`Course ${data.code} updated`, 'ok'); }
-    else { state.courses.push({ id: nextId(), seriesId: state.activeSeriesId, ...data }); toast(`Course ${data.code} created`, 'ok'); }
-    closeModal(); renderCourses();
+
+    if (isEdit) {
+      Object.assign(course, data);
+      toast(`Course ${data.code} updated`, 'ok');
+    } else {
+      state.courses.push({ id: nextId(), seriesId: state.activeSeriesId, ...data });
+      toast(`Course ${data.code} created`, 'ok');
+    }
+    closeModal();
+    renderCourses();
   };
-  if (isEdit) document.getElementById('cDel').onclick = () => { state.courses = state.courses.filter(x => x.id !== course.id); closeModal(); renderCourses(); toast('Course removed', 'info'); };
+
+  if (isEdit) {
+    document.getElementById('cDel').onclick = () => {
+      state.courses = state.courses.filter(x => x.id !== course.id);
+      closeModal();
+      renderCourses();
+      toast('Course removed', 'info');
+    };
+  }
 }
 
 /* Quick Teacher Reassignment Modal */
@@ -197,11 +377,45 @@ function openQuickTeacherModal(courseId) {
   const c = state.courses.find(x => x.id === courseId);
   if (!c) return;
   const isLab = c.type === 'lab';
-  const body = isLab
-    ? courseGroupsHtml(c)
-    : `<div class="field"><label>Assign Theory Instructor</label>
-        <select id="qt-teacher"><option value="">— Select Instructor —</option>${state.teachers.map(t => `<option value="${t.id}" ${c.teacherId === t.id ? 'selected' : ''}>${teacherOptionLabel(t)} — ${t.dept}</option>`).join('')}</select>
-      </div>`;
+
+  let initialTeacherIds = [];
+  if (Array.isArray(c.teacherIds) && c.teacherIds.length) {
+    initialTeacherIds = [...c.teacherIds];
+  } else if (c.teacherId) {
+    initialTeacherIds = [c.teacherId];
+  } else if (c.groups && c.groups.length) {
+    initialTeacherIds = c.groups.map(g => g.teacherId).filter(Boolean);
+  }
+  let currentTeacherIds = Array.from(new Set(initialTeacherIds.map(Number).filter(Boolean)));
+  let teacherPicker = null;
+
+  const currentRoomId = c.roomId || (c.room ? (state.rooms.find(r => r.code === c.room) || {}).id : null);
+  const currentLabId = c.labId || (c.groups && c.groups[0] && c.groups[0].labId) || (c.room ? (state.labs.find(l => l.name === c.room) || {}).id : null);
+
+  const body = isLab ? `
+    <div class="field"><label>Allocated Lab Facility / Room</label>
+      <select id="qt-lab">
+        <option value="">— Select Lab Facility —</option>
+        ${state.labs.map(l => `<option value="${l.id}" ${currentLabId === l.id ? 'selected' : ''}>${l.name}</option>`).join('')}
+      </select>
+    </div>
+    <div class="field" style="margin-top:10px;">
+      <label>Assigned Lab Instructor(s) <span style="font-weight:400;color:var(--text-mute);">(Select 2 or more instructors)</span></label>
+      ${renderMultiTeacherSelectorHtml('qt-multi-teachers')}
+    </div>
+  ` : `
+    <div class="field"><label>Classroom / Room</label>
+      <select id="qt-room">
+        <option value="">— Select Room —</option>
+        ${state.rooms.map(r => `<option value="${r.id}" ${currentRoomId === r.id ? 'selected' : ''}>${r.code} (${r.loc || 'Main Campus'})</option>`).join('')}
+      </select>
+    </div>
+    <div class="field" style="margin-top:10px;">
+      <label>Assigned Theory Instructor(s) <span style="font-weight:400;color:var(--text-mute);">(Select 2 or more instructors)</span></label>
+      ${renderMultiTeacherSelectorHtml('qt-multi-teachers')}
+    </div>
+  `;
+
   openModal(`
     <div class="modal-header">
       <div class="modal-badge-icon">
@@ -219,20 +433,40 @@ function openQuickTeacherModal(courseId) {
       <button class="btn-primary" id="qtSave">Confirm Reassignment</button>
     </div>
   `);
+
+  teacherPicker = initMultiTeacherSelector('qt-multi-teachers', currentTeacherIds, (newIds) => {
+    currentTeacherIds = newIds;
+  });
+
   document.getElementById('qtSave').onclick = () => {
+    const finalTeacherIds = teacherPicker ? teacherPicker.getTeacherIds() : currentTeacherIds;
+    const primaryTeacherId = finalTeacherIds.length ? finalTeacherIds[0] : null;
+
+    c.teacherIds = finalTeacherIds;
+    c.teacherId = primaryTeacherId;
+
     if (isLab) {
-      const groups = computeLabGroups(c);
-      c.groups = groups.map((g, i) => ({
-        labId: Number(document.getElementById('grp-lab-' + i).value) || null,
-        teacherId: Number(document.getElementById('grp-teacher-' + i).value) || null,
-      }));
+      const labSel = document.getElementById('qt-lab');
+      c.labId = labSel ? (Number(labSel.value) || null) : c.labId;
+      const labObj = c.labId ? labById(c.labId) : null;
+      if (labObj) c.room = labObj.name;
+      c.groups = [{
+        labId: c.labId,
+        teacherId: primaryTeacherId,
+        teacherIds: finalTeacherIds,
+        size: c.studentCount || 60
+      }];
     } else {
-      c.teacherId = Number(document.getElementById('qt-teacher').value) || null;
+      const roomSel = document.getElementById('qt-room');
+      c.roomId = roomSel ? (Number(roomSel.value) || null) : c.roomId;
+      const rObj = c.roomId ? roomById(c.roomId) : null;
+      if (rObj) c.room = rObj.code;
     }
+
     closeModal();
     if (state.activeNav === 'courses') renderCourses();
     else if (state.activeNav === 'dashboard') renderDashboard();
     else renderRoutine();
-    toast(`Instructor assigned for ${c.code}`, 'ok');
+    toast(`Instructor(s) assigned for ${c.code}`, 'ok');
   };
 }

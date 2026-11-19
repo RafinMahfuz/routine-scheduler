@@ -189,15 +189,27 @@ function runAutoGenerationEngine(options = {}) {
   // Ensure every course has valid lab/teacher references before running
   state.courses.forEach(c => {
     if (c.type === 'lab') {
+      if (!c.teacherIds || !c.teacherIds.length) {
+        if (c.teacherId) c.teacherIds = [c.teacherId];
+        else if (c.groups && c.groups.length && c.groups[0].teacherId) c.teacherIds = [c.groups[0].teacherId];
+      }
       if (!c.groups || !c.groups.length || !c.groups[0].labId) {
         const rawClass = state.classes.find(cl => cl.seriesId === c.seriesId && cl.code === c.code);
-        const labId = typeof resolveLabId === 'function' ? resolveLabId(rawClass ? rawClass.room : '') : (state.labs[0] ? state.labs[0].id : 1);
-        const teacherId = c.teacherId || (rawClass ? rawClass.teacherId : null) || (state.teachers[0] ? state.teachers[0].id : null);
-        c.groups = [{ labId, teacherId, size: 60 }];
+        const labId = c.labId || (typeof resolveLabId === 'function' ? resolveLabId(rawClass ? rawClass.room : '') : (state.labs[0] ? state.labs[0].id : 1));
+        const teacherId = (c.teacherIds && c.teacherIds[0]) || c.teacherId || (rawClass ? rawClass.teacherId : null) || (state.teachers[0] ? state.teachers[0].id : null);
+        c.groups = [{ labId, teacherId, teacherIds: c.teacherIds || (teacherId ? [teacherId] : []), size: 60 }];
+        c.labId = labId;
+        if (!c.teacherId) c.teacherId = teacherId;
       }
-    } else if (!c.teacherId) {
-      const rawClass = state.classes.find(cl => cl.seriesId === c.seriesId && cl.code === c.code);
-      c.teacherId = (rawClass ? rawClass.teacherId : null) || (state.teachers[0] ? state.teachers[0].id : null);
+    } else {
+      if (!c.teacherIds || !c.teacherIds.length) {
+        if (c.teacherId) c.teacherIds = [c.teacherId];
+      }
+      if (!c.teacherId) {
+        const rawClass = state.classes.find(cl => cl.seriesId === c.seriesId && cl.code === c.code);
+        c.teacherId = (rawClass ? rawClass.teacherId : null) || (state.teachers[0] ? state.teachers[0].id : null);
+        if (c.teacherId && (!c.teacherIds || !c.teacherIds.length)) c.teacherIds = [c.teacherId];
+      }
     }
   });
 
@@ -245,6 +257,14 @@ function runAutoGenerationEngine(options = {}) {
       return true;
     }
 
+    function areTeachersAvailable(tids, day, start, span) {
+      if (!tids || !tids.length) return true;
+      for (const tid of tids) {
+        if (!isTeacherAvailable(tid, day, start, span)) return false;
+      }
+      return true;
+    }
+
     function isRoomAvailable(rk, day, start, span) {
       if (!rk) return true;
       const list = getRoomList(day, rk);
@@ -272,7 +292,10 @@ function runAutoGenerationEngine(options = {}) {
 
     function bookClass(c) {
       newClasses.push(c);
-      if (c.teacherId) getTeacherList(c.day, c.teacherId).push({ start: c.start, span: c.span, code: c.code });
+      const tids = (c.teacherIds && c.teacherIds.length) ? c.teacherIds : (c.teacherId ? [c.teacherId] : []);
+      tids.forEach(tid => {
+        getTeacherList(c.day, tid).push({ start: c.start, span: c.span, code: c.code });
+      });
       if (c.room) {
         const rk = c.cat === 'Lab' ? 'lab-' + c.room : 'room-' + c.room;
         getRoomList(c.day, rk).push({ start: c.start, span: c.span, code: c.code });
@@ -282,7 +305,10 @@ function runAutoGenerationEngine(options = {}) {
 
     // Seed preserved classes from other batches
     preservedClasses.forEach(c => {
-      if (c.teacherId) getTeacherList(c.day, c.teacherId).push({ start: c.start, span: c.span, code: c.code });
+      const tids = (c.teacherIds && c.teacherIds.length) ? c.teacherIds : (c.teacherId ? [c.teacherId] : []);
+      tids.forEach(tid => {
+        getTeacherList(c.day, tid).push({ start: c.start, span: c.span, code: c.code });
+      });
       if (c.room) {
         const rk = c.cat === 'Lab' ? 'lab-' + c.room : 'room-' + c.room;
         getRoomList(c.day, rk).push({ start: c.start, span: c.span, code: c.code });
@@ -298,9 +324,12 @@ function runAutoGenerationEngine(options = {}) {
 
     // --- PHASE 1: LAB SESSIONS (Most Constrained) ---
     for (const course of labCourses) {
-      const g = course.groups && course.groups[0];
-      const tid = g ? g.teacherId : course.teacherId;
-      const labObj = g && g.labId ? state.labs.find(l => l.id === g.labId) : null;
+      const tids = (course.teacherIds && course.teacherIds.length)
+        ? course.teacherIds
+        : (course.teacherId ? [course.teacherId] : (course.groups && course.groups[0] && course.groups[0].teacherId ? [course.groups[0].teacherId] : []));
+      const tid = tids[0] || null;
+      const labId = course.labId || (course.groups && course.groups[0] && course.groups[0].labId) || null;
+      const labObj = labId ? state.labs.find(l => l.id === labId) : null;
       const labIdx = state.labs.findIndex(l => l.id === (labObj ? labObj.id : -1));
       const labRoomName = (labObj && labObj.name.startsWith('Lab-'))
         ? labObj.name
@@ -323,9 +352,10 @@ function runAutoGenerationEngine(options = {}) {
             if (isDeptMeeting(day, start, 3)) continue;
             if (!isSeriesAvailable(course.seriesId, day, start, 3)) continue;
             if (!isRoomAvailable(labKey, day, start, 3)) continue;
-            if (!isTeacherAvailable(tid, day, start, 3)) continue;
+            if (!areTeachersAvailable(tids, day, start, 3)) continue;
 
-            const t = teacherById(tid);
+            const t = tid ? teacherById(tid) : null;
+            const combinedInitials = courseTeacherInitials(course) || (t ? teacherShort(t) : '');
             bookClass({
               id: nextId(),
               seriesId: course.seriesId,
@@ -337,7 +367,8 @@ function runAutoGenerationEngine(options = {}) {
               title: course.title,
               room: labRoomName,
               teacherId: tid,
-              initials: t ? teacherShort(t) : '',
+              teacherIds: tids,
+              initials: combinedInitials,
               section: "All Sections"
             });
             usedDays.add(day);
@@ -376,7 +407,10 @@ function runAutoGenerationEngine(options = {}) {
 
     for (const item of sessionsToPlace) {
       const course = item.course;
-      const tid = course.teacherId;
+      const tids = (course.teacherIds && course.teacherIds.length)
+        ? course.teacherIds
+        : (course.teacherId ? [course.teacherId] : []);
+      const tid = tids[0] || null;
       const sid = course.seriesId;
       const sIdx = state.series.findIndex(s => s.id === sid);
       const assignedRoomObj = course.roomId ? roomById(course.roomId) : (course.room ? state.rooms.find(r => r.code === course.room) : null);
@@ -404,7 +438,7 @@ function runAutoGenerationEngine(options = {}) {
       for (const day of candidateDays) {
         for (const start of THEORY_STARTS_PRIORITY) {
           if (!isSeriesAvailable(sid, day, start, 1)) continue;
-          if (!isTeacherAvailable(tid, day, start, 1)) continue;
+          if (!areTeachersAvailable(tids, day, start, 1)) continue;
 
           let chosenRoom = null;
           for (const rm of roomCandidates) {
@@ -415,7 +449,8 @@ function runAutoGenerationEngine(options = {}) {
           }
           if (!chosenRoom) continue;
 
-          const t = teacherById(tid);
+          const t = tid ? teacherById(tid) : null;
+          const combinedInitials = courseTeacherInitials(course) || (t ? teacherShort(t) : '');
           bookClass({
             id: nextId(),
             seriesId: sid,
@@ -427,7 +462,8 @@ function runAutoGenerationEngine(options = {}) {
             title: course.title,
             room: chosenRoom,
             teacherId: tid,
-            initials: t ? teacherShort(t) : '',
+            teacherIds: tids,
+            initials: combinedInitials,
             section: "All Sections"
           });
           usedDays.add(day);
@@ -2374,15 +2410,16 @@ function classFormFieldsTheory(c) {
     <div class="field-row">
       <div class="field"><label>Room</label><input id="f-room" value="${c ? c.room || '' : ''}" placeholder="e.g. 2271 R-604"></div>
       <div class="field">
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <label for="f-teacher" style="margin:0;">Teacher</label>
-          <button type="button" class="teacher-quick-color-btn" id="btnQuickTeacherColor" style="display:inline-flex;align-items:center;gap:4px;background:none;border:1px solid var(--border);border-radius:4px;padding:1px 6px;cursor:pointer;font-size:11px;font-weight:600;color:var(--text);" title="Change assigned teacher's routine color">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+          <label style="margin:0;">Instructor(s) <span style="font-weight:400;color:var(--text-mute);">(Multiple allowed)</span></label>
+          <button type="button" class="teacher-quick-color-btn" id="btnQuickTeacherColor" style="display:none;align-items:center;gap:4px;background:none;border:1px solid var(--border);border-radius:4px;padding:1px 6px;cursor:pointer;font-size:11px;font-weight:600;color:var(--text);" title="Change assigned teacher's routine color">
             <span class="swatch" id="quickTeacherSwatch" style="width:10px;height:10px;border-radius:2px;display:inline-block;"></span>
             <span id="quickTeacherColorName">Color</span>
             <span>🎨</span>
           </button>
         </div>
-        <select id="f-teacher" style="margin-top:4px;">${teacherOpts}</select>
+        ${renderMultiTeacherSelectorHtml('class-teacher-picker')}
+        <input type="hidden" id="f-teacher" value="${c && c.teacherId ? c.teacherId : ''}">
       </div>
     </div>
     <div class="field"><label>Initials shown on grid <span style="font-weight:400;color:var(--text-mute);">(optional — e.g. MFA+NIS; leave blank to use the teacher's initials)</span></label><input id="f-initials" value="${c ? c.initials || '' : ''}" placeholder="e.g. MFA+NIS"></div>
@@ -2410,15 +2447,16 @@ function classFormFieldsLab(c) {
     <div class="field-row">
       <div class="field"><label>Lab / Room</label><input id="f-room" list="${labListId}" value="${c ? c.room || '' : ''}" placeholder="e.g. Lab-4 / Lab-2">${labDatalist}</div>
       <div class="field">
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <label for="f-teacher" style="margin:0;">Teacher</label>
-          <button type="button" class="teacher-quick-color-btn" id="btnQuickTeacherColor" style="display:inline-flex;align-items:center;gap:4px;background:none;border:1px solid var(--border);border-radius:4px;padding:1px 6px;cursor:pointer;font-size:11px;font-weight:600;color:var(--text);" title="Change assigned teacher's routine color">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+          <label style="margin:0;">Instructor(s) <span style="font-weight:400;color:var(--text-mute);">(Multiple allowed)</span></label>
+          <button type="button" class="teacher-quick-color-btn" id="btnQuickTeacherColor" style="display:none;align-items:center;gap:4px;background:none;border:1px solid var(--border);border-radius:4px;padding:1px 6px;cursor:pointer;font-size:11px;font-weight:600;color:var(--text);" title="Change assigned teacher's routine color">
             <span class="swatch" id="quickTeacherSwatch" style="width:10px;height:10px;border-radius:2px;display:inline-block;"></span>
             <span id="quickTeacherColorName">Color</span>
             <span>🎨</span>
           </button>
         </div>
-        <select id="f-teacher" style="margin-top:4px;">${teacherOpts}</select>
+        ${renderMultiTeacherSelectorHtml('class-teacher-picker')}
+        <input type="hidden" id="f-teacher" value="${c && c.teacherId ? c.teacherId : ''}">
       </div>
     </div>
     <div class="field"><label>Course Code</label><input id="f-code" value="${c ? c.code || '' : ''}" placeholder="e.g. ECE 2203"></div>
@@ -2428,36 +2466,76 @@ function classFormFieldsLab(c) {
   `;
 }
 
-/* ---- Helper to wire quick teacher color button inside modal forms ---- */
-function wireModalTeacherColorQuickBtn() {
-  const sel = document.getElementById('f-teacher');
+/* ---- Helper to wire quick teacher color button and multi-teacher picker inside modal forms ---- */
+let currentModalClassTeacherPicker = null;
+
+function wireModalTeacherColorQuickBtn(c) {
+  let initialIds = [];
+  if (c) {
+    if (Array.isArray(c.teacherIds) && c.teacherIds.length) {
+      initialIds = [...c.teacherIds];
+    } else if (c.teacherId) {
+      initialIds = [c.teacherId];
+    } else if (c.initials) {
+      const codes = teacherCodesForClass(c);
+      initialIds = codes.map(code => {
+        const t = state.teachers.find(x => x.shortName && x.shortName.toUpperCase() === code);
+        return t ? t.id : null;
+      }).filter(Boolean);
+    }
+  }
+  initialIds = Array.from(new Set(initialIds.map(Number).filter(Boolean)));
+
   const btn = document.getElementById('btnQuickTeacherColor');
   const swatch = document.getElementById('quickTeacherSwatch');
   const nameLbl = document.getElementById('quickTeacherColorName');
-  if (!sel || !btn) return;
+  const hiddenInput = document.getElementById('f-teacher');
+  const initialsInput = document.getElementById('f-initials');
 
-  const updateSwatch = () => {
-    const tid = Number(sel.value);
-    const t = state.teachers.find(x => x.id === tid);
-    if (t && t.color) {
+  function updateUi(ids) {
+    const primaryId = ids[0] || null;
+    if (hiddenInput) hiddenInput.value = primaryId || '';
+    const t = primaryId ? teacherById(primaryId) : null;
+    if (btn && t && t.color) {
       btn.style.display = 'inline-flex';
       if (swatch) swatch.style.background = t.color.fg;
       if (nameLbl) nameLbl.textContent = t.color.name || 'Color';
       btn.title = `Change ${t.shortName || t.name}'s display color`;
-    } else {
+    } else if (btn) {
       btn.style.display = 'none';
     }
-  };
 
-  sel.onchange = updateSwatch;
-  updateSwatch();
+    if (initialsInput && (!initialsInput.value.trim() || initialsInput.dataset.autoGenerated === 'true' || !initialsInput.dataset.touched)) {
+      const generated = ids.map(id => {
+        const obj = teacherById(id);
+        return obj ? teacherShort(obj) : '';
+      }).filter(Boolean).join('+');
+      initialsInput.value = generated;
+      initialsInput.dataset.autoGenerated = 'true';
+    }
+  }
 
-  btn.onclick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const tid = Number(sel.value);
-    if (tid) openTeacherColorPicker(tid);
-  };
+  currentModalClassTeacherPicker = initMultiTeacherSelector('class-teacher-picker', initialIds, (newIds) => {
+    updateUi(newIds);
+  });
+
+  if (initialsInput) {
+    initialsInput.oninput = () => {
+      initialsInput.dataset.touched = 'true';
+      initialsInput.dataset.autoGenerated = 'false';
+    };
+  }
+
+  updateUi(initialIds);
+
+  if (btn) {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const tid = Number(hiddenInput ? hiddenInput.value : null);
+      if (tid) openTeacherColorPicker(tid);
+    };
+  }
 }
 
 /* ---- Entry point when a person clicks an empty grid cell ----
@@ -2480,55 +2558,67 @@ function openAddCellModal(day, start, seriesId) {
 }
 
 function openAddClassModal(day, start, seriesId) {
+  const classData = { day, start, cat: DEPTS[0], code: '', title: '', room: '', teacherId: null, teacherIds: [], initials: '' };
   openModal(`
     <h2>Add Class</h2>
     <div class="sub">Schedule a new theory class (50 min) in the routine grid.</div>
-    ${classFormFieldsTheory({ day, start, cat: DEPTS[0], code: '', title: '', room: '', teacherId: null, initials: '' })}
+    ${classFormFieldsTheory(classData)}
     <div class="modal-actions">
       <button class="btn-ghost" onclick="closeModal()">Cancel</button>
       <button class="btn-primary" id="saveClassBtn">Add Class</button>
     </div>
   `);
-  wireModalTeacherColorQuickBtn();
+  wireModalTeacherColorQuickBtn(classData);
   document.getElementById('saveClassBtn').onclick = () => {
     const code = document.getElementById('f-code').value.trim();
     if (!code) { toast('Course code is required.', 'warn'); return; }
     const start = Number(document.getElementById('f-start').value);
     const span = THEORY_SPAN;
     if (!validateClassTiming(start, span)) return;
+    const chosenTeacherIds = currentModalClassTeacherPicker ? currentModalClassTeacherPicker.getTeacherIds() : (Number(document.getElementById('f-teacher').value) ? [Number(document.getElementById('f-teacher').value)] : []);
+    const primaryTid = chosenTeacherIds.length ? chosenTeacherIds[0] : null;
+    const initials = document.getElementById('f-initials').value.trim() || (chosenTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+'));
+
     state.classes.push({
       id: nextId(), seriesId: seriesId || state.activeSeriesId, day: document.getElementById('f-day').value, start, span,
       cat: document.getElementById('f-cat').value, code,
       title: document.getElementById('f-title').value.trim(), room: document.getElementById('f-room').value.trim(),
-      teacherId: Number(document.getElementById('f-teacher').value) || null,
-      initials: document.getElementById('f-initials').value.trim(), section: "All Sections",
+      teacherId: primaryTid,
+      teacherIds: chosenTeacherIds,
+      initials: initials, section: "All Sections",
     });
     closeModal(); renderRoutine();
   };
 }
 
 function openAddLabModal(day, start, seriesId) {
+  const labData = { day, start, code: '', title: '', room: '', teacherId: null, teacherIds: [], initials: '' };
   openModal(`
     <h2>Add Lab</h2>
     <div class="sub">Schedule a new lab session (2 hr 30 min) in the routine grid.</div>
-    ${classFormFieldsLab({ day, start, code: '', title: '', room: '', teacherId: null, initials: '' })}
+    ${classFormFieldsLab(labData)}
     <div class="modal-actions">
       <button class="btn-ghost" onclick="closeModal()">Cancel</button>
       <button class="btn-primary" id="saveClassBtn">Add Lab</button>
     </div>
   `);
-  wireModalTeacherColorQuickBtn();
+  wireModalTeacherColorQuickBtn(labData);
   document.getElementById('saveClassBtn').onclick = () => {
     const code = document.getElementById('f-code').value.trim();
     if (!code) { toast('Course code is required.', 'warn'); return; }
     const start = Number(document.getElementById('f-start').value);
     const span = LAB_SPAN;
     if (!validateClassTiming(start, span)) return;
+    const chosenTeacherIds = currentModalClassTeacherPicker ? currentModalClassTeacherPicker.getTeacherIds() : (Number(document.getElementById('f-teacher').value) ? [Number(document.getElementById('f-teacher').value)] : []);
+    const primaryTid = chosenTeacherIds.length ? chosenTeacherIds[0] : null;
+    const initials = document.getElementById('f-initials').value.trim() || (chosenTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+'));
+
     state.classes.push({
       id: nextId(), seriesId: seriesId || state.activeSeriesId, day: document.getElementById('f-day').value, start, span, cat: 'Lab', code,
       title: document.getElementById('f-title').value.trim(), room: document.getElementById('f-room').value,
-      teacherId: Number(document.getElementById('f-teacher').value) || null,
-      initials: document.getElementById('f-initials').value.trim(), section: "All Sections",
+      teacherId: primaryTid,
+      teacherIds: chosenTeacherIds,
+      initials: initials, section: "All Sections",
     });
     closeModal(); renderRoutine();
   };
@@ -2553,15 +2643,21 @@ function openEditTheoryModal(c) {
       <button class="btn-primary" id="saveClassBtn">Save Changes</button>
     </div>
   `);
-  wireModalTeacherColorQuickBtn();
+  wireModalTeacherColorQuickBtn(c);
   document.getElementById('saveClassBtn').onclick = () => {
     const start = Number(document.getElementById('f-start').value);
     const span = THEORY_SPAN;
     if (!validateClassTiming(start, span)) return;
+    const chosenTeacherIds = currentModalClassTeacherPicker ? currentModalClassTeacherPicker.getTeacherIds() : (Number(document.getElementById('f-teacher').value) ? [Number(document.getElementById('f-teacher').value)] : []);
+    const primaryTid = chosenTeacherIds.length ? chosenTeacherIds[0] : null;
+    const initials = document.getElementById('f-initials').value.trim() || (chosenTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+'));
+
     c.day = document.getElementById('f-day').value; c.start = start; c.span = span; c.cat = document.getElementById('f-cat').value;
     c.code = document.getElementById('f-code').value.trim(); c.title = document.getElementById('f-title').value.trim();
-    c.room = document.getElementById('f-room').value.trim(); c.teacherId = Number(document.getElementById('f-teacher').value) || null;
-    c.initials = document.getElementById('f-initials').value.trim();
+    c.room = document.getElementById('f-room').value.trim();
+    c.teacherId = primaryTid;
+    c.teacherIds = chosenTeacherIds;
+    c.initials = initials;
     closeModal(); renderRoutine();
   };
   document.getElementById('deleteClassBtn').onclick = () => { state.classes = state.classes.filter(x => x.id !== c.id); closeModal(); renderRoutine(); };
@@ -2579,15 +2675,21 @@ function openEditLabModal(c) {
       <button class="btn-primary" id="saveClassBtn">Save Changes</button>
     </div>
   `);
-  wireModalTeacherColorQuickBtn();
+  wireModalTeacherColorQuickBtn(c);
   document.getElementById('saveClassBtn').onclick = () => {
     const start = Number(document.getElementById('f-start').value);
     const span = LAB_SPAN;
     if (!validateClassTiming(start, span)) return;
+    const chosenTeacherIds = currentModalClassTeacherPicker ? currentModalClassTeacherPicker.getTeacherIds() : (Number(document.getElementById('f-teacher').value) ? [Number(document.getElementById('f-teacher').value)] : []);
+    const primaryTid = chosenTeacherIds.length ? chosenTeacherIds[0] : null;
+    const initials = document.getElementById('f-initials').value.trim() || (chosenTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+'));
+
     c.day = document.getElementById('f-day').value; c.start = start; c.span = span; c.cat = 'Lab';
     c.code = document.getElementById('f-code').value.trim(); c.title = document.getElementById('f-title').value.trim();
-    c.room = document.getElementById('f-room').value.trim(); c.teacherId = Number(document.getElementById('f-teacher').value) || null;
-    c.initials = document.getElementById('f-initials').value.trim();
+    c.room = document.getElementById('f-room').value.trim();
+    c.teacherId = primaryTid;
+    c.teacherIds = chosenTeacherIds;
+    c.initials = initials;
     closeModal(); renderRoutine();
   };
   document.getElementById('deleteClassBtn').onclick = () => { state.classes = state.classes.filter(x => x.id !== c.id); closeModal(); renderRoutine(); };

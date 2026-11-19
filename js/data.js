@@ -504,6 +504,7 @@ function buildCoursesFromClasses() {
     const labId = isLab ? resolveLabId(c.room) : null;
     const teacherId = c.teacherId || (state.teachers[0] ? state.teachers[0].id : null);
     const roomObj = !isLab && c.room ? state.rooms.find(r => r.code.toLowerCase() === c.room.toLowerCase()) : null;
+    const teacherIds = teacherId ? [teacherId] : [];
     state.courses.push({
       id: nextId(), seriesId: c.seriesId, code: c.code, title: c.title,
       credit: isLab ? 1.5 : 3,
@@ -511,10 +512,12 @@ function buildCoursesFromClasses() {
       type: isLab ? 'lab' : 'theory',
       sessionsPerWeek: Math.max(1, sessions),
       studentCount: 60,
-      teacherId: isLab ? null : teacherId,
+      teacherId: teacherId,
+      teacherIds: teacherIds,
       roomId: roomObj ? roomObj.id : null,
       room: roomObj ? roomObj.code : (isLab ? '' : (c.room || '')),
-      groups: isLab ? [{ labId: labId, teacherId: teacherId, size: 60 }] : []
+      labId: labId,
+      groups: isLab ? [{ labId: labId, teacherId: teacherId, teacherIds: teacherIds, size: 60 }] : []
     });
   });
 }
@@ -555,9 +558,11 @@ function assignSemesterCoursesToSeries(seriesId, semesterName, clearExistingRout
         sessionsPerWeek: sc.sessionsPerWeek || (isLab ? 1 : 3),
         studentCount: 60,
         teacherId: null,
+        teacherIds: [],
         roomId: null,
         room: '',
-        groups: isLab ? [{ labId: (state.labs[0] ? state.labs[0].id : null), teacherId: null, size: 60 }] : []
+        labId: isLab ? (state.labs[0] ? state.labs[0].id : null) : null,
+        groups: isLab ? [{ labId: (state.labs[0] ? state.labs[0].id : null), teacherId: null, teacherIds: [], size: 60 }] : []
       });
     }
   });
@@ -793,6 +798,34 @@ function loadState() {
             if (matchedLab) {
               const idx = state.labs.indexOf(matchedLab);
               if (idx >= 0) c.room = `Lab-${idx + 1}`;
+            }
+          }
+        });
+      }
+
+      // Ensure courses and classes have teacherIds initialized
+      if (state.courses && state.courses.length) {
+        state.courses.forEach(c => {
+          if (!c.teacherIds || !Array.isArray(c.teacherIds)) {
+            if (c.teacherId) c.teacherIds = [c.teacherId];
+            else if (c.groups && c.groups.length) {
+              c.teacherIds = c.groups.map(g => g.teacherId).filter(Boolean);
+            } else {
+              c.teacherIds = [];
+            }
+          }
+          if (c.teacherIds.length && !c.teacherId) c.teacherId = c.teacherIds[0];
+          if (c.type === 'lab' && !c.labId && c.groups && c.groups[0] && c.groups[0].labId) {
+            c.labId = c.groups[0].labId;
+          }
+        });
+      }
+      if (state.classes && state.classes.length) {
+        state.classes.forEach(c => {
+          if (!c.teacherIds || !Array.isArray(c.teacherIds)) {
+            if (c.teacherId) c.teacherIds = [c.teacherId];
+            else {
+              c.teacherIds = [];
             }
           }
         });

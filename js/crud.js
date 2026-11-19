@@ -187,8 +187,8 @@ function renderTeachers() {
       { key: 'email', label: 'Email Address', render: t => `<span style="color:var(--text-mute);font-size:12.5px;">${t.email || '—'}</span>` },
       {
         key: 'load', label: 'Teaching Load', render: t => {
-          const theory = state.courses.filter(c => c.teacherId === t.id).length;
-          const labs = state.courses.filter(c => c.type === 'lab' && (c.groups || []).some(g => g.teacherId === t.id)).length;
+          const theory = state.courses.filter(c => (c.teacherIds ? c.teacherIds.includes(t.id) : c.teacherId === t.id)).length;
+          const labs = state.courses.filter(c => c.type === 'lab' && ((c.teacherIds ? c.teacherIds.includes(t.id) : false) || (c.groups || []).some(g => g.teacherId === t.id) || c.teacherId === t.id)).length;
           return (theory + labs)
             ? `<span class="tag" style="background:#e0e7ff;color:#4338ca;font-weight:700;">${theory + labs} courses</span>`
             : '<span style="color:var(--text-mute);font-size:12px;">Unallocated</span>';

@@ -48,7 +48,11 @@ function renderDashboard() {
 
   const perDay = DAYS.map(d => ({ day: d, count: classesForDay(d).length }));
   const maxCount = Math.max(1, ...perDay.map(p => p.count));
-  const unassigned = seriesCourses.filter(c => c.type === 'theory' ? !c.teacherId : computeLabGroups(c).some(g => !g.teacherId || !g.labId));
+  const unassigned = seriesCourses.filter(c => {
+    const tids = (c.teacherIds && c.teacherIds.length) ? c.teacherIds : (c.teacherId ? [c.teacherId] : []);
+    if (c.type === 'theory') return tids.length === 0;
+    return tids.length === 0 || (!c.labId && (!c.groups || !c.groups[0] || !c.groups[0].labId));
+  });
 
   document.getElementById('mainArea').innerHTML = `
     <div class="topbar">

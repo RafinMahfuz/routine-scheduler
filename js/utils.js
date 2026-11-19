@@ -46,6 +46,37 @@ function teacherForClass(c) {
   return null;
 }
 
+/* Returns all teacher objects assigned to a course (supports multiple instructors for theory and lab). */
+function courseTeachers(c) {
+  if (!c) return [];
+  let ids = [];
+  if (Array.isArray(c.teacherIds) && c.teacherIds.length) {
+    ids = c.teacherIds;
+  } else if (c.teacherId) {
+    ids = [c.teacherId];
+  } else if (c.groups && c.groups.length) {
+    ids = c.groups.map(g => g.teacherId).filter(Boolean);
+  }
+  const seen = new Set();
+  const result = [];
+  for (const id of ids) {
+    const numId = Number(id);
+    if (numId && !seen.has(numId)) {
+      seen.add(numId);
+      const t = teacherById(numId);
+      if (t) result.push(t);
+    }
+  }
+  return result;
+}
+
+/* Returns initials of all assigned course teachers joined by '+' (e.g. "MFA+NIS" or "MAH+NRP+MNT"). */
+function courseTeacherInitials(c) {
+  const teachers = courseTeachers(c);
+  if (!teachers.length) return '';
+  return teachers.map(t => teacherShort(t)).join('+');
+}
+
 /* Returns all teacher initials linked to a class as an array of uppercase strings.
    Supports parallel/combined teacher labels like "MFA+NIS" or "MKG+MI / NRP+MNT". */
 function teacherCodesForClass(c) {
@@ -53,6 +84,12 @@ function teacherCodesForClass(c) {
   const codes = new Set();
   const t = teacherForClass(c);
   if (t && t.shortName) codes.add(t.shortName.trim().toUpperCase());
+  if (c.teacherIds && Array.isArray(c.teacherIds)) {
+    c.teacherIds.forEach(id => {
+      const obj = teacherById(id);
+      if (obj && obj.shortName) codes.add(obj.shortName.trim().toUpperCase());
+    });
+  }
   if (c.initials) {
     const matches = c.initials.match(/[A-Za-z0-9]+/g);
     if (matches) {

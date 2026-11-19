@@ -15,8 +15,8 @@ function renderReports() {
     name: t.name,
     shortName: teacherShort(t),
     color: t.color,
-    count: seriesClasses.filter(c => c.teacherId === t.id).length,
-    hours: (seriesClasses.filter(c => c.teacherId === t.id).reduce((acc, c) => acc + c.span, 0) * 50 / 60).toFixed(1)
+    count: seriesClasses.filter(c => (c.teacherIds ? c.teacherIds.includes(t.id) : c.teacherId === t.id) || (c.initials && c.initials.toUpperCase().includes((t.shortName || '').toUpperCase()))).length,
+    hours: (seriesClasses.filter(c => (c.teacherIds ? c.teacherIds.includes(t.id) : c.teacherId === t.id) || (c.initials && c.initials.toUpperCase().includes((t.shortName || '').toUpperCase()))).reduce((acc, c) => acc + c.span, 0) * 50 / 60).toFixed(1)
   })).sort((a, b) => b.count - a.count);
 
   document.getElementById('mainArea').innerHTML = `
