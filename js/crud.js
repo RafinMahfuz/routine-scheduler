@@ -180,10 +180,8 @@ function renderTeachers() {
     items: state.teachers, addLabel: "Add Faculty",
     columns: [
       { key: 'color', label: 'Color Tag', render: t => `<button class="teacher-color-change-btn" data-pick-color="${t.id}" title="Click to customize ${t.shortName || t.name}'s color" style="display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);padding:3px 8px;border-radius:6px;cursor:pointer;"><span class="swatch" style="background:${t.color.fg};"></span><span style="font-size:12px;font-weight:700;color:${t.color.fg};">${t.color.name || 'Custom'}</span><span style="font-size:11px;opacity:0.7;">🎨</span></button>` },
-
       { key: 'shortName', label: 'Routine Initials', render: t => `<strong class="teacher-short-tag" style="color:${t.color.fg};background:${t.color.bg};">${t.shortName || '—'}</strong>` },
       { key: 'name', label: 'Full Name &amp; Title', render: t => `<span style="font-weight:600;color:var(--text);">${t.name}</span>` },
-      { key: 'dept', label: 'Department', render: t => `<span class="tag dept-tag" style="background:var(--c-${t.dept.toLowerCase()}-bg,#eee);color:var(--c-${t.dept.toLowerCase()}-fg,#555);">${t.dept}</span>` },
       { key: 'email', label: 'Email Address', render: t => `<span style="color:var(--text-mute);font-size:12.5px;">${t.email || '—'}</span>` },
       {
         key: 'load', label: 'Teaching Load', render: t => {
@@ -200,27 +198,156 @@ function renderTeachers() {
       fields: [
         { key: 'name', label: 'Full Name with Title', placeholder: 'e.g. Dr. Jane Doe' },
         { key: 'shortName', label: 'Short Form (Grid Initials)', placeholder: 'e.g. JD' },
-        { key: 'dept', label: 'Department', type: 'select', options: DEPTS },
         { key: 'email', label: 'Institutional Email', type: 'email', placeholder: 'name@ruet.ac.bd' }
       ],
-      onSave: (d) => { state.teachers.push({ id: nextId(), ...d, color: assignTeacherColor() }); renderTeachers(); toast('Faculty member added', 'ok'); }
+      onSave: (d) => { state.teachers.push({ id: nextId(), ...d, dept: 'ECE', color: assignTeacherColor() }); renderTeachers(); toast('Faculty member added', 'ok'); }
     }),
-    onEdit: (id) => {
-      const t = state.teachers.find(x => x.id === id);
-      simpleFormModal({
-        title: "Edit Faculty Member", sub: "Update name, initials, department or email.", initial: t,
-        fields: [
-          { key: 'name', label: 'Full Name' },
-          { key: 'shortName', label: 'Short Form (Grid Initials)', placeholder: 'e.g. JD' },
-          { key: 'dept', label: 'Department', type: 'select', options: DEPTS },
-          { key: 'email', label: 'Email Address' }
-        ],
-        onSave: (d) => { Object.assign(t, d); renderTeachers(); toast('Faculty details saved', 'ok'); },
-        onDelete: () => { state.teachers = state.teachers.filter(x => x.id !== id); renderTeachers(); toast('Faculty member removed', 'info'); }
-      });
-    },
+    onEdit: (id) => openEditTeacherModal(state.teachers.find(x => x.id === id)),
     onDelete: (id) => { state.teachers = state.teachers.filter(x => x.id !== id); renderTeachers(); toast('Faculty member removed', 'info'); }
   });
+}
+
+function openEditTeacherModal(t) {
+  if (!t) return;
+  let currentColor = t.color ? Object.assign({}, t.color) : assignTeacherColor();
+  const currentHex = currentColor.fg || '#4338ca';
+  const currentBg = currentColor.bg || '#eef2ff';
+  const currentBorder = currentColor.border || currentHex;
+
+  const paletteSwatchesHtml = TEACHER_PALETTE.map((p, idx) => `
+    <button type="button" class="swatch-btn ${currentColor.fg && currentColor.fg.toLowerCase() === p.fg.toLowerCase() ? 'active' : ''}" data-tpalette-idx="${idx}" title="${p.name} (${p.fg})" style="width:24px;height:24px;border-radius:50%;background:${p.fg};border:2px solid ${currentColor.fg && currentColor.fg.toLowerCase() === p.fg.toLowerCase() ? '#000' : 'transparent'};cursor:pointer;outline:none;padding:0;transition:transform 0.15s ease;"></button>
+  `).join('');
+
+  const modalHtml = `
+    <div class="modal-header">
+      <h2>Edit Faculty Member</h2>
+      <div class="sub">Update name, routine initials, email, and display color for <strong>${t.shortName || t.name}</strong>.</div>
+      <button class="modal-close-icon" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-form-body">
+      <div class="field">
+        <label for="tf-name">Full Name &amp; Title</label>
+        <input id="tf-name" type="text" value="${t.name || ''}" placeholder="e.g. Prof. Dr. John Doe">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="tf-short">Routine Initials (Grid Badge)</label>
+          <input id="tf-short" type="text" value="${t.shortName || ''}" placeholder="e.g. JD">
+        </div>
+        <div class="field">
+          <label for="tf-email">Email Address</label>
+          <input id="tf-email" type="email" value="${t.email || ''}" placeholder="name@ruet.ac.bd">
+        </div>
+      </div>
+      <div class="field" style="margin-top:6px;">
+        <label>Routine Display Color</label>
+        <div style="background:var(--bg-subtle,#f8fafc);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:4px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
+            <div id="tfColorLivePreview" style="padding:6px 14px;border-radius:6px;font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:8px;background:${currentBg};color:${currentHex};border:1.5px solid ${currentBorder};">
+              <span id="tfColorDot" style="width:10px;height:10px;border-radius:50%;background:${currentHex};"></span>
+              <span id="tfPreviewInitials">${t.shortName || 'FAC'}</span>
+              <span style="font-size:11px;opacity:0.8;">(${t.name || 'Instructor'})</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <label for="tfColorPicker" style="font-size:12px;font-weight:600;color:var(--text-mute);">Custom Color:</label>
+              <input type="color" id="tfColorPicker" value="${currentHex}" style="width:34px;height:30px;padding:0;border:none;border-radius:4px;cursor:pointer;background:none;">
+            </div>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--text-mute);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;">Preset Academic Palette:</div>
+          <div id="tfPaletteRow" style="display:flex;flex-wrap:wrap;gap:6px;">
+            ${paletteSwatchesHtml}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost btn-danger" id="tfDelete">Delete</button>
+      <div style="flex:1;"></div>
+      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" id="tfSave">Save Changes</button>
+    </div>
+  `;
+
+  openModal(modalHtml);
+
+  const nameInput = document.getElementById('tf-name');
+  const shortInput = document.getElementById('tf-short');
+  const colorPicker = document.getElementById('tfColorPicker');
+  const previewEl = document.getElementById('tfColorLivePreview');
+  const previewDot = document.getElementById('tfColorDot');
+  const previewInitials = document.getElementById('tfPreviewInitials');
+
+  function updateColorUI(colorObj) {
+    currentColor = Object.assign({}, colorObj);
+    if (previewEl) {
+      previewEl.style.background = currentColor.bg;
+      previewEl.style.color = currentColor.fg;
+      previewEl.style.borderColor = currentColor.border || currentColor.fg;
+    }
+    if (previewDot) previewDot.style.background = currentColor.fg;
+    if (colorPicker) colorPicker.value = currentColor.fg;
+    document.querySelectorAll('#tfPaletteRow .swatch-btn').forEach((btn, idx) => {
+      const p = TEACHER_PALETTE[idx];
+      if (p && p.fg.toLowerCase() === currentColor.fg.toLowerCase()) {
+        btn.style.borderColor = '#000';
+        btn.style.transform = 'scale(1.18)';
+      } else {
+        btn.style.borderColor = 'transparent';
+        btn.style.transform = 'scale(1)';
+      }
+    });
+  }
+
+  if (shortInput) {
+    shortInput.oninput = () => {
+      if (previewInitials) previewInitials.textContent = shortInput.value.trim() || 'FAC';
+    };
+  }
+
+  if (colorPicker) {
+    colorPicker.oninput = () => {
+      const hex = colorPicker.value;
+      updateColorUI({
+        name: 'Custom',
+        fg: hex,
+        bg: hex + '1a',
+        border: hex
+      });
+    };
+  }
+
+  document.querySelectorAll('#tfPaletteRow .swatch-btn').forEach(btn => {
+    btn.onclick = () => {
+      const idx = Number(btn.dataset.tpaletteIdx);
+      if (TEACHER_PALETTE[idx]) {
+        updateColorUI(TEACHER_PALETTE[idx]);
+      }
+    };
+  });
+
+  document.getElementById('tfSave').onclick = () => {
+    const newName = nameInput.value.trim();
+    if (!newName) { toast('Full name is required', 'warn'); nameInput.focus(); return; }
+    t.name = newName;
+    t.shortName = shortInput.value.trim();
+    t.email = document.getElementById('tf-email').value.trim();
+    t.color = Object.assign({}, currentColor);
+
+    saveState();
+    closeModal();
+    renderTeachers();
+    toast(`Faculty details and color for ${t.shortName || t.name} updated`, 'ok');
+  };
+
+  document.getElementById('tfDelete').onclick = () => {
+    if (confirm(`Remove ${t.name} from faculty roster?`)) {
+      state.teachers = state.teachers.filter(x => x.id !== t.id);
+      saveState();
+      closeModal();
+      renderTeachers();
+      toast('Faculty member removed', 'info');
+    }
+  };
 }
 
 /* ---- Students ---- */

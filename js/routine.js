@@ -111,6 +111,12 @@ function openAutoGenerateModal() {
             <strong>Distinct-Day Distribution</strong>: Multi-session courses are spread across different days of the week (no repeat on same day).
           </div>
         </div>
+        <div class="ac-item">
+          <span class="ac-icon">🎯</span>
+          <div class="ac-text">
+            <strong>Mandatory Courses Exclusively</strong>: Auto-generation schedules core mandatory courses only. Optional/elective courses are preserved and added manually as students select different options.
+          </div>
+        </div>
       </div>
 
       <div class="modal-actions" style="margin-top:20px; display:flex; justify-content:flex-end; gap:10px;">
@@ -181,10 +187,12 @@ function runAutoGenerationEngine(options = {}) {
     ? state.series
     : state.series.filter(s => s.id === targetSeriesId);
 
-  // Classes to preserve
+  // Classes to preserve:
+  // In single-series scope: all classes from other series, PLUS any optional classes in target series.
+  // In all-series scope: all optional classes across all series.
   const preservedClasses = scope === 'all'
-    ? []
-    : state.classes.filter(c => c.seriesId !== targetSeriesId);
+    ? state.classes.filter(c => typeof isOptionalCourse === 'function' && isOptionalCourse(c))
+    : state.classes.filter(c => c.seriesId !== targetSeriesId || (typeof isOptionalCourse === 'function' && isOptionalCourse(c)));
 
   // Ensure every course has valid lab/teacher references before running
   state.courses.forEach(c => {
@@ -316,7 +324,10 @@ function runAutoGenerationEngine(options = {}) {
       getSeriesList(c.day, c.seriesId).push({ start: c.start, span: c.span, code: c.code });
     });
 
-    const targetCourses = state.courses.filter(c => seriesToSchedule.some(s => s.id === c.seriesId));
+    const targetCourses = state.courses.filter(c =>
+      seriesToSchedule.some(s => s.id === c.seriesId) &&
+      !(typeof isOptionalCourse === 'function' && isOptionalCourse(c))
+    );
     const labCourses = shuffle(targetCourses.filter(c => c.type === 'lab'));
     const theoryCourses = shuffle(targetCourses.filter(c => c.type === 'theory'));
 
@@ -2540,88 +2551,395 @@ function wireModalTeacherColorQuickBtn(c) {
 
 /* ---- Entry point when a person clicks an empty grid cell ----
    Morning/midday slots can host either a Class or a Lab, so ask which one.
-   Afternoon slots only ever allow a Lab, so skip straight to the Lab form. */
+   Afternoon slots only ever allow a Lab, so skip straight to the Lab selection. */
 function openAddCellModal(day, start, seriesId) {
   const isTheorySlot = THEORY_ALLOWED_STARTS.includes(start);
-  if (!isTheorySlot) { openAddLabModal(day, start, seriesId); return; }
+  const targetSeriesId = seriesId || state.activeSeriesId || (state.series[0] ? state.series[0].id : null);
+  const s = state.series.find(x => x.id === targetSeriesId) || state.series[0];
+  const seriesName = s ? s.name : 'Routine';
+
+  if (!isTheorySlot) {
+    openSelectLabModal(day, start, targetSeriesId);
+    return;
+  }
+
   openModal(`
-    <h2>Add to Routine</h2>
-    <div class="sub">${day} — what would you like to schedule in this slot?</div>
-    <div class="modal-actions" style="flex-direction:column;gap:10px;">
-      <button class="btn-primary" id="chooseClassBtn" style="width:100%;">📘 Add Class <span style="font-weight:400;opacity:.85;">— Theory, 50 min</span></button>
-      <button class="btn-primary" id="chooseLabBtn" style="width:100%;background:var(--c-lab-fg,#128a3e);">🧪 Add Lab <span style="font-weight:400;opacity:.85;">— 2 hr 30 min</span></button>
+    <div class="modal-header">
+      <h2>Select Class or Lab</h2>
+      <div class="sub">${seriesName} • ${day} (${timeRangeLabel(start, 1)}) — choose session type to schedule</div>
+      <button class="modal-close-icon" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-actions" style="flex-direction:column;gap:10px;margin-top:16px;">
+      <button class="btn-primary" id="chooseClassBtn" style="width:100%;padding:12px 16px;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;">
+        <span>📘 Select Class</span>
+        <span style="font-weight:400;font-size:12px;opacity:.85;">(Theory Course, 50 min)</span>
+      </button>
+      <button class="btn-primary" id="chooseLabBtn" style="width:100%;padding:12px 16px;font-size:14px;font-weight:700;background:var(--c-lab-fg,#128a3e);display:flex;align-items:center;justify-content:center;gap:8px;">
+        <span>🧪 Select Lab</span>
+        <span style="font-weight:400;font-size:12px;opacity:.85;">(Sessional Lab, 2 hr 30 min)</span>
+      </button>
       <button class="btn-ghost" onclick="closeModal()" style="width:100%;">Cancel</button>
     </div>
   `);
-  document.getElementById('chooseClassBtn').onclick = () => openAddClassModal(day, start, seriesId);
-  document.getElementById('chooseLabBtn').onclick = () => openAddLabModal(day, start, seriesId);
+  document.getElementById('chooseClassBtn').onclick = () => openSelectClassModal(day, start, targetSeriesId);
+  document.getElementById('chooseLabBtn').onclick = () => openSelectLabModal(day, start, targetSeriesId);
+}
+
+function openSelectClassModal(day, start, seriesId) {
+  const targetSeriesId = seriesId || state.activeSeriesId || (state.series[0] ? state.series[0].id : null);
+  const s = state.series.find(x => x.id === targetSeriesId) || state.series[0];
+  const seriesName = s ? s.name : 'Current Series';
+
+  const theoryCourses = (state.courses || []).filter(c => c.seriesId === targetSeriesId && c.type === 'theory');
+
+  if (!theoryCourses.length) {
+    openModal(`
+      <div class="modal-header">
+        <h2>Select Class — ${seriesName}</h2>
+        <div class="sub">No theory courses found for <strong>${seriesName}</strong>.</div>
+        <button class="modal-close-icon" onclick="closeModal()">✕</button>
+      </div>
+      <div style="padding:24px 16px;text-align:center;">
+        <div style="font-size:32px;margin-bottom:10px;">📘</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">No Theory Courses Assigned</div>
+        <div style="font-size:12.5px;color:var(--text-mute);max-width:380px;margin:0 auto 16px;">
+          There are currently no theory courses registered for <strong>${seriesName}</strong>. Add courses in the Courses section or select a running semester in Settings.
+        </div>
+        <button class="btn-primary" onclick="closeModal(); state.activeSeriesId = ${targetSeriesId}; navigateTo('courses');">Go to Courses Section</button>
+      </div>
+    `);
+    return;
+  }
+
+  const sIdx = state.series.findIndex(x => x.id === targetSeriesId);
+  const preferredRoomCode = ['R-404', 'R-403', 'R-402', 'R-401', 'S-401'];
+  const defaultRoom = preferredRoomCode[sIdx >= 0 ? sIdx : 0] || 'R-404';
+
+  const courseOptionsHtml = theoryCourses.map(c => `
+    <option value="${c.id}">${c.code} — ${c.title} (${c.dept || 'ECE'})</option>
+  `).join('');
+
+  const modalHtml = `
+    <div class="modal-header">
+      <h2>Select Class — ${seriesName}</h2>
+      <div class="sub">${day} (${timeRangeLabel(start, 1)}) • Choose course for <strong>${seriesName}</strong></div>
+      <button class="modal-close-icon" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-form-body">
+      <div class="field">
+        <label for="sc-course-select" style="font-weight:700;">Select Theory Course <span style="color:var(--primary);">*</span></label>
+        <select id="sc-course-select" style="font-weight:600;font-size:13.5px;padding:8px 10px;">
+          <option value="">-- Choose Course for ${seriesName} (${theoryCourses.length} available) --</option>
+          ${courseOptionsHtml}
+        </select>
+      </div>
+
+      <div id="sc-course-details-wrap" style="display:none;margin-top:10px;padding:12px;background:var(--bg-subtle,#f8fafc);border:1px solid var(--border);border-radius:8px;">
+        <div class="field-row">
+          <div class="field">
+            <label>Course Code</label>
+            <input id="f-code" type="text" readonly style="background:rgba(0,0,0,0.03);font-weight:700;">
+          </div>
+          <div class="field">
+            <label>Course Title</label>
+            <input id="f-title" type="text" readonly style="background:rgba(0,0,0,0.03);">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Department</label>
+            <input id="f-cat" type="text" readonly style="background:rgba(0,0,0,0.03);">
+          </div>
+          <div class="field">
+            <label for="f-room">Classroom</label>
+            <select id="f-room">
+              ${state.rooms.map(r => `<option value="${r.code}">${r.code} (${r.loc})</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <div class="field" style="margin-top:8px;">
+          <label>Assigned Instructor(s)</label>
+          ${renderMultiTeacherSelectorHtml('class-teacher-picker')}
+          <select id="f-teacher" style="display:none;"></select>
+        </div>
+        <div class="field" style="margin-top:8px;">
+          <label for="f-initials">Initials on Routine</label>
+          <input id="f-initials" type="text" placeholder="Auto-generated from teachers">
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" id="saveSelectClassBtn" disabled>Place Class on Routine</button>
+    </div>
+  `;
+
+  openModal(modalHtml);
+
+  let currentTeacherPicker = null;
+
+  const selectEl = document.getElementById('sc-course-select');
+  const detailsWrap = document.getElementById('sc-course-details-wrap');
+  const saveBtn = document.getElementById('saveSelectClassBtn');
+  const codeInput = document.getElementById('f-code');
+  const titleInput = document.getElementById('f-title');
+  const catInput = document.getElementById('f-cat');
+  const roomSelect = document.getElementById('f-room');
+  const initialsInput = document.getElementById('f-initials');
+
+  function onCourseChange(courseId) {
+    const course = theoryCourses.find(c => c.id === Number(courseId));
+    if (!course) {
+      if (detailsWrap) detailsWrap.style.display = 'none';
+      if (saveBtn) saveBtn.disabled = true;
+      return;
+    }
+
+    if (detailsWrap) detailsWrap.style.display = 'block';
+    if (saveBtn) saveBtn.disabled = false;
+
+    if (codeInput) codeInput.value = course.code;
+    if (titleInput) titleInput.value = course.title;
+    if (catInput) catInput.value = course.dept || 'ECE';
+
+    const courseRoomObj = course.roomId ? roomById(course.roomId) : (course.room ? state.rooms.find(r => r.code === course.room) : null);
+    const chosenRoomCode = courseRoomObj ? courseRoomObj.code : (course.room || defaultRoom);
+    if (roomSelect) roomSelect.value = chosenRoomCode;
+
+    const initialTeacherIds = (course.teacherIds && course.teacherIds.length)
+      ? course.teacherIds
+      : (course.teacherId ? [course.teacherId] : []);
+
+    currentTeacherPicker = initMultiTeacherSelector('class-teacher-picker', initialTeacherIds, (ids) => {
+      const generated = ids.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+');
+      if (initialsInput) initialsInput.value = generated;
+    });
+
+    const initInitials = courseTeacherInitials(course) || initialTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+');
+    if (initialsInput) initialsInput.value = initInitials;
+  }
+
+  if (selectEl) {
+    selectEl.onchange = () => onCourseChange(selectEl.value);
+    if (theoryCourses.length === 1) {
+      selectEl.value = String(theoryCourses[0].id);
+      onCourseChange(theoryCourses[0].id);
+    }
+  }
+
+  if (saveBtn) {
+    saveBtn.onclick = () => {
+      const courseId = Number(selectEl.value);
+      const course = theoryCourses.find(c => c.id === courseId);
+      if (!course) { toast('Please select a course first', 'warn'); return; }
+
+      const span = THEORY_SPAN;
+      if (!validateClassTiming(start, span)) return;
+
+      const chosenTeacherIds = currentTeacherPicker ? currentTeacherPicker.getTeacherIds() : (course.teacherIds || []);
+      const primaryTid = chosenTeacherIds.length ? chosenTeacherIds[0] : (course.teacherId || null);
+      const initials = (initialsInput ? initialsInput.value.trim() : '') || chosenTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+');
+      const room = roomSelect ? roomSelect.value.trim() : defaultRoom;
+
+      state.classes.push({
+        id: nextId(),
+        seriesId: targetSeriesId,
+        day,
+        start,
+        span,
+        cat: course.dept || 'ECE',
+        code: course.code,
+        title: course.title,
+        room,
+        teacherId: primaryTid,
+        teacherIds: chosenTeacherIds,
+        initials,
+        section: "All Sections"
+      });
+
+      saveState();
+      closeModal();
+      renderRoutine();
+      toast(`Class ${course.code} scheduled for ${seriesName} on ${day}`, 'ok');
+    };
+  }
+}
+
+function openSelectLabModal(day, start, seriesId) {
+  const targetSeriesId = seriesId || state.activeSeriesId || (state.series[0] ? state.series[0].id : null);
+  const s = state.series.find(x => x.id === targetSeriesId) || state.series[0];
+  const seriesName = s ? s.name : 'Routine';
+
+  const labCourses = (state.courses || []).filter(c => c.seriesId === targetSeriesId && c.type === 'lab');
+
+  if (!labCourses.length) {
+    openModal(`
+      <div class="modal-header">
+        <h2>Select Lab — ${seriesName}</h2>
+        <div class="sub">No sessional lab courses found for <strong>${seriesName}</strong>.</div>
+        <button class="modal-close-icon" onclick="closeModal()">✕</button>
+      </div>
+      <div style="padding:24px 16px;text-align:center;">
+        <div style="font-size:32px;margin-bottom:10px;">🧪</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;">No Lab Courses Assigned</div>
+        <div style="font-size:12.5px;color:var(--text-mute);max-width:380px;margin:0 auto 16px;">
+          There are currently no sessional lab courses registered for <strong>${seriesName}</strong>. Add courses in the Courses section or select a running semester in Settings.
+        </div>
+        <button class="btn-primary" onclick="closeModal(); state.activeSeriesId = ${targetSeriesId}; navigateTo('courses');">Go to Courses Section</button>
+      </div>
+    `);
+    return;
+  }
+
+  const labOptionsHtml = labCourses.map(c => `
+    <option value="${c.id}">${c.code} — ${c.title}</option>
+  `).join('');
+
+  const modalHtml = `
+    <div class="modal-header">
+      <h2>Select Lab — ${seriesName}</h2>
+      <div class="sub">${day} (${timeRangeLabel(start, 3)}) • Choose lab for <strong>${seriesName}</strong></div>
+      <button class="modal-close-icon" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-form-body">
+      <div class="field">
+        <label for="sl-course-select" style="font-weight:700;">Select Sessional Lab Course <span style="color:var(--primary);">*</span></label>
+        <select id="sl-course-select" style="font-weight:600;font-size:13.5px;padding:8px 10px;">
+          <option value="">-- Choose Lab Course for ${seriesName} (${labCourses.length} available) --</option>
+          ${labOptionsHtml}
+        </select>
+      </div>
+
+      <div id="sl-course-details-wrap" style="display:none;margin-top:10px;padding:12px;background:var(--bg-subtle,#f8fafc);border:1px solid var(--border);border-radius:8px;">
+        <div class="field-row">
+          <div class="field">
+            <label>Course Code</label>
+            <input id="f-lab-code" type="text" readonly style="background:rgba(0,0,0,0.03);font-weight:700;">
+          </div>
+          <div class="field">
+            <label>Course Title</label>
+            <input id="f-lab-title" type="text" readonly style="background:rgba(0,0,0,0.03);">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-lab-room">Laboratory Facility</label>
+          <select id="f-lab-room">
+            ${state.labs.map((l, i) => `<option value="${l.name}">Lab-${i + 1} (${l.name})</option>`).join('')}
+          </select>
+        </div>
+        <div class="field" style="margin-top:8px;">
+          <label>Assigned Instructor(s)</label>
+          ${renderMultiTeacherSelectorHtml('lab-teacher-picker')}
+          <select id="f-teacher" style="display:none;"></select>
+        </div>
+        <div class="field" style="margin-top:8px;">
+          <label for="f-lab-initials">Initials on Routine</label>
+          <input id="f-lab-initials" type="text" placeholder="Auto-generated from teachers">
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" id="saveSelectLabBtn" disabled>Place Lab on Routine</button>
+    </div>
+  `;
+
+  openModal(modalHtml);
+
+  let currentTeacherPicker = null;
+
+  const selectEl = document.getElementById('sl-course-select');
+  const detailsWrap = document.getElementById('sl-course-details-wrap');
+  const saveBtn = document.getElementById('saveSelectLabBtn');
+  const codeInput = document.getElementById('f-lab-code');
+  const titleInput = document.getElementById('f-lab-title');
+  const roomSelect = document.getElementById('f-lab-room');
+  const initialsInput = document.getElementById('f-lab-initials');
+
+  function onLabChange(courseId) {
+    const course = labCourses.find(c => c.id === Number(courseId));
+    if (!course) {
+      if (detailsWrap) detailsWrap.style.display = 'none';
+      if (saveBtn) saveBtn.disabled = true;
+      return;
+    }
+
+    if (detailsWrap) detailsWrap.style.display = 'block';
+    if (saveBtn) saveBtn.disabled = false;
+
+    if (codeInput) codeInput.value = course.code;
+    if (titleInput) titleInput.value = course.title;
+
+    const courseLabObj = course.labId ? labById(course.labId) : (state.labs[0] || null);
+    if (roomSelect && courseLabObj) roomSelect.value = courseLabObj.name;
+
+    const initialTeacherIds = (course.teacherIds && course.teacherIds.length)
+      ? course.teacherIds
+      : (course.teacherId ? [course.teacherId] : (course.groups && course.groups[0] && course.groups[0].teacherId ? [course.groups[0].teacherId] : []));
+
+    currentTeacherPicker = initMultiTeacherSelector('lab-teacher-picker', initialTeacherIds, (ids) => {
+      const generated = ids.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+');
+      if (initialsInput) initialsInput.value = generated;
+    });
+
+    const initInitials = courseTeacherInitials(course) || initialTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+');
+    if (initialsInput) initialsInput.value = initInitials;
+  }
+
+  if (selectEl) {
+    selectEl.onchange = () => onLabChange(selectEl.value);
+    if (labCourses.length === 1) {
+      selectEl.value = String(labCourses[0].id);
+      onLabChange(labCourses[0].id);
+    }
+  }
+
+  if (saveBtn) {
+    saveBtn.onclick = () => {
+      const courseId = Number(selectEl.value);
+      const course = labCourses.find(c => c.id === courseId);
+      if (!course) { toast('Please select a lab course first', 'warn'); return; }
+
+      const span = LAB_SPAN;
+      if (!validateClassTiming(start, span)) return;
+
+      const chosenTeacherIds = currentTeacherPicker ? currentTeacherPicker.getTeacherIds() : (course.teacherIds || []);
+      const primaryTid = chosenTeacherIds.length ? chosenTeacherIds[0] : (course.teacherId || null);
+      const initials = (initialsInput ? initialsInput.value.trim() : '') || chosenTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+');
+      const labName = roomSelect ? roomSelect.value : (state.labs[0] ? state.labs[0].name : 'Lab-1');
+      const labIdx = state.labs.findIndex(l => l.name === labName);
+      const labRoomFormatted = labIdx >= 0 ? `Lab-${labIdx + 1}` : labName;
+
+      state.classes.push({
+        id: nextId(),
+        seriesId: targetSeriesId,
+        day,
+        start,
+        span,
+        cat: 'Lab',
+        code: course.code,
+        title: course.title,
+        room: labRoomFormatted,
+        teacherId: primaryTid,
+        teacherIds: chosenTeacherIds,
+        initials,
+        section: "All Sections"
+      });
+
+      saveState();
+      closeModal();
+      renderRoutine();
+      toast(`Lab ${course.code} scheduled for ${seriesName} on ${day}`, 'ok');
+    };
+  }
 }
 
 function openAddClassModal(day, start, seriesId) {
-  const classData = { day, start, cat: DEPTS[0], code: '', title: '', room: '', teacherId: null, teacherIds: [], initials: '' };
-  openModal(`
-    <h2>Add Class</h2>
-    <div class="sub">Schedule a new theory class (50 min) in the routine grid.</div>
-    ${classFormFieldsTheory(classData)}
-    <div class="modal-actions">
-      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn-primary" id="saveClassBtn">Add Class</button>
-    </div>
-  `);
-  wireModalTeacherColorQuickBtn(classData);
-  document.getElementById('saveClassBtn').onclick = () => {
-    const code = document.getElementById('f-code').value.trim();
-    if (!code) { toast('Course code is required.', 'warn'); return; }
-    const start = Number(document.getElementById('f-start').value);
-    const span = THEORY_SPAN;
-    if (!validateClassTiming(start, span)) return;
-    const chosenTeacherIds = currentModalClassTeacherPicker ? currentModalClassTeacherPicker.getTeacherIds() : (Number(document.getElementById('f-teacher').value) ? [Number(document.getElementById('f-teacher').value)] : []);
-    const primaryTid = chosenTeacherIds.length ? chosenTeacherIds[0] : null;
-    const initials = document.getElementById('f-initials').value.trim() || (chosenTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+'));
-
-    state.classes.push({
-      id: nextId(), seriesId: seriesId || state.activeSeriesId, day: document.getElementById('f-day').value, start, span,
-      cat: document.getElementById('f-cat').value, code,
-      title: document.getElementById('f-title').value.trim(), room: document.getElementById('f-room').value.trim(),
-      teacherId: primaryTid,
-      teacherIds: chosenTeacherIds,
-      initials: initials, section: "All Sections",
-    });
-    closeModal(); renderRoutine();
-  };
+  openSelectClassModal(day, start, seriesId);
 }
 
 function openAddLabModal(day, start, seriesId) {
-  const labData = { day, start, code: '', title: '', room: '', teacherId: null, teacherIds: [], initials: '' };
-  openModal(`
-    <h2>Add Lab</h2>
-    <div class="sub">Schedule a new lab session (2 hr 30 min) in the routine grid.</div>
-    ${classFormFieldsLab(labData)}
-    <div class="modal-actions">
-      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn-primary" id="saveClassBtn">Add Lab</button>
-    </div>
-  `);
-  wireModalTeacherColorQuickBtn(labData);
-  document.getElementById('saveClassBtn').onclick = () => {
-    const code = document.getElementById('f-code').value.trim();
-    if (!code) { toast('Course code is required.', 'warn'); return; }
-    const start = Number(document.getElementById('f-start').value);
-    const span = LAB_SPAN;
-    if (!validateClassTiming(start, span)) return;
-    const chosenTeacherIds = currentModalClassTeacherPicker ? currentModalClassTeacherPicker.getTeacherIds() : (Number(document.getElementById('f-teacher').value) ? [Number(document.getElementById('f-teacher').value)] : []);
-    const primaryTid = chosenTeacherIds.length ? chosenTeacherIds[0] : null;
-    const initials = document.getElementById('f-initials').value.trim() || (chosenTeacherIds.map(id => teacherShort(teacherById(id))).filter(Boolean).join('+'));
-
-    state.classes.push({
-      id: nextId(), seriesId: seriesId || state.activeSeriesId, day: document.getElementById('f-day').value, start, span, cat: 'Lab', code,
-      title: document.getElementById('f-title').value.trim(), room: document.getElementById('f-room').value,
-      teacherId: primaryTid,
-      teacherIds: chosenTeacherIds,
-      initials: initials, section: "All Sections",
-    });
-    closeModal(); renderRoutine();
-  };
+  openSelectLabModal(day, start, seriesId);
 }
 
 /* ---- Editing an existing class routes to the matching form (Theory vs Lab) ---- */

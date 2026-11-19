@@ -124,3 +124,24 @@ function classColor(c) {
   };
 }
 
+/* Determines if a course or class session represents an elective / optional course.
+   Optional courses are chosen differently by different students, so they are not
+   auto-generated and must be placed manually on the routine. */
+function isOptionalCourse(item) {
+  if (!item) return false;
+  if (item.isOptional) return true;
+  const code = (item.code || '').trim().toUpperCase();
+  const title = (item.title || '').trim().toUpperCase();
+  if (code.includes('41**') || code.includes('42**')) return true;
+  if (code.includes('OPTIONAL') || title.includes('OPTIONAL')) return true;
+  if (typeof OPTIONAL_COURSES !== 'undefined') {
+    for (const sem in OPTIONAL_COURSES) {
+      for (const grp of OPTIONAL_COURSES[sem]) {
+        if (grp.courses.some(oc => oc.code.trim().toUpperCase() === code)) return true;
+      }
+    }
+  }
+  return false;
+}
+
+
