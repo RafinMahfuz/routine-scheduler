@@ -177,7 +177,95 @@ function renderSemesters() {
         </table>
       </div>
     </div>
+
+    <div class="card" id="semOptionalCatalog" style="margin-top:20px;padding:20px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-card);display:none;"></div>
   `;
+
+  function renderOptionalCatalog() {
+    const optContainer = document.getElementById('semOptionalCatalog');
+    if (!optContainer) return;
+
+    const optGroups = (typeof OPTIONAL_COURSES !== 'undefined' && OPTIONAL_COURSES[currentSemester]) || null;
+    if (!optGroups || !optGroups.length) {
+      optContainer.innerHTML = '';
+      optContainer.style.display = 'none';
+      return;
+    }
+
+    optContainer.style.display = 'block';
+    const groupsHtml = optGroups.map(grp => {
+      const q = currentFilter.toLowerCase();
+      const filteredCourses = q
+        ? grp.courses.filter(c => c.code.toLowerCase().includes(q) || c.title.toLowerCase().includes(q) || c.dept.toLowerCase().includes(q))
+        : grp.courses;
+
+      return `
+        <div style="margin-top:16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="tag" style="background:var(--primary-soft);color:var(--primary);font-weight:800;font-size:12px;padding:3px 10px;">${grp.group}</span>
+              <strong style="color:var(--text);font-size:14px;">${grp.title}</strong>
+            </div>
+            <span style="font-size:12px;color:var(--text-mute);font-style:italic;">${grp.note}</span>
+          </div>
+          <div class="table-responsive-wrapper" style="border:1px solid var(--border-color);border-radius:8px;background:var(--bg-card);">
+            <table class="data-table" style="margin:0;">
+              <thead>
+                <tr style="background:rgba(0,0,0,0.02);">
+                  <th style="width:50px;">#</th>
+                  <th style="width:130px;">Course Code</th>
+                  <th>Course Title</th>
+                  <th style="width:110px;">Department</th>
+                  <th style="width:140px;">Category</th>
+                  <th style="width:100px;">Credits</th>
+                  <th style="width:130px;">Weekly Load</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${filteredCourses.length ? filteredCourses.map((c, i) => `
+                  <tr>
+                    <td style="color:var(--text-mute);font-size:12px;">${i + 1}</td>
+                    <td><strong style="color:var(--text);font-family:inherit;">${c.code}</strong></td>
+                    <td>
+                      <div>
+                        <strong>${c.title}</strong>
+                        <div style="font-size:11.5px;color:var(--text-mute);margin-top:1px;">${grp.group} Elective • ${c.dept}</div>
+                      </div>
+                    </td>
+                    <td><span class="tag" style="background:var(--slate-soft);color:var(--slate-dark);font-weight:700;">${c.dept}</span></td>
+                    <td>
+                      <span class="tag" style="background:${c.type === 'lab' ? 'var(--c-lab-bg)' : 'var(--violet-soft)'};color:${c.type === 'lab' ? 'var(--c-lab-fg)' : 'var(--violet-dark)'};font-weight:700;">
+                        ${c.type === 'lab' ? '🧪 Sessional Lab' : '📘 Theory Class'}
+                      </span>
+                    </td>
+                    <td><span class="tag" style="background:#f1f5f9;color:#334155;font-weight:700;">${Number(c.credit).toFixed(2)} Cr</span></td>
+                    <td><span style="font-weight:600;">${c.sessionsPerWeek || (c.type === 'lab' ? 1 : 3)} session(s)/wk</span></td>
+                  </tr>
+                `).join('') : `
+                  <tr>
+                    <td colspan="7" style="text-align:center;padding:16px;color:var(--text-mute);font-size:12.5px;">No elective courses matching "${currentFilter}" in ${grp.group}</td>
+                  </tr>
+                `}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    optContainer.innerHTML = `
+      <div style="border-bottom:1px solid var(--border-color);padding-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <h2 style="font-size:15px;font-weight:700;margin:0;color:var(--text);">📋 Optional Elective Courses Catalog (${currentSemester})</h2>
+          <span class="tag" style="background:#fef3c7;color:#92400e;font-weight:700;font-size:11px;">Official RUET Syllabus</span>
+        </div>
+        <div style="font-size:12px;color:var(--text-mute);margin-top:3px;">
+          As specified in RUET ECE Syllabus booklet, students will choose elective courses from the following option groups for <strong>${currentSemester}</strong>. The core syllabus table above maintains the placeholder slots (${currentSemester === '4th Year (Odd)' ? 'Optional I &amp; Optional II' : 'Optional III &amp; Optional IV'}) as per the official curriculum.
+        </div>
+      </div>
+      ${groupsHtml}
+    `;
+  }
 
   // Attach tab switch events
   document.querySelectorAll('[data-sem-tab]').forEach(btn => {
@@ -193,6 +281,7 @@ function renderSemesters() {
     filterInput.oninput = () => {
       currentFilter = filterInput.value.trim();
       renderTableContent();
+      renderOptionalCatalog();
     };
   }
 
@@ -203,6 +292,7 @@ function renderSemesters() {
   }
 
   renderTableContent();
+  renderOptionalCatalog();
 }
 
 /* Modal to add or edit a course inside a semester's syllabus */

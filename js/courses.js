@@ -151,6 +151,140 @@ function renderCourses() {
       actions.insertBefore(btn, actions.firstChild);
     }
   });
+
+  // If active series is running a semester with optional elective courses (4th Year Odd or Even),
+  // render the optional courses options clearly at the bottom ("nicer dike dewa thake").
+  const s = activeSeries();
+  const sem = s ? s.runningSemester : null;
+  const optGroups = (s && typeof OPTIONAL_COURSES !== 'undefined' && OPTIONAL_COURSES[sem]) || null;
+  if (s && optGroups && optGroups.length) {
+    const mainArea = document.getElementById('mainArea');
+    if (mainArea) {
+      const optSection = document.createElement('div');
+      optSection.className = 'card';
+      optSection.id = 'seriesOptionalCoursesSection';
+      optSection.style.cssText = 'margin-top:22px;padding:20px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-card);';
+
+      const existingCodes = new Set((state.courses || []).filter(c => c.seriesId === s.id).map(c => (c.code || '').trim().toUpperCase()));
+
+      const groupsHtml = optGroups.map(grp => `
+        <div style="margin-top:16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="tag" style="background:var(--primary-soft);color:var(--primary);font-weight:800;font-size:12px;padding:3px 10px;">${grp.group}</span>
+              <strong style="color:var(--text);font-size:14px;">${grp.title}</strong>
+            </div>
+            <span style="font-size:12px;color:var(--text-mute);font-style:italic;">${grp.note}</span>
+          </div>
+          <div class="table-responsive-wrapper" style="border:1px solid var(--border-color);border-radius:8px;background:var(--bg-card);">
+            <table class="data-table" style="margin:0;">
+              <thead>
+                <tr style="background:rgba(0,0,0,0.02);">
+                  <th style="width:50px;">#</th>
+                  <th style="width:130px;">Course Code</th>
+                  <th>Course Title</th>
+                  <th style="width:110px;">Department</th>
+                  <th style="width:140px;">Category</th>
+                  <th style="width:100px;">Credits</th>
+                  <th style="width:130px;">Weekly Load</th>
+                  <th style="width:150px;text-align:right;">Status / Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${grp.courses.map((oc, i) => {
+                  const isAdded = existingCodes.has(oc.code.trim().toUpperCase());
+                  return `
+                    <tr>
+                      <td style="color:var(--text-mute);font-size:12px;">${i + 1}</td>
+                      <td><strong style="color:var(--text);font-family:inherit;">${oc.code}</strong></td>
+                      <td>
+                        <div>
+                          <strong>${oc.title}</strong>
+                          <div style="font-size:11.5px;color:var(--text-mute);margin-top:1px;">${grp.group} Elective • ${oc.dept}</div>
+                        </div>
+                      </td>
+                      <td><span class="tag" style="background:var(--slate-soft);color:var(--slate-dark);font-weight:700;">${oc.dept}</span></td>
+                      <td>
+                        <span class="tag" style="background:${oc.type === 'lab' ? 'var(--c-lab-bg)' : 'var(--violet-soft)'};color:${oc.type === 'lab' ? 'var(--c-lab-fg)' : 'var(--violet-dark)'};font-weight:700;">
+                          ${oc.type === 'lab' ? '🧪 Sessional Lab' : '📘 Theory Class'}
+                        </span>
+                      </td>
+                      <td><span class="tag" style="background:#f1f5f9;color:#334155;font-weight:700;">${Number(oc.credit).toFixed(2)} Cr</span></td>
+                      <td><span style="font-weight:600;">${oc.sessionsPerWeek || (oc.type === 'lab' ? 1 : 3)} session(s)/wk</span></td>
+                      <td style="text-align:right;">
+                        ${isAdded ? `
+                          <span class="tag" style="background:#dcfce7;color:#166534;font-weight:700;display:inline-flex;align-items:center;gap:4px;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Added to ${s.name}</span>
+                          </span>
+                        ` : `
+                          <button class="table-action-btn edit" data-add-elective="${oc.code}" title="Add ${oc.code} to ${s.name} curriculum">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            <span>+ Add to ${s.name}</span>
+                          </button>
+                        `}
+                      </td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `).join('');
+
+      optSection.innerHTML = `
+        <div style="border-bottom:1px solid var(--border-color);padding-bottom:12px;">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <h2 style="font-size:15px;font-weight:700;margin:0;color:var(--text);">📋 Optional Elective Course Options (${s.name} — ${sem})</h2>
+            <span class="tag" style="background:#fef3c7;color:#92400e;font-weight:700;font-size:11px;">RUET Syllabus Options</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-mute);margin-top:3px;">
+            Here are all available elective course options for <strong>${sem}</strong>. You can view all options below, or click "+ Add to ${s.name}" to register a specific elective into this batch's course list for faculty and routine scheduling.
+          </div>
+        </div>
+        ${groupsHtml}
+      `;
+
+      mainArea.appendChild(optSection);
+
+      // Attach add elective handler
+      optSection.querySelectorAll('[data-add-elective]').forEach(btn => {
+        btn.onclick = requireAdmin(() => {
+          const code = btn.dataset.addElective;
+          let foundCourse = null;
+          for (const grp of optGroups) {
+            foundCourse = grp.courses.find(c => c.code === code);
+            if (foundCourse) break;
+          }
+          if (!foundCourse) return;
+
+          const isLab = foundCourse.type === 'lab';
+          state.courses.push({
+            id: nextId(),
+            seriesId: s.id,
+            code: foundCourse.code,
+            title: foundCourse.title,
+            credit: foundCourse.credit,
+            dept: foundCourse.dept || 'ECE',
+            type: foundCourse.type,
+            sessionsPerWeek: foundCourse.sessionsPerWeek || (isLab ? 1 : 3),
+            studentCount: 60,
+            teacherId: null,
+            teacherIds: [],
+            roomId: null,
+            room: '',
+            labId: isLab ? (state.labs[0] ? state.labs[0].id : null) : null,
+            groups: isLab ? [{ labId: (state.labs[0] ? state.labs[0].id : null), teacherId: null, teacherIds: [], size: 60 }] : []
+          });
+
+          saveState();
+          renderCourses();
+          toast(`Elective ${foundCourse.code} (${foundCourse.title}) added to ${s.name}`, 'ok');
+        });
+      });
+    }
+  }
 }
 
 function courseGroupsHtml(course) {

@@ -311,11 +311,11 @@ const SEED_SEMESTER_COURSES = [
   { semester: "4th Year (Odd)", code: "MTE 4118", title: "Control Systems & Robotics Sessional", credit: 0.75, dept: "MTE", type: "lab", sessionsPerWeek: 1 },
   { semester: "4th Year (Odd)", code: "ECE 4123", title: "Digital Signal Processing", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
   { semester: "4th Year (Odd)", code: "ECE 4124", title: "Digital Signal Processing Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Odd)", code: "ECE 4111", title: "Digital Communication", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
-  { semester: "4th Year (Odd)", code: "ECE 4112", title: "Digital Communication Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Odd)", code: "ECE 4127", title: "VLSI Design", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
-  { semester: "4th Year (Odd)", code: "ECE 4128", title: "VLSI Design Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Odd)", code: "ECE 4000", title: "Thesis/Project-I", credit: 1.00, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional I", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional I Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional II", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Odd)", code: "ECE 41**", title: "Optional II Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Odd)", code: "ECE 4000", title: "Thesis/ Project-I", credit: 1.00, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
   { semester: "4th Year (Odd)", code: "ECE 4100", title: "Industrial Training", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
   { semester: "4th Year (Odd)", code: "ECE 4122", title: "Seminar", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
 
@@ -325,12 +325,100 @@ const SEED_SEMESTER_COURSES = [
   { semester: "4th Year (Even)", code: "ECE 4212", title: "Computer Networks Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
   { semester: "4th Year (Even)", code: "ECE 4223", title: "Digital Image Processing", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
   { semester: "4th Year (Even)", code: "ECE 4224", title: "Digital Image Processing Sessional", credit: 1.50, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Even)", code: "ECE 4221", title: "Unix Programming", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
-  { semester: "4th Year (Even)", code: "ECE 4222", title: "Unix Programming Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Even)", code: "ECE 4251", title: "Renewable Energy", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
-  { semester: "4th Year (Even)", code: "ECE 4252", title: "Renewable Energy Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
-  { semester: "4th Year (Even)", code: "ECE 4000", title: "Thesis/Project-II", credit: 3.00, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional III", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional III Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional IV", credit: 3.00, dept: "ECE", type: "theory", sessionsPerWeek: 3 },
+  { semester: "4th Year (Even)", code: "ECE 42**", title: "Optional IV Sessional", credit: 0.75, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
+  { semester: "4th Year (Even)", code: "ECE 4000", title: "Thesis/ Project -II", credit: 3.00, dept: "ECE", type: "lab", sessionsPerWeek: 1 },
 ];
+
+/* Optional (Elective) Course Catalog for 4th Year Odd & Even Semesters
+   Transcribed directly from the official RUET ECE Undergraduate Syllabus Booklet.
+   Students choose one pair (Theory + Sessional) from each optional group. */
+const OPTIONAL_COURSES = {
+  "4th Year (Odd)": [
+    {
+      group: "Optional I",
+      title: "Optional I Elective Courses",
+      note: "Students choose one pair (Theory 3.00 Cr + Sessional 0.75 Cr)",
+      courses: [
+        { code: "ECE 4111", title: "Digital Communication", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4112", title: "Digital Communication Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4115", title: "Antennas & Propagation", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4116", title: "Antennas & Propagation Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4117", title: "Radar & Satellite Communication", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4118", title: "Radar and Satellite Communication Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4125", title: "Radio & TV Engineering", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4126", title: "Radio & TV Engineering Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4141", title: "Fiber Optic Communication", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4142", title: "Fiber Optic Communication Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4143", title: "Bio-medical Engineering", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4144", title: "Biomedical Engineering Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 }
+      ]
+    },
+    {
+      group: "Optional II",
+      title: "Optional II Elective Courses",
+      note: "Students choose one pair (Theory 3.00 Cr + Sessional 0.75 Cr)",
+      courses: [
+        { code: "ECE 4127", title: "VLSI Design", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4128", title: "VLSI Design Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4129", title: "Network Planning", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4130", title: "Network Planning Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4131", title: "Wireless Networks", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4132", title: "Wireless Network Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4133", title: "Artificial Intelligence", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4134", title: "Artificial Intelligence Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4135", title: "Human Computer Interaction", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4136", title: "Human Computer Interaction Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 }
+      ]
+    }
+  ],
+  "4th Year (Even)": [
+    {
+      group: "Optional III",
+      title: "Optional III Elective Courses",
+      note: "Students choose one pair (Theory 3.00 Cr + Sessional 0.75 Cr)",
+      courses: [
+        { code: "ECE 4221", title: "Unix Programming", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4222", title: "Unix Programming Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4227", title: "Network Security", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4228", title: "Network Security Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4237", title: "Parallel & Distributed Processing", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4238", title: "Parallel and Distributed Processing Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4239", title: "Computer Graphics & Animations", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4240", title: "Computer Graphics and Animations Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4241", title: "Computer Vision", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4242", title: "Computer Vision Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4243", title: "Data Mining", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4244", title: "Data Mining Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4245", title: "Machine Learning", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4246", title: "Machine Learning Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 }
+      ]
+    },
+    {
+      group: "Optional IV",
+      title: "Optional IV Elective Courses",
+      note: "Students choose one pair (Theory 3.00 Cr + Sessional 0.75 Cr)",
+      courses: [
+        { code: "ECE 4247", title: "Computer Aided Instrumentation", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4248", title: "Computer Aided Instrumentations Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4249", title: "Computer Aided Power System Design", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4250", title: "Computer Aided Power System Design Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4251", title: "Renewable Energy", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4252", title: "Renewable Energy Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4253", title: "Microwave Engineering", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4254", title: "Microwave Engineering Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4255", title: "Power System Operation & Control", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4256", title: "Power System Operation & Control Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4257", title: "High Voltage Engineering", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4258", title: "High Voltage Engineering Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 },
+        { code: "ECE 4259", title: "System Simulation & Modeling", credit: 3.00, type: "theory", dept: "ECE", sessionsPerWeek: 3 },
+        { code: "ECE 4260", title: "System Simulation and Modeling Sessional", credit: 0.75, type: "lab", dept: "ECE", sessionsPerWeek: 1 }
+      ]
+    }
+  ]
+};
 
 /* Grid transcription. Compact tuple form to keep it readable:
      [seriesIdx, day, start, span, code, cat, initials, room]
@@ -533,12 +621,27 @@ function assignSemesterCoursesToSeries(seriesId, semesterName, clearExistingRout
   if (!syllabus.length) return;
 
   const existingCourses = state.courses.filter(c => c.seriesId === seriesId);
-  const existingMap = new Map(existingCourses.map(c => [c.code.trim().toUpperCase(), c]));
+  const matchedExistingIds = new Set();
 
   const newCourses = [];
   syllabus.forEach(sc => {
-    const existing = existingMap.get(sc.code.trim().toUpperCase());
+    const scCode = (sc.code || '').trim().toUpperCase();
+    const scTitle = (sc.title || '').trim().toUpperCase();
+    const existing = existingCourses.find(c =>
+      !matchedExistingIds.has(c.id) &&
+      (c.code || '').trim().toUpperCase() === scCode &&
+      (c.title || '').trim().toUpperCase() === scTitle
+    ) || existingCourses.find(c =>
+      !matchedExistingIds.has(c.id) &&
+      (c.code || '').trim().toUpperCase() === scCode &&
+      c.type === sc.type
+    ) || existingCourses.find(c =>
+      !matchedExistingIds.has(c.id) &&
+      (c.code || '').trim().toUpperCase() === scCode
+    );
+
     if (existing) {
+      matchedExistingIds.add(existing.id);
       existing.title = sc.title;
       existing.credit = sc.credit;
       existing.dept = sc.dept;
@@ -837,6 +940,23 @@ function loadState() {
       } else {
         state.semesterCourses = [];
         SEED_SEMESTER_COURSES.forEach(sc => state.semesterCourses.push({ id: nextId(), ...sc }));
+      }
+
+      // Upgrade 4th Year Odd and Even semester courses if previously using hardcoded optional courses
+      const hasOld4thOdd = (state.semesterCourses || []).some(c => c.semester === "4th Year (Odd)" && (c.code === "ECE 4111" || c.code === "ECE 4127"));
+      const hasOld4thEven = (state.semesterCourses || []).some(c => c.semester === "4th Year (Even)" && (c.code === "ECE 4221" || c.code === "ECE 4251"));
+      if (hasOld4thOdd || hasOld4thEven) {
+        const new4thCourses = SEED_SEMESTER_COURSES.filter(c => c.semester === "4th Year (Odd)" || c.semester === "4th Year (Even)");
+        state.semesterCourses = (state.semesterCourses || []).filter(c => c.semester !== "4th Year (Odd)" && c.semester !== "4th Year (Even)");
+        new4thCourses.forEach(sc => state.semesterCourses.push({ id: nextId(), ...sc }));
+
+        if (state.series && state.series.length) {
+          state.series.forEach(s => {
+            if (s.runningSemester === "4th Year (Odd)" || s.runningSemester === "4th Year (Even)") {
+              assignSemesterCoursesToSeries(s.id, s.runningSemester);
+            }
+          });
+        }
       }
       if (!state.semesters || !state.semesters.length) {
         state.semesters = SEMESTERS;
