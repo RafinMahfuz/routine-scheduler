@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1795098717322,
+  "updatedAt": 1795152830359,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "routine",
+      "activeNav": "labs",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -868,32 +868,27 @@
         {
           "id": 1005,
           "code": "R-401",
-          "loc": "Research Building"
+          "loc": "ECE Department"
         },
         {
           "id": 1006,
           "code": "R-402",
-          "loc": "Research Building"
+          "loc": "ECE Department"
         },
         {
           "id": 1007,
           "code": "R-403",
-          "loc": "Research Building"
+          "loc": "ECE Department"
         },
         {
           "id": 1008,
           "code": "R-404",
-          "loc": "Research Building"
+          "loc": "ECE Department"
         },
         {
           "id": 1009,
-          "code": "S-401",
-          "loc": "Shahjalal Hall (ECS)"
-        },
-        {
-          "id": 1010,
-          "code": "1107",
-          "loc": "Basic Science Building"
+          "code": "Seminar",
+          "loc": "ECE Department"
         }
       ],
       "labs": [
@@ -923,7 +918,7 @@
         },
         {
           "id": 1017,
-          "name": "HUM LAB"
+          "name": "ENG LAB"
         },
         {
           "id": 1018,
@@ -952,6 +947,10 @@
         {
           "id": 1024,
           "name": "EEE Electronics Lab"
+        },
+        {
+          "id": 4187,
+          "name": "EEE Renewable Energy Lab"
         }
       ],
       "teachers": [
@@ -1125,58 +1124,6 @@
           }
         },
         {
-          "id": 1038,
-          "name": "Md. Kabir Islam",
-          "shortName": "KF",
-          "dept": "ECE",
-          "email": "kf@ruet.ac.bd",
-          "color": {
-            "name": "Deep Cyan",
-            "bg": "#f0f9ff",
-            "fg": "#0369a1",
-            "border": "#0284c7"
-          }
-        },
-        {
-          "id": 1039,
-          "name": "Md. Abdul Kadir Sheikh",
-          "shortName": "MMR",
-          "dept": "ECE",
-          "email": "mmr@ruet.ac.bd",
-          "color": {
-            "name": "Warm Amber",
-            "bg": "#fefce8",
-            "fg": "#a16207",
-            "border": "#eab308"
-          }
-        },
-        {
-          "id": 1040,
-          "name": "Prof. Dr. Tara Ahmed",
-          "shortName": "SA",
-          "dept": "HUM",
-          "email": "sa@ruet.ac.bd",
-          "color": {
-            "name": "Forest Green",
-            "bg": "#f0fdf4",
-            "fg": "#15803d",
-            "border": "#22c55e"
-          }
-        },
-        {
-          "id": 1041,
-          "name": "Shovan Lodi",
-          "shortName": "SI",
-          "dept": "ECE",
-          "email": "si@ruet.ac.bd",
-          "color": {
-            "name": "Rich Maroon",
-            "bg": "#fdf4ff",
-            "fg": "#86198f",
-            "border": "#c026d3"
-          }
-        },
-        {
           "id": 1042,
           "name": "Md. Zahangir Alam",
           "shortName": "MZA",
@@ -1187,58 +1134,6 @@
             "bg": "#fafaf9",
             "fg": "#44403c",
             "border": "#78716c"
-          }
-        },
-        {
-          "id": 1043,
-          "name": "Dilshion Ferdous",
-          "shortName": "DF",
-          "dept": "ECE",
-          "email": "df@ruet.ac.bd",
-          "color": {
-            "name": "Cobalt Blue",
-            "bg": "#e0e7ff",
-            "fg": "#3730a3",
-            "border": "#4f46e5"
-          }
-        },
-        {
-          "id": 1044,
-          "name": "Md. Mahfuz Hasan Shuvo",
-          "shortName": "MHS",
-          "dept": "ECE",
-          "email": "mhs@ruet.ac.bd",
-          "color": {
-            "name": "Coral Rust",
-            "bg": "#ffedd5",
-            "fg": "#9a3412",
-            "border": "#ea580c"
-          }
-        },
-        {
-          "id": 1045,
-          "name": "Sultana Begum",
-          "shortName": "SB",
-          "dept": "ECE",
-          "email": "sb@ruet.ac.bd",
-          "color": {
-            "name": "Mint Teal",
-            "bg": "#ccfbf1",
-            "fg": "#115e59",
-            "border": "#0d9488"
-          }
-        },
-        {
-          "id": 1046,
-          "name": "Dr. Md. Ashraf Ali",
-          "shortName": "AAI",
-          "dept": "ECE",
-          "email": "aai@ruet.ac.bd",
-          "color": {
-            "name": "Plum Purple",
-            "bg": "#f3e8ff",
-            "fg": "#6b21a8",
-            "border": "#9333ea"
           }
         },
         {
@@ -1268,19 +1163,6 @@
           }
         },
         {
-          "id": 1049,
-          "name": "Md. Riaz Ahmed",
-          "shortName": "MRP",
-          "dept": "ECE",
-          "email": "mrp@ruet.ac.bd",
-          "color": {
-            "name": "Olive Green",
-            "bg": "#ecfccb",
-            "fg": "#3f6212",
-            "border": "#65a30d"
-          }
-        },
-        {
           "id": 1050,
           "name": "Md. Kamrul Gani",
           "shortName": "MKG",
@@ -1291,19 +1173,6 @@
             "bg": "#f1f5f9",
             "fg": "#334155",
             "border": "#64748b"
-          }
-        },
-        {
-          "id": 1051,
-          "name": "Md. Saiful Islam",
-          "shortName": "MSI",
-          "dept": "PHY",
-          "email": "msi@ruet.ac.bd",
-          "color": {
-            "name": "Orchid Pink",
-            "bg": "#fae8ff",
-            "fg": "#701a75",
-            "border": "#a21caf"
           }
         },
         {
@@ -1333,19 +1202,6 @@
           }
         },
         {
-          "id": 1054,
-          "name": "Md. Zahirul Haque",
-          "shortName": "MZH",
-          "dept": "MATH",
-          "email": "mzh@ruet.ac.bd",
-          "color": {
-            "name": "Grass Green",
-            "bg": "#bbf7d0",
-            "fg": "#166534",
-            "border": "#16a34a"
-          }
-        },
-        {
           "id": 1055,
           "name": "Md. Nazrul Islam Sarker",
           "shortName": "NIS",
@@ -1356,19 +1212,6 @@
             "bg": "#ddd6fe",
             "fg": "#5b21b6",
             "border": "#7c3aed"
-          }
-        },
-        {
-          "id": 1475,
-          "name": "Rafin Mahfuz",
-          "shortName": "RM",
-          "dept": "ECE",
-          "email": "rafinmahfuz102@gmail.com",
-          "color": {
-            "name": "Bright Berry",
-            "bg": "#fbcfe8",
-            "fg": "#9d174d",
-            "border": "#db2777"
           }
         }
       ],
@@ -4668,6 +4511,6 @@
       "head": "Head, ECE, RUET",
       "effectiveDate": "10/01/2026"
     },
-    "uid": 1587
+    "uid": 4188
   }
 }
