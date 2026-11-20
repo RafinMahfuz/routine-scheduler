@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1795157546503,
+  "updatedAt": 1795180665847,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "teachers",
+      "activeNav": "routine",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -50,7 +50,7 @@
           "runningSemester": "4th Year (Even)"
         }
       ],
-      "activeSeriesId": 1004,
+      "activeSeriesId": 1001,
       "semesters": [
         "1st Year (Odd)",
         "1st Year (Even)",
@@ -1021,7 +1021,7 @@
         },
         {
           "id": 1030,
-          "name": "Md. Faisal Ahmed",
+          "name": "Md. Faysal Ahamed",
           "shortName": "MFA",
           "dept": "ECE",
           "email": "mfa@ruet.ac.bd",
@@ -1034,10 +1034,10 @@
         },
         {
           "id": 1031,
-          "name": "Money Sumer Gazon",
-          "shortName": "MRK",
+          "name": "Moloy Kumar Ghosh",
+          "shortName": "MKG",
           "dept": "ECE",
-          "email": "mrk@ruet.ac.bd",
+          "email": "mkg@ruet.ac.bd",
           "color": {
             "name": "Sunset Orange",
             "bg": "#fff7ed",
@@ -1047,10 +1047,10 @@
         },
         {
           "id": 1032,
-          "name": "Md. Sohel Rana",
-          "shortName": "MSH",
+          "name": "Nadim Reza",
+          "shortName": "NRP",
           "dept": "ECE",
-          "email": "msh@ruet.ac.bd",
+          "email": "nrp@ruet.ac.bd",
           "color": {
             "name": "Indigo Blue",
             "bg": "#eef2ff",
@@ -1060,10 +1060,10 @@
         },
         {
           "id": 1033,
-          "name": "Md. Hafiz Uddin",
-          "shortName": "SR",
+          "name": "Mst. Nafia Islam Shishir",
+          "shortName": "NIS",
           "dept": "ECE",
-          "email": "sr@ruet.ac.bd",
+          "email": "nis@ruet.ac.bd",
           "color": {
             "name": "Cyan Sky",
             "bg": "#ecfeff",
@@ -1073,7 +1073,7 @@
         },
         {
           "id": 1034,
-          "name": "Md. Adnan Noor Tasnim",
+          "name": "Mst. Mazeda Noor Tasnim",
           "shortName": "MNT",
           "dept": "ECE",
           "email": "mnt@ruet.ac.bd",
@@ -1089,7 +1089,7 @@
           "name": "MST. Rupali Khatun",
           "shortName": "MRK",
           "dept": "ECE",
-          "email": "rk@ruet.ac.bd",
+          "email": "mrk@ruet.ac.bd",
           "color": {
             "name": "Lime Green",
             "bg": "#f7fee7",
@@ -1099,10 +1099,10 @@
         },
         {
           "id": 1036,
-          "name": "Prof. Dr. Md. Kamruzzaman",
-          "shortName": "NRP",
+          "name": "Shovon Islam",
+          "shortName": "SI",
           "dept": "ECE",
-          "email": "nrp@ruet.ac.bd",
+          "email": "si@ruet.ac.bd",
           "color": {
             "name": "Violet Magenta",
             "bg": "#faf5ff",
@@ -1112,10 +1112,10 @@
         },
         {
           "id": 1037,
-          "name": "Prof. Dr. Md. Faruk Hossain",
-          "shortName": "MFH",
+          "name": "Md. Rakibul Islam",
+          "shortName": "MRI",
           "dept": "ECE",
-          "email": "mfh@ruet.ac.bd",
+          "email": "mri@ruet.ac.bd",
           "color": {
             "name": "Hot Pink",
             "bg": "#fdf2f8",
@@ -1138,7 +1138,7 @@
         },
         {
           "id": 1047,
-          "name": "Monirul Islam",
+          "name": "Mominul Islam",
           "shortName": "MI",
           "dept": "ECE",
           "email": "mi@ruet.ac.bd",
@@ -1151,8 +1151,8 @@
         },
         {
           "id": 1048,
-          "name": "Md. Rakibul Islam",
-          "shortName": "MRI",
+          "name": "Md. Zakir Hossain",
+          "shortName": "MZH",
           "dept": "ECE",
           "email": "mri@ruet.ac.bd",
           "color": {
@@ -1160,19 +1160,6 @@
             "bg": "#cffafe",
             "fg": "#155e75",
             "border": "#0891b2"
-          }
-        },
-        {
-          "id": 1050,
-          "name": "Md. Kamrul Gani",
-          "shortName": "MKG",
-          "dept": "ECE",
-          "email": "mkg@ruet.ac.bd",
-          "color": {
-            "name": "Blue Slate",
-            "bg": "#f1f5f9",
-            "fg": "#334155",
-            "border": "#64748b"
           }
         },
         {
@@ -1229,7 +1216,10 @@
           "teacherId": 1026,
           "roomId": 1005,
           "room": "R-401",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1026
+          ]
         },
         {
           "id": 1477,
@@ -1244,7 +1234,10 @@
           "teacherId": 1029,
           "roomId": 1005,
           "room": "R-401",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1029
+          ]
         },
         {
           "id": 1478,
@@ -1280,7 +1273,10 @@
           "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1480,
@@ -1320,6 +1316,9 @@
               "teacherId": 1025,
               "size": 60
             }
+          ],
+          "teacherIds": [
+            1025
           ]
         },
         {
@@ -1332,10 +1331,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1560,
@@ -1368,10 +1370,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1562,
@@ -1404,10 +1409,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1564,
@@ -1440,10 +1448,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1566,
@@ -1455,10 +1466,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1567,
@@ -1494,7 +1508,11 @@
           "teacherId": 1028,
           "roomId": 1008,
           "room": "R-404",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1028,
+            1032
+          ]
         },
         {
           "id": 1569,
@@ -1506,19 +1524,23 @@
           "type": "lab",
           "sessionsPerWeek": 1,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1026,
           "roomId": null,
-          "room": "",
+          "room": "EEE Machine LAB",
           "groups": [
             {
-              "labId": 1013,
-              "teacherId": 1026
-            },
-            {
-              "labId": 1013,
-              "teacherId": 1036
+              "labId": 1018,
+              "teacherId": 1026,
+              "teacherIds": [
+                1026
+              ],
+              "size": 60
             }
-          ]
+          ],
+          "teacherIds": [
+            1026
+          ],
+          "labId": 1018
         },
         {
           "id": 1570,
@@ -1530,10 +1552,14 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
-          "roomId": null,
-          "room": "",
-          "groups": []
+          "teacherId": 1042,
+          "roomId": 1008,
+          "room": "R-404",
+          "groups": [],
+          "teacherIds": [
+            1042,
+            1047
+          ]
         },
         {
           "id": 1571,
@@ -1545,16 +1571,25 @@
           "type": "lab",
           "sessionsPerWeek": 1,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1042,
           "roomId": null,
-          "room": "",
+          "room": "ECE Computer LAB - 1",
           "groups": [
             {
               "labId": 1011,
-              "teacherId": null,
+              "teacherId": 1042,
+              "teacherIds": [
+                1042,
+                1047
+              ],
               "size": 60
             }
-          ]
+          ],
+          "teacherIds": [
+            1042,
+            1047
+          ],
+          "labId": 1011
         },
         {
           "id": 1572,
@@ -1566,10 +1601,14 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
-          "roomId": null,
-          "room": "",
-          "groups": []
+          "teacherId": 1033,
+          "roomId": 1008,
+          "room": "R-404",
+          "groups": [],
+          "teacherIds": [
+            1033,
+            1034
+          ]
         },
         {
           "id": 1573,
@@ -1581,16 +1620,25 @@
           "type": "lab",
           "sessionsPerWeek": 1,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1033,
           "roomId": null,
-          "room": "",
+          "room": "ECE Computer LAB - 2",
           "groups": [
             {
-              "labId": 1011,
-              "teacherId": null,
+              "labId": 1012,
+              "teacherId": 1033,
+              "teacherIds": [
+                1033,
+                1034
+              ],
               "size": 60
             }
-          ]
+          ],
+          "teacherIds": [
+            1033,
+            1034
+          ],
+          "labId": 1012
         },
         {
           "id": 1574,
@@ -1602,10 +1650,14 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
-          "roomId": null,
-          "room": "",
-          "groups": []
+          "teacherId": 1035,
+          "roomId": 1008,
+          "room": "R-404",
+          "groups": [],
+          "teacherIds": [
+            1035,
+            1048
+          ]
         },
         {
           "id": 1575,
@@ -1617,10 +1669,14 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
-          "roomId": null,
-          "room": "",
-          "groups": []
+          "teacherId": 1036,
+          "roomId": 1008,
+          "room": "R-404",
+          "groups": [],
+          "teacherIds": [
+            1036,
+            1037
+          ]
         },
         {
           "id": 1576,
@@ -1632,16 +1688,25 @@
           "type": "lab",
           "sessionsPerWeek": 1,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1026,
           "roomId": null,
-          "room": "",
+          "room": "ECE Circuit LAB",
           "groups": [
             {
-              "labId": 1011,
-              "teacherId": null,
+              "labId": 1014,
+              "teacherId": 1026,
+              "teacherIds": [
+                1026,
+                1032
+              ],
               "size": 60
             }
-          ]
+          ],
+          "teacherIds": [
+            1026,
+            1032
+          ],
+          "labId": 1014
         },
         {
           "id": 1577,
@@ -1653,10 +1718,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1578,
@@ -1689,10 +1757,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1580,
@@ -1725,10 +1796,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1582,
@@ -1761,10 +1835,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1584,
@@ -1776,10 +1853,13 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1025,
           "roomId": null,
           "room": "",
-          "groups": []
+          "groups": [],
+          "teacherIds": [
+            1025
+          ]
         },
         {
           "id": 1585,
@@ -1980,8 +2060,10 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": null,
-          "teacherIds": [],
+          "teacherId": 1039,
+          "teacherIds": [
+            1039
+          ],
           "roomId": 1007,
           "room": "R-402",
           "groups": []
@@ -4609,6 +4691,413 @@
           "teacherId": 1025,
           "initials": "SMAR",
           "section": "All Sections"
+        },
+        {
+          "id": 4189,
+          "seriesId": 1001,
+          "day": "Saturday",
+          "start": 8,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 2216",
+          "title": "Data Base Systems Sessional",
+          "room": "Lab-2",
+          "teacherId": 1033,
+          "teacherIds": [
+            1033,
+            1034
+          ],
+          "initials": "NIS+MNT",
+          "section": "All Sections"
+        },
+        {
+          "id": 4190,
+          "seriesId": 1001,
+          "day": "Saturday",
+          "start": 14,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 2214",
+          "title": "Numerical Methods & Discrete Mathematics Sessional",
+          "room": "Lab-1",
+          "teacherId": 1042,
+          "teacherIds": [
+            1042,
+            1047
+          ],
+          "initials": "MZA+MI",
+          "section": "All Sections"
+        },
+        {
+          "id": 4191,
+          "seriesId": 1001,
+          "day": "Monday",
+          "start": 8,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 2200",
+          "title": "Electronic Shop Practice",
+          "room": "Lab-4",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026,
+            1032
+          ],
+          "initials": "MAH+NRP",
+          "section": "All Sections"
+        },
+        {
+          "id": 4192,
+          "seriesId": 1001,
+          "day": "Monday",
+          "start": 11,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 2207",
+          "title": "Electrical Machine-I",
+          "room": "R-404",
+          "teacherId": 1028,
+          "teacherIds": [
+            1028,
+            1032
+          ],
+          "initials": "FT+NRP",
+          "section": "All Sections"
+        },
+        {
+          "id": 4193,
+          "seriesId": 1001,
+          "day": "Tuesday",
+          "start": 13,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 2215",
+          "title": "Data Base Systems",
+          "room": "R-404",
+          "teacherId": 1033,
+          "teacherIds": [
+            1033,
+            1034
+          ],
+          "initials": "NIS+MNT",
+          "section": "All Sections"
+        },
+        {
+          "id": 4194,
+          "seriesId": 1001,
+          "day": "Sunday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 2213",
+          "title": "Numerical Methods & Discrete Mathematics",
+          "room": "R-404",
+          "teacherId": 1042,
+          "teacherIds": [
+            1042,
+            1047
+          ],
+          "initials": "MZA+MI",
+          "section": "All Sections"
+        },
+        {
+          "id": 4195,
+          "seriesId": 1001,
+          "day": "Monday",
+          "start": 12,
+          "span": 1,
+          "cat": "HUM",
+          "code": "Hum 2217",
+          "title": "Legal Issues, Industrial & Operational Management",
+          "room": "R-404",
+          "teacherId": 1036,
+          "teacherIds": [
+            1036,
+            1037
+          ],
+          "initials": "SI+MRI",
+          "section": "All Sections"
+        },
+        {
+          "id": 4196,
+          "seriesId": 1001,
+          "day": "Tuesday",
+          "start": 11,
+          "span": 1,
+          "cat": "MATH",
+          "code": "Math 2217",
+          "title": "Co-ordinate Geometry & Partial Differential Equations",
+          "room": "R-404",
+          "teacherId": 1035,
+          "teacherIds": [
+            1035,
+            1048
+          ],
+          "initials": "MRK+MZH",
+          "section": "All Sections"
+        },
+        {
+          "id": 4197,
+          "seriesId": 1001,
+          "day": "Wednesday",
+          "start": 10,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 2207",
+          "title": "Electrical Machine-I",
+          "room": "R-404",
+          "teacherId": 1028,
+          "teacherIds": [
+            1028,
+            1032
+          ],
+          "initials": "FT+NRP",
+          "section": "All Sections"
+        },
+        {
+          "id": 4198,
+          "seriesId": 1001,
+          "day": "Saturday",
+          "start": 11,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 2215",
+          "title": "Data Base Systems",
+          "room": "R-401",
+          "teacherId": 1033,
+          "teacherIds": [
+            1033,
+            1034
+          ],
+          "initials": "NIS+MNT",
+          "section": "All Sections"
+        },
+        {
+          "id": 4199,
+          "seriesId": 1001,
+          "day": "Monday",
+          "start": 13,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 2213",
+          "title": "Numerical Methods & Discrete Mathematics",
+          "room": "R-404",
+          "teacherId": 1042,
+          "teacherIds": [
+            1042,
+            1047
+          ],
+          "initials": "MZA+MI",
+          "section": "All Sections"
+        },
+        {
+          "id": 4201,
+          "seriesId": 1001,
+          "day": "Wednesday",
+          "start": 8,
+          "span": 1,
+          "cat": "MATH",
+          "code": "Math 2217",
+          "title": "Co-ordinate Geometry & Partial Differential Equations",
+          "room": "R-404",
+          "teacherId": 1035,
+          "teacherIds": [
+            1035,
+            1048
+          ],
+          "initials": "MRK+MZH",
+          "section": "All Sections"
+        },
+        {
+          "id": 4203,
+          "seriesId": 1001,
+          "day": "Sunday",
+          "start": 10,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 2215",
+          "title": "Data Base Systems",
+          "room": "R-404",
+          "teacherId": 1033,
+          "teacherIds": [
+            1033,
+            1034
+          ],
+          "initials": "NIS+MNT",
+          "section": "All Sections"
+        },
+        {
+          "id": 4204,
+          "seriesId": 1001,
+          "day": "Wednesday",
+          "start": 9,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 2213",
+          "title": "Numerical Methods & Discrete Mathematics",
+          "room": "R-404",
+          "teacherId": 1042,
+          "teacherIds": [
+            1042,
+            1047
+          ],
+          "initials": "MZA+MI",
+          "section": "All Sections"
+        },
+        {
+          "id": 4205,
+          "seriesId": 1001,
+          "day": "Tuesday",
+          "start": 12,
+          "span": 1,
+          "cat": "HUM",
+          "code": "Hum 2217",
+          "title": "Legal Issues, Industrial & Operational Management",
+          "room": "R-404",
+          "teacherId": 1036,
+          "teacherIds": [
+            1036,
+            1037
+          ],
+          "initials": "SI+MRI",
+          "section": "All Sections"
+        },
+        {
+          "id": 4206,
+          "seriesId": 1001,
+          "day": "Sunday",
+          "start": 9,
+          "span": 1,
+          "cat": "MATH",
+          "code": "Math 2217",
+          "title": "Co-ordinate Geometry & Partial Differential Equations",
+          "room": "R-404",
+          "teacherId": 1035,
+          "teacherIds": [
+            1035,
+            1048
+          ],
+          "initials": "MRK+MZH",
+          "section": "All Sections"
+        },
+        {
+          "id": 4208,
+          "seriesId": 1001,
+          "day": "Sunday",
+          "start": 11,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 2208",
+          "title": "Electrical Machine-I Sessional",
+          "room": "Lab-8",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026
+          ],
+          "initials": "MAH",
+          "section": "All Sections",
+          "isOptional": true,
+          "isManual": true
+        },
+        {
+          "id": 4209,
+          "seriesId": 1001,
+          "day": "Tuesday",
+          "start": 8,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 2200",
+          "title": "Electronic Shop Practice",
+          "room": "Lab-4",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026,
+            1032
+          ],
+          "initials": "MAH+NRP",
+          "section": "All Sections",
+          "isOptional": true,
+          "isManual": true
+        },
+        {
+          "id": 4210,
+          "seriesId": 1001,
+          "day": "Tuesday",
+          "start": 14,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 2214",
+          "title": "Numerical Methods & Discrete Mathematics Sessional",
+          "room": "Lab-1",
+          "teacherId": 1042,
+          "teacherIds": [
+            1042,
+            1047
+          ],
+          "initials": "MZA+MI",
+          "section": "All Sections",
+          "isOptional": true,
+          "isManual": true
+        },
+        {
+          "id": 4211,
+          "seriesId": 1001,
+          "day": "Wednesday",
+          "start": 11,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 2216",
+          "title": "Data Base Systems Sessional",
+          "room": "Lab-2",
+          "teacherId": 1033,
+          "teacherIds": [
+            1033,
+            1034
+          ],
+          "initials": "NIS+MNT",
+          "section": "All Sections",
+          "isOptional": true,
+          "isManual": true
+        },
+        {
+          "id": 4212,
+          "seriesId": 1001,
+          "day": "Saturday",
+          "start": 12,
+          "span": 1,
+          "cat": "HUM",
+          "code": "Hum 2217",
+          "title": "Legal Issues, Industrial & Operational Management",
+          "room": "R-401",
+          "teacherId": 1036,
+          "teacherIds": [
+            1036,
+            1037
+          ],
+          "initials": "SI+MRI",
+          "section": "All Sections",
+          "isOptional": false,
+          "isManual": true
+        },
+        {
+          "id": 4213,
+          "seriesId": 1001,
+          "day": "Saturday",
+          "start": 13,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 2207",
+          "title": "Electrical Machine-I",
+          "room": "R-401",
+          "teacherId": 1028,
+          "teacherIds": [
+            1028,
+            1032
+          ],
+          "initials": "FT+NRP",
+          "section": "All Sections",
+          "isOptional": false,
+          "isManual": true
         }
       ],
       "meeting": {
@@ -4624,6 +5113,6 @@
       "head": "Head, ECE, RUET",
       "effectiveDate": "10/01/2026"
     },
-    "uid": 4188
+    "uid": 4214
   }
 }
