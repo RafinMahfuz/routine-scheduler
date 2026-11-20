@@ -499,7 +499,7 @@ const SEED_CLASSES = [
   [3, "Sunday", 11, 3, "ECE 3200", "Lab", "GKH+NRP", "Lab-3"],
   [3, "Monday", 8, 1, "ECE 3207", "ECE", "MAH+MNT", "R-402"],
   [3, "Monday", 9, 1, "ME 3219", "ME", "MMR/MRP", "R-402"],
-  [3, "Monday", 11, 3, "ECE 3221", "Lab", "NIS", "Lab-2"],
+  [3, "Monday", 11, 3, "ECE 3222", "Lab", "NIS", "Lab-2"],
   [3, "Tuesday", 8, 1, "ECE 3205", "ECE", "MFA+MKG", "R-402"],
   [3, "Tuesday", 9, 1, "HUM 3217", "HUM", "KF", "R-402"],
   [3, "Tuesday", 10, 1, "ECE 3221", "ECE", "HBK+NIS", "R-402"],
@@ -561,6 +561,13 @@ function seedData() {
 
   buildCoursesFromClasses();
   seedStudents();
+
+  // Ensure all series have all syllabus courses for their running semester
+  state.series.forEach(s => {
+    if (s.runningSemester) {
+      assignSemesterCoursesToSeries(s.id, s.runningSemester);
+    }
+  });
 }
 
 function resolveLabId(roomStr) {
@@ -650,6 +657,18 @@ function assignSemesterCoursesToSeries(seriesId, semesterName, clearExistingRout
       newCourses.push(existing);
     } else {
       const isLab = sc.type === 'lab';
+      // Attempt to infer teacher / room / lab from any merged course (e.g. "ECE 3208 / 3206") or class records
+      const mergedOld = existingCourses.find(c => c.code && c.code.toUpperCase().includes(scCode));
+      const rawClass = state.classes ? state.classes.find(cl => cl.seriesId === seriesId && cl.code && cl.code.toUpperCase().includes(scCode)) : null;
+
+      let labId = isLab ? (mergedOld ? mergedOld.labId : (typeof resolveLabId === 'function' ? resolveLabId(rawClass ? rawClass.room : '') : (state.labs[0] ? state.labs[0].id : null))) : null;
+      let teacherId = mergedOld ? mergedOld.teacherId : (rawClass ? rawClass.teacherId : null);
+      let teacherIds = (mergedOld && mergedOld.teacherIds && mergedOld.teacherIds.length)
+        ? [...mergedOld.teacherIds]
+        : (teacherId ? [teacherId] : []);
+      let roomId = !isLab ? (mergedOld ? mergedOld.roomId : (state.rooms[0] ? state.rooms[0].id : null)) : null;
+      let roomStr = mergedOld ? mergedOld.room : (rawClass ? rawClass.room : '');
+
       newCourses.push({
         id: nextId(),
         seriesId: seriesId,
@@ -660,18 +679,23 @@ function assignSemesterCoursesToSeries(seriesId, semesterName, clearExistingRout
         type: sc.type,
         sessionsPerWeek: sc.sessionsPerWeek || (isLab ? 1 : 3),
         studentCount: 60,
-        teacherId: null,
-        teacherIds: [],
-        roomId: null,
-        room: '',
-        labId: isLab ? (state.labs[0] ? state.labs[0].id : null) : null,
-        groups: isLab ? [{ labId: (state.labs[0] ? state.labs[0].id : null), teacherId: null, teacherIds: [], size: 60 }] : []
+        teacherId: teacherId,
+        teacherIds: teacherIds,
+        roomId: roomId,
+        room: roomStr,
+        labId: labId,
+        groups: isLab ? [{ labId: labId, teacherId: teacherId, teacherIds: teacherIds, size: 60 }] : []
       });
     }
   });
 
-  // Replace this series's courses with the new syllabus course set
-  state.courses = state.courses.filter(c => c.seriesId !== seriesId).concat(newCourses);
+  // Preserve any elective / optional courses manually added to this series
+  const preservedManualElectives = existingCourses.filter(c =>
+    !matchedExistingIds.has(c.id) && typeof isOptionalCourse === 'function' && isOptionalCourse(c)
+  );
+
+  // Replace this series's courses with the new syllabus course set (+ preserved manual electives)
+  state.courses = state.courses.filter(c => c.seriesId !== seriesId).concat(newCourses, preservedManualElectives);
 
   if (clearExistingRoutine) {
     state.classes = state.classes.filter(c => c.seriesId !== seriesId);
@@ -782,6 +806,21 @@ async function loadFromCloud(onLoaded) {
 
       if (cloudTime > lastLocalSaved || !localStorage.getItem(STORAGE_KEY)) {
         Object.assign(state, data.payload.state);
+        // Ensure all series have all syllabus courses for their running semester
+        if (state.series && state.series.length) {
+          state.series.forEach(s => {
+            if (!s.runningSemester) return;
+            const sylCourses = (state.semesterCourses || []).filter(c => c.semester === s.runningSemester);
+            const currentSeriesCourses = state.courses.filter(c => c.seriesId === s.id);
+            const hasMissingCourse = sylCourses.some(sc => {
+              if (sc.code && sc.code.includes('**')) return false;
+              return !currentSeriesCourses.some(c => (c.code || '').trim().toUpperCase() === (sc.code || '').trim().toUpperCase());
+            });
+            if (hasMissingCourse) {
+              assignSemesterCoursesToSeries(s.id, s.runningSemester);
+            }
+          });
+        }
         if (data.payload.settings && typeof settings !== 'undefined') {
           Object.assign(settings, data.payload.settings);
         }
@@ -980,6 +1019,22 @@ function loadState() {
           }
           if (!s.runningSemester) {
             s.runningSemester = SEMESTERS.find(sem => s.label && s.label.includes(sem)) || '1st Year (Odd)';
+          }
+        });
+      }
+
+      // Ensure all series have all syllabus courses for their running semester
+      if (state.series && state.series.length) {
+        state.series.forEach(s => {
+          if (!s.runningSemester) return;
+          const sylCourses = (state.semesterCourses || []).filter(c => c.semester === s.runningSemester);
+          const currentSeriesCourses = state.courses.filter(c => c.seriesId === s.id);
+          const hasMissingCourse = sylCourses.some(sc => {
+            if (sc.code && sc.code.includes('**')) return false;
+            return !currentSeriesCourses.some(c => (c.code || '').trim().toUpperCase() === (sc.code || '').trim().toUpperCase());
+          });
+          if (hasMissingCourse) {
+            assignSemesterCoursesToSeries(s.id, s.runningSemester);
           }
         });
       }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1795153649335,
+  "updatedAt": 1795157546503,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
@@ -1217,128 +1217,6 @@
       ],
       "courses": [
         {
-          "id": 1154,
-          "seriesId": 1003,
-          "code": "ECE 3207",
-          "title": "ECE 3207",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1026,
-          "groups": []
-        },
-        {
-          "id": 1155,
-          "seriesId": 1003,
-          "code": "ECE 3205",
-          "title": "ECE 3205",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1050,
-          "groups": []
-        },
-        {
-          "id": 1156,
-          "seriesId": 1003,
-          "code": "ME 3219",
-          "title": "ME 3219",
-          "credit": 3,
-          "dept": "ME",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1039,
-          "groups": []
-        },
-        {
-          "id": 1157,
-          "seriesId": 1003,
-          "code": "ECE 3221",
-          "title": "ECE 3221",
-          "credit": 3,
-          "dept": "ECE",
-          "type": "theory",
-          "sessionsPerWeek": 4,
-          "studentCount": 60,
-          "teacherId": 1055,
-          "groups": []
-        },
-        {
-          "id": 1158,
-          "seriesId": 1003,
-          "code": "HUM 3217",
-          "title": "HUM 3217",
-          "credit": 3,
-          "dept": "HUM",
-          "type": "theory",
-          "sessionsPerWeek": 3,
-          "studentCount": 60,
-          "teacherId": 1053,
-          "groups": []
-        },
-        {
-          "id": 1159,
-          "seriesId": 1003,
-          "code": "ECE 3200",
-          "title": "ECE 3200",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 2,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1013,
-              "teacherId": 1027,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1160,
-          "seriesId": 1003,
-          "code": "ECE 3208 / 3206",
-          "title": "ECE 3208 / 3206",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1020,
-              "teacherId": 1026,
-              "size": 60
-            }
-          ]
-        },
-        {
-          "id": 1161,
-          "seriesId": 1003,
-          "code": "ME 3220",
-          "title": "ME 3220",
-          "credit": 1.5,
-          "dept": "ECE",
-          "type": "lab",
-          "sessionsPerWeek": 1,
-          "studentCount": 60,
-          "teacherId": null,
-          "groups": [
-            {
-              "labId": 1021,
-              "teacherId": 1049,
-              "size": 60
-            }
-          ]
-        },
-        {
           "id": 1476,
           "seriesId": 1004,
           "code": "ECE 4209",
@@ -1941,6 +1819,241 @@
             {
               "labId": 1011,
               "teacherId": null,
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1155,
+          "seriesId": 1003,
+          "code": "ECE 3205",
+          "title": "Industrial Electronics",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": 1050,
+          "teacherIds": [
+            1050,
+            1030
+          ],
+          "roomId": 1007,
+          "room": "R-402",
+          "groups": []
+        },
+        {
+          "id": 1162,
+          "seriesId": 1003,
+          "code": "ECE 3206",
+          "title": "Industrial Electronics Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": 1030,
+          "teacherIds": [
+            1030,
+            1050
+          ],
+          "roomId": null,
+          "room": "Lab-3",
+          "labId": 1013,
+          "groups": [
+            {
+              "labId": 1013,
+              "teacherId": 1030,
+              "teacherIds": [
+                1030,
+                1050
+              ],
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1154,
+          "seriesId": 1003,
+          "code": "ECE 3207",
+          "title": "Communication Engineering",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": 1026,
+          "teacherIds": [
+            1026,
+            1034
+          ],
+          "roomId": 1007,
+          "room": "R-402",
+          "groups": []
+        },
+        {
+          "id": 1160,
+          "seriesId": 1003,
+          "code": "ECE 3208",
+          "title": "Communication Engineering Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": 1026,
+          "teacherIds": [
+            1026,
+            1034
+          ],
+          "roomId": null,
+          "room": "Lab-10",
+          "labId": 1020,
+          "groups": [
+            {
+              "labId": 1020,
+              "teacherId": 1026,
+              "teacherIds": [
+                1026,
+                1034
+              ],
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1157,
+          "seriesId": 1003,
+          "code": "ECE 3221",
+          "title": "Operating System",
+          "credit": 3,
+          "dept": "ECE",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": 1029,
+          "teacherIds": [
+            1029,
+            1055
+          ],
+          "roomId": 1007,
+          "room": "R-402",
+          "groups": []
+        },
+        {
+          "id": 1163,
+          "seriesId": 1003,
+          "code": "ECE 3222",
+          "title": "Operating System Sessional",
+          "credit": 0.75,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": 1055,
+          "teacherIds": [
+            1055,
+            1029
+          ],
+          "roomId": null,
+          "room": "Lab-2",
+          "labId": 1012,
+          "groups": [
+            {
+              "labId": 1012,
+              "teacherId": 1055,
+              "teacherIds": [
+                1055,
+                1029
+              ],
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1156,
+          "seriesId": 1003,
+          "code": "ME 3219",
+          "title": "Basic Mechanical Engineering",
+          "credit": 3,
+          "dept": "ME",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": null,
+          "teacherIds": [],
+          "roomId": 1007,
+          "room": "R-402",
+          "groups": []
+        },
+        {
+          "id": 1161,
+          "seriesId": 1003,
+          "code": "ME 3220",
+          "title": "Basic Mechanical Engineering Sessional",
+          "credit": 0.75,
+          "dept": "ME",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": null,
+          "teacherIds": [],
+          "roomId": null,
+          "room": "Lab-11",
+          "labId": 1021,
+          "groups": [
+            {
+              "labId": 1021,
+              "teacherId": null,
+              "teacherIds": [],
+              "size": 60
+            }
+          ]
+        },
+        {
+          "id": 1158,
+          "seriesId": 1003,
+          "code": "HUM 3217",
+          "title": "Economics & Accountancy",
+          "credit": 3,
+          "dept": "HUM",
+          "type": "theory",
+          "sessionsPerWeek": 3,
+          "studentCount": 60,
+          "teacherId": 1053,
+          "teacherIds": [
+            1053
+          ],
+          "roomId": 1007,
+          "room": "R-402",
+          "groups": []
+        },
+        {
+          "id": 1159,
+          "seriesId": 1003,
+          "code": "ECE 3200",
+          "title": "Electrical Services Design",
+          "credit": 1.5,
+          "dept": "ECE",
+          "type": "lab",
+          "sessionsPerWeek": 1,
+          "studentCount": 60,
+          "teacherId": 1027,
+          "teacherIds": [
+            1027,
+            1036
+          ],
+          "roomId": null,
+          "room": "Lab-3",
+          "labId": 1013,
+          "groups": [
+            {
+              "labId": 1013,
+              "teacherId": 1027,
+              "teacherIds": [
+                1027,
+                1036
+              ],
               "size": 60
             }
           ]
@@ -4196,8 +4309,8 @@
           "start": 11,
           "span": 3,
           "cat": "Lab",
-          "code": "ECE 3221",
-          "title": "ECE 3221",
+          "code": "ECE 3222",
+          "title": "Operating System Sessional",
           "room": "Lab-2",
           "teacherId": 1055,
           "initials": "NIS",
@@ -4308,11 +4421,11 @@
           "start": 11,
           "span": 3,
           "cat": "Lab",
-          "code": "ECE 3208 / 3206",
-          "title": "ECE 3208 / 3206",
-          "room": "Lab-10 / Lab-3",
+          "code": "ECE 3208",
+          "title": "Communication Engineering Sessional",
+          "room": "Lab-10",
           "teacherId": 1026,
-          "initials": "MAH+MNT / MFA+MKG",
+          "initials": "MAH+MNT",
           "section": "All Sections"
         },
         {

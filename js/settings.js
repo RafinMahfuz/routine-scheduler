@@ -177,6 +177,7 @@ function renderSettings() {
           assignSemesterCoursesToSeries(s.id, newSem, clearRoutine);
           toast(`Series ${s.name} updated to ${newSem} — syllabus courses assigned!`, 'ok');
         } else {
+          assignSemesterCoursesToSeries(s.id, newSem, false);
           toast('Series updated', 'ok');
         }
         saveState();
