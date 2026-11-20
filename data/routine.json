@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1795152830359,
+  "updatedAt": 1795153591906,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "labs",
+      "activeNav": "teachers",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -50,7 +50,7 @@
           "runningSemester": "4th Year (Even)"
         }
       ],
-      "activeSeriesId": 1001,
+      "activeSeriesId": 1004,
       "semesters": [
         "1st Year (Odd)",
         "1st Year (Even)",
@@ -995,7 +995,7 @@
         },
         {
           "id": 1028,
-          "name": "Foria Tabassum",
+          "name": "Faria Tabassum",
           "shortName": "FT",
           "dept": "ECE",
           "email": "ft@ruet.ac.bd",
@@ -1008,7 +1008,7 @@
         },
         {
           "id": 1029,
-          "name": "Heba Binte Kibria",
+          "name": "Hafsa Binte Kibria",
           "shortName": "HBK",
           "dept": "ECE",
           "email": "hbk@ruet.ac.bd",
