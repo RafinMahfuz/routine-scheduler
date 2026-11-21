@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1795265282728,
+  "updatedAt": 1795275005684,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "teachers",
+      "activeNav": "routine",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -40,7 +40,7 @@
         {
           "id": 1003,
           "name": "22 Series",
-          "label": "3rd Year (Even)|2022 Series",
+          "label": "3rd Year (Even)|22 Series",
           "runningSemester": "3rd Year (Even)"
         },
         {
@@ -50,7 +50,7 @@
           "runningSemester": "4th Year (Even)"
         }
       ],
-      "activeSeriesId": 1001,
+      "activeSeriesId": 1003,
       "semesters": [
         "1st Year (Odd)",
         "1st Year (Even)",
@@ -61,7 +61,7 @@
         "4th Year (Odd)",
         "4th Year (Even)"
       ],
-      "activeSemester": "4th Year (Even)",
+      "activeSemester": "2nd Year (Odd)",
       "semesterCourses": [
         {
           "id": 1000,
@@ -1174,6 +1174,45 @@
             "fg": "#854d0e",
             "border": "#ca8a04"
           }
+        },
+        {
+          "id": 5756,
+          "name": "Dr. Md. Masud Rana",
+          "shortName": "MMR",
+          "email": "mmr@ruet.ac.bd",
+          "dept": "ECE",
+          "color": {
+            "name": "Deep Cyan",
+            "bg": "#f0f9ff",
+            "fg": "#0369a1",
+            "border": "#0284c7"
+          }
+        },
+        {
+          "id": 5757,
+          "name": "Md. Riaz Pervez",
+          "shortName": "MRP",
+          "email": "mrp@ruet.ac.bd",
+          "dept": "ECE",
+          "color": {
+            "name": "Warm Amber",
+            "bg": "#fefce8",
+            "fg": "#a16207",
+            "border": "#eab308"
+          }
+        },
+        {
+          "id": 5758,
+          "name": "Dr. Tahmina Khatun",
+          "shortName": "TK",
+          "email": "tk@ruet.ac.bd",
+          "dept": "ECE",
+          "color": {
+            "name": "Forest Green",
+            "bg": "#f0fdf4",
+            "fg": "#15803d",
+            "border": "#22c55e"
+          }
         }
       ],
       "courses": [
@@ -1283,17 +1322,25 @@
           "type": "lab",
           "sessionsPerWeek": 1,
           "studentCount": 60,
-          "teacherId": null,
+          "teacherId": 1030,
           "groups": [
             {
-              "labId": 1011,
-              "teacherId": 1025,
+              "labId": 1013,
+              "teacherId": 1030,
+              "teacherIds": [
+                1030,
+                1031
+              ],
               "size": 60
             }
           ],
           "teacherIds": [
-            1025
-          ]
+            1030,
+            1031
+          ],
+          "labId": 1013,
+          "room": "ECE Machine LAB",
+          "roomId": null
         },
         {
           "id": 1559,
@@ -1878,7 +1925,7 @@
           ]
         },
         {
-          "id": 1155,
+          "id": 7889,
           "seriesId": 1003,
           "code": "ECE 3205",
           "title": "Industrial Electronics",
@@ -1887,17 +1934,18 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": 1050,
+          "teacherId": 1030,
           "teacherIds": [
-            1050,
-            1030
+            1030,
+            1031
           ],
-          "roomId": 1007,
+          "roomId": 1006,
           "room": "R-402",
+          "labId": null,
           "groups": []
         },
         {
-          "id": 1162,
+          "id": 7890,
           "seriesId": 1003,
           "code": "ECE 3206",
           "title": "Industrial Electronics Sessional",
@@ -1909,10 +1957,10 @@
           "teacherId": 1030,
           "teacherIds": [
             1030,
-            1050
+            1031
           ],
           "roomId": null,
-          "room": "Lab-3",
+          "room": "ECE Machine LAB",
           "labId": 1013,
           "groups": [
             {
@@ -1920,14 +1968,14 @@
               "teacherId": 1030,
               "teacherIds": [
                 1030,
-                1050
+                1031
               ],
               "size": 60
             }
           ]
         },
         {
-          "id": 1154,
+          "id": 7891,
           "seriesId": 1003,
           "code": "ECE 3207",
           "title": "Communication Engineering",
@@ -1941,12 +1989,13 @@
             1026,
             1034
           ],
-          "roomId": 1007,
+          "roomId": 1006,
           "room": "R-402",
+          "labId": null,
           "groups": []
         },
         {
-          "id": 1160,
+          "id": 7892,
           "seriesId": 1003,
           "code": "ECE 3208",
           "title": "Communication Engineering Sessional",
@@ -1961,7 +2010,7 @@
             1034
           ],
           "roomId": null,
-          "room": "Lab-10",
+          "room": "EEE Communication LAB",
           "labId": 1020,
           "groups": [
             {
@@ -1976,7 +2025,7 @@
           ]
         },
         {
-          "id": 1157,
+          "id": 7893,
           "seriesId": 1003,
           "code": "ECE 3221",
           "title": "Operating System",
@@ -1988,14 +2037,15 @@
           "teacherId": 1029,
           "teacherIds": [
             1029,
-            1055
+            1033
           ],
-          "roomId": 1007,
+          "roomId": 1006,
           "room": "R-402",
+          "labId": null,
           "groups": []
         },
         {
-          "id": 1163,
+          "id": 7894,
           "seriesId": 1003,
           "code": "ECE 3222",
           "title": "Operating System Sessional",
@@ -2004,28 +2054,28 @@
           "type": "lab",
           "sessionsPerWeek": 1,
           "studentCount": 60,
-          "teacherId": 1055,
+          "teacherId": 1029,
           "teacherIds": [
-            1055,
-            1029
+            1029,
+            1033
           ],
           "roomId": null,
-          "room": "Lab-2",
+          "room": "ECE Computer LAB - 2",
           "labId": 1012,
           "groups": [
             {
               "labId": 1012,
-              "teacherId": 1055,
+              "teacherId": 1029,
               "teacherIds": [
-                1055,
-                1029
+                1029,
+                1033
               ],
               "size": 60
             }
           ]
         },
         {
-          "id": 1156,
+          "id": 7895,
           "seriesId": 1003,
           "code": "ME 3219",
           "title": "Basic Mechanical Engineering",
@@ -2034,16 +2084,18 @@
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": 1039,
+          "teacherId": 5756,
           "teacherIds": [
-            1039
+            5756,
+            5757
           ],
-          "roomId": 1007,
+          "roomId": 1006,
           "room": "R-402",
+          "labId": null,
           "groups": []
         },
         {
-          "id": 1161,
+          "id": 7896,
           "seriesId": 1003,
           "code": "ME 3220",
           "title": "Basic Mechanical Engineering Sessional",
@@ -2052,40 +2104,45 @@
           "type": "lab",
           "sessionsPerWeek": 1,
           "studentCount": 60,
-          "teacherId": null,
-          "teacherIds": [],
+          "teacherId": 5757,
+          "teacherIds": [
+            5757
+          ],
           "roomId": null,
-          "room": "Lab-11",
+          "room": "Heat Engine Lab",
           "labId": 1021,
           "groups": [
             {
               "labId": 1021,
-              "teacherId": null,
-              "teacherIds": [],
+              "teacherId": 5757,
+              "teacherIds": [
+                5757
+              ],
               "size": 60
             }
           ]
         },
         {
-          "id": 1158,
+          "id": 7897,
           "seriesId": 1003,
-          "code": "HUM 3217",
+          "code": "Hum 3217",
           "title": "Economics & Accountancy",
           "credit": 3,
           "dept": "HUM",
           "type": "theory",
           "sessionsPerWeek": 3,
           "studentCount": 60,
-          "teacherId": 1053,
+          "teacherId": 5758,
           "teacherIds": [
-            1053
+            5758
           ],
-          "roomId": 1007,
+          "roomId": 1006,
           "room": "R-402",
+          "labId": null,
           "groups": []
         },
         {
-          "id": 1159,
+          "id": 7898,
           "seriesId": 1003,
           "code": "ECE 3200",
           "title": "Electrical Services Design",
@@ -2097,18 +2154,18 @@
           "teacherId": 1027,
           "teacherIds": [
             1027,
-            1036
+            1032
           ],
           "roomId": null,
-          "room": "Lab-3",
-          "labId": 1013,
+          "room": "ECE Circuit LAB",
+          "labId": 1014,
           "groups": [
             {
-              "labId": 1013,
+              "labId": 1014,
               "teacherId": 1027,
               "teacherIds": [
                 1027,
-                1036
+                1032
               ],
               "size": 60
             }
@@ -4219,454 +4276,6 @@
       ],
       "classes": [
         {
-          "id": 1107,
-          "seriesId": 1003,
-          "day": "Saturday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3207",
-          "title": "ECE 3207",
-          "room": "R-401",
-          "teacherId": 1026,
-          "initials": "MAH+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1108,
-          "seriesId": 1003,
-          "day": "Saturday",
-          "start": 9,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3205",
-          "title": "ECE 3205",
-          "room": "R-401",
-          "teacherId": 1050,
-          "initials": "MKG",
-          "section": "All Sections"
-        },
-        {
-          "id": 1109,
-          "seriesId": 1003,
-          "day": "Saturday",
-          "start": 10,
-          "span": 1,
-          "cat": "ME",
-          "code": "ME 3219",
-          "title": "ME 3219",
-          "room": "R-401",
-          "teacherId": 1039,
-          "initials": "MMR/MRP",
-          "section": "All Sections"
-        },
-        {
-          "id": 1110,
-          "seriesId": 1003,
-          "day": "Saturday",
-          "start": 11,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3221",
-          "title": "ECE 3221",
-          "room": "R-401",
-          "teacherId": 1055,
-          "initials": "NIS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1111,
-          "seriesId": 1003,
-          "day": "Sunday",
-          "start": 8,
-          "span": 1,
-          "cat": "ME",
-          "code": "ME 3219",
-          "title": "ME 3219",
-          "room": "R-402",
-          "teacherId": 1039,
-          "initials": "MMR/MRP",
-          "section": "All Sections"
-        },
-        {
-          "id": 1112,
-          "seriesId": 1003,
-          "day": "Sunday",
-          "start": 9,
-          "span": 1,
-          "cat": "HUM",
-          "code": "HUM 3217",
-          "title": "HUM 3217",
-          "room": "R-402",
-          "teacherId": 1053,
-          "initials": "TK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1113,
-          "seriesId": 1003,
-          "day": "Sunday",
-          "start": 10,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3205",
-          "title": "ECE 3205",
-          "room": "R-402",
-          "teacherId": 1030,
-          "initials": "MFA+MKG",
-          "section": "All Sections"
-        },
-        {
-          "id": 1114,
-          "seriesId": 1003,
-          "day": "Sunday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 3200",
-          "title": "ECE 3200",
-          "room": "Lab-3",
-          "teacherId": 1027,
-          "initials": "GKH+NRP",
-          "section": "All Sections"
-        },
-        {
-          "id": 1115,
-          "seriesId": 1003,
-          "day": "Monday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3207",
-          "title": "ECE 3207",
-          "room": "R-402",
-          "teacherId": 1026,
-          "initials": "MAH+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1116,
-          "seriesId": 1003,
-          "day": "Monday",
-          "start": 9,
-          "span": 1,
-          "cat": "ME",
-          "code": "ME 3219",
-          "title": "ME 3219",
-          "room": "R-402",
-          "teacherId": 1039,
-          "initials": "MMR/MRP",
-          "section": "All Sections"
-        },
-        {
-          "id": 1117,
-          "seriesId": 1003,
-          "day": "Monday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 3222",
-          "title": "Operating System Sessional",
-          "room": "Lab-2",
-          "teacherId": 1055,
-          "initials": "NIS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1118,
-          "seriesId": 1003,
-          "day": "Tuesday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3205",
-          "title": "ECE 3205",
-          "room": "R-402",
-          "teacherId": 1030,
-          "initials": "MFA+MKG",
-          "section": "All Sections"
-        },
-        {
-          "id": 1119,
-          "seriesId": 1003,
-          "day": "Tuesday",
-          "start": 9,
-          "span": 1,
-          "cat": "HUM",
-          "code": "HUM 3217",
-          "title": "HUM 3217",
-          "room": "R-402",
-          "teacherId": 1038,
-          "initials": "KF",
-          "section": "All Sections"
-        },
-        {
-          "id": 1120,
-          "seriesId": 1003,
-          "day": "Tuesday",
-          "start": 10,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3221",
-          "title": "ECE 3221",
-          "room": "R-402",
-          "teacherId": 1029,
-          "initials": "HBK+NIS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1121,
-          "seriesId": 1003,
-          "day": "Tuesday",
-          "start": 11,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3200",
-          "title": "ECE 3200",
-          "room": "R-401",
-          "teacherId": 1027,
-          "initials": "GKH+NRP",
-          "section": "All Sections"
-        },
-        {
-          "id": 1122,
-          "seriesId": 1003,
-          "day": "Wednesday",
-          "start": 8,
-          "span": 1,
-          "cat": "HUM",
-          "code": "HUM 3217",
-          "title": "HUM 3217",
-          "room": "R-402",
-          "teacherId": 1038,
-          "initials": "KF",
-          "section": "All Sections"
-        },
-        {
-          "id": 1123,
-          "seriesId": 1003,
-          "day": "Wednesday",
-          "start": 9,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3207",
-          "title": "ECE 3207",
-          "room": "R-402",
-          "teacherId": 1026,
-          "initials": "MAH+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1124,
-          "seriesId": 1003,
-          "day": "Wednesday",
-          "start": 10,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 3221",
-          "title": "ECE 3221",
-          "room": "R-402",
-          "teacherId": 1029,
-          "initials": "HBK+NIS",
-          "section": "All Sections"
-        },
-        {
-          "id": 1125,
-          "seriesId": 1003,
-          "day": "Wednesday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 3208",
-          "title": "Communication Engineering Sessional",
-          "room": "Lab-10",
-          "teacherId": 1026,
-          "initials": "MAH+MNT",
-          "section": "All Sections"
-        },
-        {
-          "id": 1126,
-          "seriesId": 1003,
-          "day": "Wednesday",
-          "start": 14,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ME 3220",
-          "title": "ME 3220",
-          "room": "Lab-11",
-          "teacherId": 1049,
-          "initials": "MRP",
-          "section": "All Sections"
-        },
-        {
-          "id": 1540,
-          "seriesId": 1004,
-          "day": "Sunday",
-          "start": 14,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 4224",
-          "title": "Digital Image Processing Sessional",
-          "room": "Lab-1",
-          "teacherId": null,
-          "initials": "",
-          "section": "All Sections"
-        },
-        {
-          "id": 1541,
-          "seriesId": 1004,
-          "day": "Sunday",
-          "start": 11,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 4000",
-          "title": "Thesis/Project-II",
-          "room": "Lab-1",
-          "teacherId": 1025,
-          "initials": "SMAR",
-          "section": "All Sections"
-        },
-        {
-          "id": 1542,
-          "seriesId": 1004,
-          "day": "Wednesday",
-          "start": 14,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 4212",
-          "title": "Computer Networks Sessional",
-          "room": "Lab-1",
-          "teacherId": null,
-          "initials": "",
-          "section": "All Sections"
-        },
-        {
-          "id": 1544,
-          "seriesId": 1004,
-          "day": "Tuesday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4211",
-          "title": "Computer Networks",
-          "room": "R-401",
-          "teacherId": 1029,
-          "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1546,
-          "seriesId": 1004,
-          "day": "Monday",
-          "start": 10,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4209",
-          "title": "Power Station, Switchgear & Protection",
-          "room": "R-401",
-          "teacherId": 1026,
-          "initials": "MAH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1547,
-          "seriesId": 1004,
-          "day": "Tuesday",
-          "start": 9,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4223",
-          "title": "Digital Image Processing",
-          "room": "S-401",
-          "teacherId": 1025,
-          "initials": "SMAR",
-          "section": "All Sections"
-        },
-        {
-          "id": 1549,
-          "seriesId": 1004,
-          "day": "Saturday",
-          "start": 13,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4211",
-          "title": "Computer Networks",
-          "room": "R-401",
-          "teacherId": 1029,
-          "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1551,
-          "seriesId": 1004,
-          "day": "Tuesday",
-          "start": 10,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4209",
-          "title": "Power Station, Switchgear & Protection",
-          "room": "R-401",
-          "teacherId": 1026,
-          "initials": "MAH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1552,
-          "seriesId": 1004,
-          "day": "Monday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4223",
-          "title": "Digital Image Processing",
-          "room": "S-401",
-          "teacherId": 1025,
-          "initials": "SMAR",
-          "section": "All Sections"
-        },
-        {
-          "id": 1554,
-          "seriesId": 1004,
-          "day": "Wednesday",
-          "start": 12,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4211",
-          "title": "Computer Networks",
-          "room": "R-401",
-          "teacherId": 1029,
-          "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 1556,
-          "seriesId": 1004,
-          "day": "Sunday",
-          "start": 9,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4209",
-          "title": "Power Station, Switchgear & Protection",
-          "room": "R-401",
-          "teacherId": 1026,
-          "initials": "MAH",
-          "section": "All Sections"
-        },
-        {
-          "id": 1557,
-          "seriesId": 1004,
-          "day": "Wednesday",
-          "start": 10,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4223",
-          "title": "Digital Image Processing",
-          "room": "S-401",
-          "teacherId": 1025,
-          "initials": "SMAR",
-          "section": "All Sections"
-        },
-        {
           "id": 4189,
           "seriesId": 1001,
           "day": "Saturday",
@@ -5072,6 +4681,207 @@
           "section": "All Sections",
           "isOptional": false,
           "isManual": true
+        },
+        {
+          "id": 7395,
+          "seriesId": 1004,
+          "day": "Saturday",
+          "start": 14,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 4000",
+          "title": "Thesis/Project-II",
+          "room": "Lab-3",
+          "teacherId": 1030,
+          "teacherIds": [
+            1030,
+            1031
+          ],
+          "initials": "MFA+MKG",
+          "section": "All Sections"
+        },
+        {
+          "id": 7396,
+          "seriesId": 1004,
+          "day": "Monday",
+          "start": 8,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 4224",
+          "title": "Digital Image Processing Sessional",
+          "room": "Lab-1",
+          "teacherId": null,
+          "teacherIds": [],
+          "initials": "",
+          "section": "All Sections"
+        },
+        {
+          "id": 7397,
+          "seriesId": 1004,
+          "day": "Tuesday",
+          "start": 8,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 4212",
+          "title": "Computer Networks Sessional",
+          "room": "Lab-1",
+          "teacherId": null,
+          "teacherIds": [],
+          "initials": "",
+          "section": "All Sections"
+        },
+        {
+          "id": 7398,
+          "seriesId": 1004,
+          "day": "Sunday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "room": "R-401",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026
+          ],
+          "initials": "MAH",
+          "section": "All Sections"
+        },
+        {
+          "id": 7399,
+          "seriesId": 1004,
+          "day": "Wednesday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4223",
+          "title": "Digital Image Processing",
+          "room": "S-401",
+          "teacherId": 1025,
+          "teacherIds": [
+            1025
+          ],
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 7400,
+          "seriesId": 1004,
+          "day": "Saturday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4211",
+          "title": "Computer Networks",
+          "room": "R-402",
+          "teacherId": 1029,
+          "teacherIds": [
+            1029
+          ],
+          "initials": "HBK",
+          "section": "All Sections"
+        },
+        {
+          "id": 7401,
+          "seriesId": 1004,
+          "day": "Monday",
+          "start": 12,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "room": "R-401",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026
+          ],
+          "initials": "MAH",
+          "section": "All Sections"
+        },
+        {
+          "id": 7402,
+          "seriesId": 1004,
+          "day": "Sunday",
+          "start": 9,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4223",
+          "title": "Digital Image Processing",
+          "room": "S-401",
+          "teacherId": 1025,
+          "teacherIds": [
+            1025
+          ],
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 7403,
+          "seriesId": 1004,
+          "day": "Tuesday",
+          "start": 12,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4211",
+          "title": "Computer Networks",
+          "room": "R-401",
+          "teacherId": 1029,
+          "teacherIds": [
+            1029
+          ],
+          "initials": "HBK",
+          "section": "All Sections"
+        },
+        {
+          "id": 7404,
+          "seriesId": 1004,
+          "day": "Saturday",
+          "start": 9,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "room": "R-402",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026
+          ],
+          "initials": "MAH",
+          "section": "All Sections"
+        },
+        {
+          "id": 7405,
+          "seriesId": 1004,
+          "day": "Monday",
+          "start": 11,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4223",
+          "title": "Digital Image Processing",
+          "room": "S-401",
+          "teacherId": 1025,
+          "teacherIds": [
+            1025
+          ],
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 7406,
+          "seriesId": 1004,
+          "day": "Wednesday",
+          "start": 12,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4211",
+          "title": "Computer Networks",
+          "room": "R-401",
+          "teacherId": 1029,
+          "teacherIds": [
+            1029
+          ],
+          "initials": "HBK",
+          "section": "All Sections"
         }
       ],
       "meeting": {
@@ -5087,6 +4897,6 @@
       "head": "Head, ECE, RUET",
       "effectiveDate": "10/01/2026"
     },
-    "uid": 4692
+    "uid": 8381
   }
 }
