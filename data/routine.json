@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": 1795275005684,
+  "updatedAt": 1795276778513,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
-      "activeNav": "routine",
+      "activeNav": "courses",
       "activeDay": "Saturday",
       "viewMode": "sheet",
       "darkMode": false,
@@ -50,7 +50,7 @@
           "runningSemester": "4th Year (Even)"
         }
       ],
-      "activeSeriesId": 1003,
+      "activeSeriesId": 1002,
       "semesters": [
         "1st Year (Odd)",
         "1st Year (Even)",
@@ -61,7 +61,7 @@
         "4th Year (Odd)",
         "4th Year (Even)"
       ],
-      "activeSemester": "2nd Year (Odd)",
+      "activeSemester": "3rd Year (Even)",
       "semesterCourses": [
         {
           "id": 1000,
@@ -4683,9 +4683,395 @@
           "isManual": true
         },
         {
-          "id": 7395,
-          "seriesId": 1004,
+          "id": 10456,
+          "seriesId": 1003,
+          "day": "Sunday",
+          "start": 14,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 3222",
+          "title": "Operating System Sessional",
+          "room": "Lab-2",
+          "teacherId": 1029,
+          "teacherIds": [
+            1029,
+            1033
+          ],
+          "initials": "HBK+NIS",
+          "section": "All Sections"
+        },
+        {
+          "id": 10457,
+          "seriesId": 1003,
           "day": "Saturday",
+          "start": 14,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 3208",
+          "title": "Communication Engineering Sessional",
+          "room": "Lab-10",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026,
+            1034
+          ],
+          "initials": "MAH+MNT",
+          "section": "All Sections"
+        },
+        {
+          "id": 10458,
+          "seriesId": 1003,
+          "day": "Saturday",
+          "start": 11,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ME 3220",
+          "title": "Basic Mechanical Engineering Sessional",
+          "room": "Lab-11",
+          "teacherId": 5757,
+          "teacherIds": [
+            5757
+          ],
+          "initials": "MRP",
+          "section": "All Sections"
+        },
+        {
+          "id": 10459,
+          "seriesId": 1003,
+          "day": "Sunday",
+          "start": 11,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 3206",
+          "title": "Industrial Electronics Sessional",
+          "room": "Lab-3",
+          "teacherId": 1030,
+          "teacherIds": [
+            1030,
+            1031
+          ],
+          "initials": "MFA+MKG",
+          "section": "All Sections"
+        },
+        {
+          "id": 10460,
+          "seriesId": 1003,
+          "day": "Saturday",
+          "start": 8,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 3200",
+          "title": "Electrical Services Design",
+          "room": "Lab-4",
+          "teacherId": 1027,
+          "teacherIds": [
+            1027,
+            1032
+          ],
+          "initials": "GKH+NRP",
+          "section": "All Sections"
+        },
+        {
+          "id": 10461,
+          "seriesId": 1003,
+          "day": "Monday",
+          "start": 8,
+          "span": 1,
+          "cat": "ME",
+          "code": "ME 3219",
+          "title": "Basic Mechanical Engineering",
+          "room": "R-402",
+          "teacherId": 5756,
+          "teacherIds": [
+            5756,
+            5757
+          ],
+          "initials": "MMR+MRP",
+          "section": "All Sections"
+        },
+        {
+          "id": 10462,
+          "seriesId": 1003,
+          "day": "Wednesday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 3207",
+          "title": "Communication Engineering",
+          "room": "R-402",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026,
+            1034
+          ],
+          "initials": "MAH+MNT",
+          "section": "All Sections"
+        },
+        {
+          "id": 10463,
+          "seriesId": 1003,
+          "day": "Tuesday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 3205",
+          "title": "Industrial Electronics",
+          "room": "R-402",
+          "teacherId": 1030,
+          "teacherIds": [
+            1030,
+            1031
+          ],
+          "initials": "MFA+MKG",
+          "section": "All Sections"
+        },
+        {
+          "id": 10464,
+          "seriesId": 1003,
+          "day": "Monday",
+          "start": 9,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 3221",
+          "title": "Operating System",
+          "room": "R-402",
+          "teacherId": 1029,
+          "teacherIds": [
+            1029,
+            1033
+          ],
+          "initials": "HBK+NIS",
+          "section": "All Sections"
+        },
+        {
+          "id": 10465,
+          "seriesId": 1003,
+          "day": "Tuesday",
+          "start": 9,
+          "span": 1,
+          "cat": "HUM",
+          "code": "Hum 3217",
+          "title": "Economics & Accountancy",
+          "room": "R-402",
+          "teacherId": 5758,
+          "teacherIds": [
+            5758
+          ],
+          "initials": "TK",
+          "section": "All Sections"
+        },
+        {
+          "id": 10466,
+          "seriesId": 1003,
+          "day": "Wednesday",
+          "start": 9,
+          "span": 1,
+          "cat": "ME",
+          "code": "ME 3219",
+          "title": "Basic Mechanical Engineering",
+          "room": "R-402",
+          "teacherId": 5756,
+          "teacherIds": [
+            5756,
+            5757
+          ],
+          "initials": "MMR+MRP",
+          "section": "All Sections"
+        },
+        {
+          "id": 10467,
+          "seriesId": 1003,
+          "day": "Sunday",
+          "start": 8,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 3207",
+          "title": "Communication Engineering",
+          "room": "R-402",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026,
+            1034
+          ],
+          "initials": "MAH+MNT",
+          "section": "All Sections"
+        },
+        {
+          "id": 10468,
+          "seriesId": 1003,
+          "day": "Monday",
+          "start": 10,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 3205",
+          "title": "Industrial Electronics",
+          "room": "R-402",
+          "teacherId": 1030,
+          "teacherIds": [
+            1030,
+            1031
+          ],
+          "initials": "MFA+MKG",
+          "section": "All Sections"
+        },
+        {
+          "id": 10469,
+          "seriesId": 1003,
+          "day": "Tuesday",
+          "start": 10,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 3221",
+          "title": "Operating System",
+          "room": "R-402",
+          "teacherId": 1029,
+          "teacherIds": [
+            1029,
+            1033
+          ],
+          "initials": "HBK+NIS",
+          "section": "All Sections"
+        },
+        {
+          "id": 10470,
+          "seriesId": 1003,
+          "day": "Wednesday",
+          "start": 10,
+          "span": 1,
+          "cat": "HUM",
+          "code": "Hum 3217",
+          "title": "Economics & Accountancy",
+          "room": "R-402",
+          "teacherId": 5758,
+          "teacherIds": [
+            5758
+          ],
+          "initials": "TK",
+          "section": "All Sections"
+        },
+        {
+          "id": 10471,
+          "seriesId": 1003,
+          "day": "Sunday",
+          "start": 9,
+          "span": 1,
+          "cat": "ME",
+          "code": "ME 3219",
+          "title": "Basic Mechanical Engineering",
+          "room": "R-402",
+          "teacherId": 5756,
+          "teacherIds": [
+            5756,
+            5757
+          ],
+          "initials": "MMR+MRP",
+          "section": "All Sections"
+        },
+        {
+          "id": 10472,
+          "seriesId": 1003,
+          "day": "Monday",
+          "start": 12,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 3207",
+          "title": "Communication Engineering",
+          "room": "R-402",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026,
+            1034
+          ],
+          "initials": "MAH+MNT",
+          "section": "All Sections"
+        },
+        {
+          "id": 10473,
+          "seriesId": 1003,
+          "day": "Wednesday",
+          "start": 11,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 3205",
+          "title": "Industrial Electronics",
+          "room": "R-402",
+          "teacherId": 1030,
+          "teacherIds": [
+            1030,
+            1031
+          ],
+          "initials": "MFA+MKG",
+          "section": "All Sections"
+        },
+        {
+          "id": 10474,
+          "seriesId": 1003,
+          "day": "Monday",
+          "start": 13,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 3221",
+          "title": "Operating System",
+          "room": "R-402",
+          "teacherId": 1029,
+          "teacherIds": [
+            1029,
+            1033
+          ],
+          "initials": "HBK+NIS",
+          "section": "All Sections"
+        },
+        {
+          "id": 10475,
+          "seriesId": 1003,
+          "day": "Sunday",
+          "start": 10,
+          "span": 1,
+          "cat": "HUM",
+          "code": "Hum 3217",
+          "title": "Economics & Accountancy",
+          "room": "R-402",
+          "teacherId": 5758,
+          "teacherIds": [
+            5758
+          ],
+          "initials": "TK",
+          "section": "All Sections"
+        },
+        {
+          "id": 11221,
+          "seriesId": 1004,
+          "day": "Wednesday",
+          "start": 11,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 4212",
+          "title": "Computer Networks Sessional",
+          "room": "Lab-1",
+          "teacherId": null,
+          "teacherIds": [],
+          "initials": "",
+          "section": "All Sections"
+        },
+        {
+          "id": 11222,
+          "seriesId": 1004,
+          "day": "Tuesday",
+          "start": 11,
+          "span": 3,
+          "cat": "Lab",
+          "code": "ECE 4224",
+          "title": "Digital Image Processing Sessional",
+          "room": "Lab-1",
+          "teacherId": null,
+          "teacherIds": [],
+          "initials": "",
+          "section": "All Sections"
+        },
+        {
+          "id": 11223,
+          "seriesId": 1004,
+          "day": "Wednesday",
           "start": 14,
           "span": 3,
           "cat": "Lab",
@@ -4701,71 +5087,7 @@
           "section": "All Sections"
         },
         {
-          "id": 7396,
-          "seriesId": 1004,
-          "day": "Monday",
-          "start": 8,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 4224",
-          "title": "Digital Image Processing Sessional",
-          "room": "Lab-1",
-          "teacherId": null,
-          "teacherIds": [],
-          "initials": "",
-          "section": "All Sections"
-        },
-        {
-          "id": 7397,
-          "seriesId": 1004,
-          "day": "Tuesday",
-          "start": 8,
-          "span": 3,
-          "cat": "Lab",
-          "code": "ECE 4212",
-          "title": "Computer Networks Sessional",
-          "room": "Lab-1",
-          "teacherId": null,
-          "teacherIds": [],
-          "initials": "",
-          "section": "All Sections"
-        },
-        {
-          "id": 7398,
-          "seriesId": 1004,
-          "day": "Sunday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4209",
-          "title": "Power Station, Switchgear & Protection",
-          "room": "R-401",
-          "teacherId": 1026,
-          "teacherIds": [
-            1026
-          ],
-          "initials": "MAH",
-          "section": "All Sections"
-        },
-        {
-          "id": 7399,
-          "seriesId": 1004,
-          "day": "Wednesday",
-          "start": 8,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4223",
-          "title": "Digital Image Processing",
-          "room": "S-401",
-          "teacherId": 1025,
-          "teacherIds": [
-            1025
-          ],
-          "initials": "SMAR",
-          "section": "All Sections"
-        },
-        {
-          "id": 7400,
+          "id": 11224,
           "seriesId": 1004,
           "day": "Saturday",
           "start": 8,
@@ -4773,7 +5095,7 @@
           "cat": "ECE",
           "code": "ECE 4211",
           "title": "Computer Networks",
-          "room": "R-402",
+          "room": "R-401",
           "teacherId": 1029,
           "teacherIds": [
             1029
@@ -4782,27 +5104,10 @@
           "section": "All Sections"
         },
         {
-          "id": 7401,
-          "seriesId": 1004,
-          "day": "Monday",
-          "start": 12,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4209",
-          "title": "Power Station, Switchgear & Protection",
-          "room": "R-401",
-          "teacherId": 1026,
-          "teacherIds": [
-            1026
-          ],
-          "initials": "MAH",
-          "section": "All Sections"
-        },
-        {
-          "id": 7402,
+          "id": 11225,
           "seriesId": 1004,
           "day": "Sunday",
-          "start": 9,
+          "start": 8,
           "span": 1,
           "cat": "ECE",
           "code": "ECE 4223",
@@ -4816,24 +5121,7 @@
           "section": "All Sections"
         },
         {
-          "id": 7403,
-          "seriesId": 1004,
-          "day": "Tuesday",
-          "start": 12,
-          "span": 1,
-          "cat": "ECE",
-          "code": "ECE 4211",
-          "title": "Computer Networks",
-          "room": "R-401",
-          "teacherId": 1029,
-          "teacherIds": [
-            1029
-          ],
-          "initials": "HBK",
-          "section": "All Sections"
-        },
-        {
-          "id": 7404,
+          "id": 11226,
           "seriesId": 1004,
           "day": "Saturday",
           "start": 9,
@@ -4841,7 +5129,7 @@
           "cat": "ECE",
           "code": "ECE 4209",
           "title": "Power Station, Switchgear & Protection",
-          "room": "R-402",
+          "room": "R-401",
           "teacherId": 1026,
           "teacherIds": [
             1026
@@ -4850,10 +5138,27 @@
           "section": "All Sections"
         },
         {
-          "id": 7405,
+          "id": 11227,
+          "seriesId": 1004,
+          "day": "Sunday",
+          "start": 9,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4211",
+          "title": "Computer Networks",
+          "room": "R-401",
+          "teacherId": 1029,
+          "teacherIds": [
+            1029
+          ],
+          "initials": "HBK",
+          "section": "All Sections"
+        },
+        {
+          "id": 11228,
           "seriesId": 1004,
           "day": "Monday",
-          "start": 11,
+          "start": 8,
           "span": 1,
           "cat": "ECE",
           "code": "ECE 4223",
@@ -4867,10 +5172,27 @@
           "section": "All Sections"
         },
         {
-          "id": 7406,
+          "id": 11229,
           "seriesId": 1004,
           "day": "Wednesday",
-          "start": 12,
+          "start": 10,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "room": "R-401",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026
+          ],
+          "initials": "MAH",
+          "section": "All Sections"
+        },
+        {
+          "id": 11230,
+          "seriesId": 1004,
+          "day": "Tuesday",
+          "start": 8,
           "span": 1,
           "cat": "ECE",
           "code": "ECE 4211",
@@ -4881,6 +5203,40 @@
             1029
           ],
           "initials": "HBK",
+          "section": "All Sections"
+        },
+        {
+          "id": 11231,
+          "seriesId": 1004,
+          "day": "Saturday",
+          "start": 10,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4223",
+          "title": "Digital Image Processing",
+          "room": "S-401",
+          "teacherId": 1025,
+          "teacherIds": [
+            1025
+          ],
+          "initials": "SMAR",
+          "section": "All Sections"
+        },
+        {
+          "id": 11232,
+          "seriesId": 1004,
+          "day": "Saturday",
+          "start": 12,
+          "span": 1,
+          "cat": "ECE",
+          "code": "ECE 4209",
+          "title": "Power Station, Switchgear & Protection",
+          "room": "R-402",
+          "teacherId": 1026,
+          "teacherIds": [
+            1026
+          ],
+          "initials": "MAH",
           "section": "All Sections"
         }
       ],
@@ -4897,6 +5253,6 @@
       "head": "Head, ECE, RUET",
       "effectiveDate": "10/01/2026"
     },
-    "uid": 8381
+    "uid": 11233
   }
 }
