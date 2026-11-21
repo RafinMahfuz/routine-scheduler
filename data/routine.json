@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": 1795181889535,
+  "updatedAt": 1795265282728,
   "updatedBy": "Admin (Live Website)",
   "payload": {
     "state": {
@@ -1164,41 +1164,15 @@
         },
         {
           "id": 1052,
-          "name": "Omar Faruk",
-          "shortName": "OF",
+          "name": "Md. Omaer Faruk",
+          "shortName": "MOF",
           "dept": "ECE",
-          "email": "of@ruet.ac.bd",
+          "email": "mof@ruet.ac.bd",
           "color": {
             "name": "Dark Goldenrod",
             "bg": "#fef08a",
             "fg": "#854d0e",
             "border": "#ca8a04"
-          }
-        },
-        {
-          "id": 1053,
-          "name": "Tanjila Khanam",
-          "shortName": "TK",
-          "dept": "HUM",
-          "email": "tk@ruet.ac.bd",
-          "color": {
-            "name": "Aqua Ocean",
-            "bg": "#bae6fd",
-            "fg": "#075985",
-            "border": "#0284c7"
-          }
-        },
-        {
-          "id": 1055,
-          "name": "Md. Nazrul Islam Sarker",
-          "shortName": "NIS",
-          "dept": "ECE",
-          "email": "nis@ruet.ac.bd",
-          "color": {
-            "name": "Deep Violet",
-            "bg": "#ddd6fe",
-            "fg": "#5b21b6",
-            "border": "#7c3aed"
           }
         }
       ],
@@ -5113,6 +5087,6 @@
       "head": "Head, ECE, RUET",
       "effectiveDate": "10/01/2026"
     },
-    "uid": 4214
+    "uid": 4692
   }
 }
